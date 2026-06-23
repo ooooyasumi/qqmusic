@@ -45,7 +45,7 @@ export function SongChoiceButton({
         <SongCover song={song} />
         <span className="song-rank-info">
           <b>{song.name}</b>
-          <small>{artistName} · {song.album} · {song.note}</small>
+          <small>{artistName} · {song.album}</small>
         </span>
       </span>
     </button>
@@ -175,7 +175,7 @@ export function SortableSongList({
           <SongCover song={song} />
           <span className="song-rank-info">
             <b>{song.name}</b>
-            <small>{song.album} · {song.note}</small>
+            <small>{song.album}</small>
           </span>
           <span className="song-drag-handle" aria-hidden="true">
             ⋮⋮
