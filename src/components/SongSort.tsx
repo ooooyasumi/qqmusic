@@ -32,8 +32,6 @@ export function SortableSongList({
   const itemRefs = useRef(new Map<string, HTMLDivElement>());
   const previousRects = useRef<Map<string, DOMRect> | null>(null);
   const cleanupTimer = useRef<number | null>(null);
-  const lastMoveAt = useRef(0);
-  const lastPointerY = useRef<number | null>(null);
 
   const rememberPositions = () => {
     previousRects.current = new Map(
@@ -44,9 +42,8 @@ export function SortableSongList({
     );
   };
 
-  const moveWithAnimation = (from: number, to: number, timestamp: number) => {
+  const moveWithAnimation = (from: number, to: number) => {
     if (from === to) return;
-    lastMoveAt.current = timestamp;
     rememberPositions();
     onMove(from, to);
     dragIndexRef.current = to;
@@ -58,31 +55,12 @@ export function SortableSongList({
     from: number,
     over: number,
   ): number | null => {
-    if (from === over || event.timeStamp - lastMoveAt.current < 90) {
-      return null;
-    }
-
-    const previousY = lastPointerY.current;
-    const movingDown = over > from;
-    if (previousY !== null) {
-      const deltaY = event.clientY - previousY;
-      if ((movingDown && deltaY < 0) || (!movingDown && deltaY > 0)) {
-        return null;
-      }
-    }
-
+    if (from === over) return null;
     const rect = event.currentTarget.getBoundingClientRect();
-    const adjacentTarget = movingDown ? from + 1 : from - 1;
-
-    if (over !== adjacentTarget) {
-      return null;
-    }
-
-    const threshold = movingDown
-      ? rect.top + rect.height * 0.5
-      : rect.bottom - rect.height * 0.5;
+    const movingDown = over > from;
+    const threshold = rect.top + rect.height / 2;
     const crossed = movingDown ? event.clientY >= threshold : event.clientY <= threshold;
-    return crossed ? adjacentTarget : null;
+    return crossed ? over : null;
   };
 
   useLayoutEffect(() => {
@@ -138,7 +116,6 @@ export function SortableSongList({
           draggable
           onDragStart={(event) => {
             dragIndexRef.current = index;
-            lastPointerY.current = event.clientY;
             setDragIndex(index);
             event.dataTransfer.effectAllowed = 'move';
           }}
@@ -148,19 +125,16 @@ export function SortableSongList({
             const current = dragIndexRef.current;
             const target = current === null ? null : nextMoveTarget(event, current, index);
             if (current !== null && target !== null) {
-              moveWithAnimation(current, target, event.timeStamp);
+              moveWithAnimation(current, target);
             }
-            lastPointerY.current = event.clientY;
           }}
           onDrop={(event) => {
             event.preventDefault();
             dragIndexRef.current = null;
-            lastPointerY.current = null;
             setDragIndex(null);
           }}
           onDragEnd={() => {
             dragIndexRef.current = null;
-            lastPointerY.current = null;
             setDragIndex(null);
           }}
           data-dragging={dragIndex === index}
