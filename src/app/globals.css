@@ -865,7 +865,11 @@ body::before {
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.025);
   cursor: grab;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.24s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.2s ease,
+    background 0.2s ease;
+  will-change: transform;
 }
 .song-rank-card:active {
   cursor: grabbing;
@@ -873,7 +877,6 @@ body::before {
 .song-rank-card[data-dragging='true'] {
   border-color: var(--accent-gold);
   background: rgba(212, 175, 122, 0.08);
-  transform: scale(0.98);
 }
 .song-rank-no {
   font-family: var(--font-display);
