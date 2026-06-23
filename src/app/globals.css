@@ -503,21 +503,14 @@ body::before {
 }
 .artist-page-title {
   margin-top: 12px;
-  font-size: 34px;
+  font-size: 44px;
   font-weight: 500;
-  line-height: 1.08;
-}
-.artist-page-subtitle {
-  margin-top: 8px;
-  color: var(--ink-secondary);
-  font-family: var(--font-serif);
-  font-size: 14px;
-  line-height: 1.4;
+  line-height: 0.98;
 }
 .artist-page-intro {
-  margin-top: 8px;
+  margin-top: 12px;
   font-size: 13.5px;
-  line-height: 1.68;
+  line-height: 1.5;
 }
 .artist-page-photo {
   justify-self: end;
@@ -555,7 +548,7 @@ body::before {
     padding: 16px;
   }
   .artist-page-title {
-    font-size: 27px;
+    font-size: 36px;
   }
   .artist-page-photo {
     width: 100px;

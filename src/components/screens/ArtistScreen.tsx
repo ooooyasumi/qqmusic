@@ -31,8 +31,7 @@ export function ArtistScreen() {
         <ArtistPageHero
           artist={artist}
           eyebrow="正在选择 · Pick 6 Songs"
-          title={artist.title}
-          copy={artist.intro}
+          copy="选择 6 首最喜欢的音乐"
         />
 
         <div className="mt-6 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>

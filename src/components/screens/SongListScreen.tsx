@@ -31,8 +31,7 @@ export function SongListScreen() {
         <ArtistPageHero
           artist={artist}
           eyebrow="完整歌单 · Select Songs"
-          title={`选择你的 6 首 ${artist.name}`}
-          copy="搜索或浏览完整歌单，点歌曲加入你的 Top6。"
+          copy="选择 6 首最喜欢的音乐"
         />
 
         <label className="mt-5 block">
