@@ -5,7 +5,7 @@ import { useApp } from '@/lib/state';
 import { findArtist } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
-import { SongChoiceButton } from '@/components/SongSort';
+import { SongGridChoiceButton } from '@/components/SongSort';
 import { ArtistPageHero } from '@/components/ArtistPageHero';
 
 export function SongListScreen() {
@@ -63,14 +63,20 @@ export function SongListScreen() {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col gap-3">
+        <div
+          className="song-grid mt-5"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: 12,
+          }}
+        >
           {songs.map((song) => {
             const selected = selectedSongIds.includes(song.id);
             const disabled = !selected && selectedSongIds.length >= 6;
             return (
-              <SongChoiceButton
+              <SongGridChoiceButton
                 key={song.id}
-                artistName={artist.name}
                 song={song}
                 selected={selected}
                 disabled={disabled}

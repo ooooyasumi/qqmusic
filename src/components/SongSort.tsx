@@ -3,13 +3,22 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import type { Song } from '@/lib/types';
 
-export function SongCover({ song, size = 54 }: { song: Song; size?: number }) {
+export function SongCover({
+  song,
+  size = 54,
+  fill = false,
+}: {
+  song: Song;
+  size?: number;
+  fill?: boolean;
+}) {
   return (
     <span
       className="song-cover"
       style={{
-        width: size,
-        height: size,
+        width: fill ? '100%' : size,
+        height: fill ? 'auto' : size,
+        aspectRatio: fill ? '1' : undefined,
         ['--cover-a' as string]: song.coverA,
         ['--cover-b' as string]: song.coverB,
       }}
@@ -47,6 +56,70 @@ export function SongChoiceButton({
           <b>{song.name}</b>
           <small>{artistName} · {song.album}</small>
         </span>
+      </span>
+    </button>
+  );
+}
+
+export function SongGridChoiceButton({
+  song,
+  selected,
+  disabled,
+  onClick,
+}: {
+  song: Song;
+  selected: boolean;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className="song-grid-card"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        minWidth: 0,
+        minHeight: 168,
+        padding: 14,
+      }}
+      data-selected={selected}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <SongCover song={song} fill />
+      <span
+        className="song-grid-copy"
+        style={{
+          display: 'block',
+          width: '100%',
+          marginTop: 12,
+          textAlign: 'center',
+          minWidth: 0,
+        }}
+      >
+        <b
+          style={{
+            display: 'block',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {song.name}
+        </b>
+        <small
+          style={{
+            display: 'block',
+            marginTop: 5,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {song.album}
+        </small>
       </span>
     </button>
   );

@@ -931,6 +931,74 @@ body::before {
   border: 7px solid rgba(0, 0, 0, 0.18);
   background: rgba(255, 255, 255, 0.18);
 }
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.song-grid-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 168px;
+  padding: 14px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ink-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
+}
+.song-grid-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 175, 122, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+.song-grid-card[data-selected='true'] {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 122, 0.08);
+}
+.song-grid-card:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.song-grid-card > .song-cover {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1;
+  font-size: 12px;
+}
+.song-grid-card > .song-cover::before {
+  width: 34px;
+  height: 34px;
+  border-width: 9px;
+}
+.song-grid-copy {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 12px;
+}
+.song-grid-copy b,
+.song-grid-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.song-grid-copy b {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink-primary);
+  line-height: 1.2;
+}
+.song-grid-copy small {
+  margin-top: 5px;
+  color: var(--ink-mute);
+  font-size: 12px;
+}
 .song-rank-list {
   display: flex;
   flex-direction: column;
