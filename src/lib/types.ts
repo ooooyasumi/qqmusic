@@ -53,6 +53,7 @@ export interface Artist {
 export type Screen =
   | 'home'
   | 'artist'
+  | 'songList'
   | 'create'
   | 'creatorAnswer'
   | 'creatorResult'

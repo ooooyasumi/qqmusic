@@ -20,6 +20,38 @@ export function SongCover({ song, size = 54 }: { song: Song; size?: number }) {
   );
 }
 
+export function SongChoiceButton({
+  artistName,
+  song,
+  selected,
+  disabled,
+  onClick,
+}: {
+  artistName: string;
+  song: Song;
+  selected: boolean;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className="option-card"
+      data-selected={selected}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <span className="flex items-center gap-3 min-w-0">
+        <SongCover song={song} />
+        <span className="song-rank-info">
+          <b>{song.name}</b>
+          <small>{artistName} · {song.album} · {song.note}</small>
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function SortableSongList({
   songs,
   onMove,

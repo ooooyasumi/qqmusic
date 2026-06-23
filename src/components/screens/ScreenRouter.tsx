@@ -3,6 +3,7 @@
 import { useApp } from '@/lib/state';
 import { HomeScreen } from './HomeScreen';
 import { ArtistScreen } from './ArtistScreen';
+import { SongListScreen } from './SongListScreen';
 import { CreateScreen } from './CreateScreen';
 import { AnswerScreen } from './AnswerScreen';
 import { CreatorResultScreen } from './CreatorResultScreen';
@@ -18,6 +19,8 @@ function ScreenContent() {
       return <HomeScreen />;
     case 'artist':
       return <ArtistScreen />;
+    case 'songList':
+      return <SongListScreen />;
     case 'create':
       return <CreateScreen />;
     case 'creatorAnswer':

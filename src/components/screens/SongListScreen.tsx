@@ -7,8 +7,8 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongChoiceButton } from '@/components/SongSort';
 
-export function ArtistScreen() {
-  const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
+export function SongListScreen() {
+  const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify } = useApp();
   const [keyword, setKeyword] = useState('');
   const artist = findArtist(artistId);
   const songs = useMemo(() => {
@@ -24,31 +24,20 @@ export function ArtistScreen() {
   return (
     <div className="screen screen-fade">
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
-      <TopBar title={`${artist.short} Top6`} />
+      <TopBar title={`${artist.short} Songs`} />
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative">
-          <p className="kicker">正在选择 · Pick 6 Songs</p>
-          <h1 className="ink-display mt-3" style={{ fontSize: 34, fontWeight: 500, lineHeight: 1.1 }}>
-            {artist.title}
+          <p className="kicker">完整歌单 · Select Songs</p>
+          <h1 className="ink-display mt-3" style={{ fontSize: 32, fontWeight: 500, lineHeight: 1.1 }}>
+            选择你的 6 首 {artist.name}
           </h1>
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            {artist.intro}
+            搜索或浏览完整歌单，点歌曲加入你的 Top6。
           </p>
         </div>
 
-        <div className="mt-6 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>
-          <div>
-            <p className="kicker" style={{ color: artist.accent }}>Selected</p>
-            <p className="ink-title mt-1" style={{ fontSize: 16 }}>{selectedSongIds.length === 6 ? '可以开始排序了' : '点歌曲加入你的 Top6'}</p>
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="ink-display" style={{ fontSize: 42, color: artist.accent, fontStyle: 'italic' }}>{selectedSongIds.length}</span>
-            <span className="ink-mute text-xs tracking-widest">/ 6</span>
-          </div>
-        </div>
-
-        <label className="mt-4 block">
+        <label className="mt-5 block">
           <input
             value={keyword}
             onChange={(event) => setKeyword(event.target.value)}
@@ -66,8 +55,19 @@ export function ArtistScreen() {
           />
         </label>
 
+        <div className="mt-5 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>
+          <div>
+            <p className="kicker" style={{ color: artist.accent }}>Selected</p>
+            <p className="ink-title mt-1" style={{ fontSize: 16 }}>{selectedSongIds.length === 6 ? '可以开始排序了' : '继续选择歌曲'}</p>
+          </div>
+          <div className="flex items-baseline gap-1">
+            <span className="ink-display" style={{ fontSize: 42, color: artist.accent, fontStyle: 'italic' }}>{selectedSongIds.length}</span>
+            <span className="ink-mute text-xs tracking-widest">/ 6</span>
+          </div>
+        </div>
+
         <div className="mt-5 flex flex-col gap-3">
-          {songs.slice(0, 5).map((song) => {
+          {songs.map((song) => {
             const selected = selectedSongIds.includes(song.id);
             const disabled = !selected && selectedSongIds.length >= 6;
             return (
@@ -85,10 +85,6 @@ export function ArtistScreen() {
             <p className="ink-mute text-sm text-center py-6">没有搜到这首歌，换个关键词试试。</p>
           )}
         </div>
-
-        <button type="button" className="btn-secondary mt-4" onClick={() => go('songList')}>
-          展开
-        </button>
 
         <div className="mt-7 flex gap-3">
           <button type="button" className="btn-secondary" onClick={clearSongs}>重选</button>
