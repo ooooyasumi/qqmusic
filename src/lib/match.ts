@@ -4,6 +4,8 @@ import type {
   ProfileSummary,
   Question,
   Room,
+  Song,
+  SongMatchResult,
 } from './types';
 
 export const TYPE_LABELS: Record<OptionType, string> = {
@@ -134,8 +136,8 @@ export function makeRoom(args: {
   artistName: string;
   bankId: string;
   bankName: string;
-  questionIds: string[];
-  creatorAnswers: Record<string, number>;
+  songIds: string[];
+  creatorOrder: string[];
 }): Room {
   const id = `room-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
   const title = generateRoomTitle(args.artistName, args.bankName);
@@ -147,10 +149,167 @@ export function makeRoom(args: {
     bankName: args.bankName,
     title,
     link: typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}#room=${id}` : `#room=${id}`,
-    questionIds: args.questionIds,
-    creatorAnswers: args.creatorAnswers,
+    questionIds: args.songIds,
+    creatorAnswers: {},
+    songIds: args.songIds,
+    creatorOrder: args.creatorOrder,
     rankings: [],
     createdAt: Date.now(),
+  };
+}
+
+const RESULT_COPY: Record<string, Record<string, Omit<SongMatchResult, 'score' | 'commonTopCount' | 'exactIds' | 'sharedRows' | 'biggestGap'>>> = {
+  jay: {
+    over90: {
+      title: '晴天DNA双胞胎',
+      copy: '你们不是在排歌，是两份青春回忆自动同步。连 Top 位执念都撞上，建议立刻互查耳机播放记录。',
+      shareSpark: '{exactCount} 首同位，这不是默契是复刻',
+      callToAction: '快找下一个杰伦同担验血统',
+    },
+    over75: {
+      title: '私货相悖型同担',
+      copy: '主线偏好很接近，但你们心里的神专、白月光和冷门私货还有一点分歧。这个分数最适合发出去吵一轮。',
+      shareSpark: '差一点满分，必须找 TA 对质',
+      callToAction: '喊 TA 来解释为什么这首排这么低',
+    },
+    over55: {
+      title: '喜好分岔型同担',
+      copy: '你们都爱周杰伦，但入口不一样：一个守着青春白月光，一个可能钻进暗黑叙事或冷门私货。',
+      shareSpark: '分歧刚好够吵一轮',
+      callToAction: '评论区求同担审判',
+    },
+    under55: {
+      title: '音乐品味异地恋',
+      copy: '你们像在同一场演唱会坐了两个看台。先从对方第一名开始重新认识，也许下一轮就能翻盘。',
+      shareSpark: '低分不是输，是另一个故事',
+      callToAction: '快找人替你翻盘',
+    },
+  },
+  jj: {
+    over90: {
+      title: '修炼爱情同班同学',
+      copy: '你们听 JJ 的方式几乎一模一样：同一首歌进心里，同一句副歌卡在同一个地方。建议互相交出深夜循环记录。',
+      shareSpark: '{exactCount} 首同位，痛点都撞上了',
+      callToAction: '快找下一个情歌共犯',
+    },
+    over75: {
+      title: '情绪雷达型同担',
+      copy: '你们大部分情绪入口都很近，只是一个更爱经典情歌，一个更在意唱作阶段或现场爆发。这个分数适合发出去让 TA 解释第一名。',
+      shareSpark: '差一点满分，问题一定在排序',
+      callToAction: '喊 TA 来解释哪首不该低',
+    },
+    over55: {
+      title: '泪点错位型同担',
+      copy: '你们都听懂林俊杰，但一个可能陷在情歌遗憾里，一个更爱唱作、现场或温柔旋律。不是不默契，是哭点不在同一句。',
+      shareSpark: '分歧刚好够复盘一晚',
+      callToAction: '评论区求 JJ 粉判案',
+    },
+    under55: {
+      title: '各自修炼型同担',
+      copy: '你们像在同一首 JJ 歌里听见了两种故事。先别急着认输，从对方第一名开始补，也许下一轮就一起破防。',
+      shareSpark: '低分不是不懂，是哭错段落',
+      callToAction: '快找人替你修炼爱情',
+    },
+  },
+  ts: {
+    over90: {
+      title: '灵魂双生型同担',
+      copy: '你们的 Taylor 排序像同一条时间线分成两份：青春、复仇、文学感和夏日热单都踩在同一个节拍上。',
+      shareSpark: '{exactCount} 首同位，Era DNA 对上了',
+      callToAction: '快找下一个 Swiftie 验证血统',
+    },
+    over75: {
+      title: 'Era邻居',
+      copy: '你们大方向很同频，只是一个可能更爱流行高光，一个更爱叙事长刀或民谣宇宙。这个分数很适合发出去对线。',
+      shareSpark: '差一点满分，问题出在某个 Era',
+      callToAction: '喊 TA 来解释第一名',
+    },
+    over55: {
+      title: '一个Pop一个Folklore',
+      copy: '你们都在 Taylor 宇宙里，但一个可能追城市霓虹和热单，一个更爱长篇叙事、秋天、午夜和后劲。',
+      shareSpark: '分歧刚好够开一场 Era 辩论',
+      callToAction: '评论区求 Swiftie 审判',
+    },
+    under55: {
+      title: 'Swiftie异地频道',
+      copy: '你们像同时进了 Taylor 宇宙，却走向了完全不同的门。别急，从对方第一名开始补，可能会打开新 Era。',
+      shareSpark: '低分不是不懂，是Era不同',
+      callToAction: '快找人替你翻盘',
+    },
+  },
+  bp: {
+    over90: {
+      title: '舞台雷达双生',
+      copy: '你们的 BP 排序几乎是同一个舞台视角：高能开场、甜酷切换、态度曲和情绪面都踩在同一个鼓点上。',
+      shareSpark: '{exactCount} 首同位，舞台雷达锁死',
+      callToAction: '快找下一个 BLINK 来验舞台感',
+    },
+    over75: {
+      title: '高能开场差一拍',
+      copy: '你们主线偏好很接近，只是在高能、甜酷、成员魅力或情绪补听之间有一点站队差异。这个分数很适合发出去开吵。',
+      shareSpark: '差一点满分，问题出在站队',
+      callToAction: '喊 TA 来解释哪首不该低',
+    },
+    over55: {
+      title: '看点分岔型同担',
+      copy: '你们都在 BP 宇宙里，但一个可能优先看舞台爆发，一个更吃旋律、成员魅力或态度表达。不是不默契，是看点不一样。',
+      shareSpark: '分歧刚好够开一轮舞台审判',
+      callToAction: '评论区求 BLINK 判案',
+    },
+    under55: {
+      title: '频道错位型同担',
+      copy: '你们像在同一场舞台看了两个直拍。先别急着认输，从对方第一名开始补，也许下一轮就能同频。',
+      shareSpark: '低分不是不懂，是镜头不同',
+      callToAction: '快找人替你翻盘',
+    },
+  },
+};
+
+function copyConfig(artistId: string, score: number) {
+  const bucket = score >= 90 ? 'over90' : score >= 75 ? 'over75' : score >= 55 ? 'over55' : 'under55';
+  return (RESULT_COPY[artistId] ?? RESULT_COPY.jay)[bucket];
+}
+
+export function calculateSongMatch({
+  artistId,
+  songs,
+  creatorOrder,
+  friendOrder,
+}: {
+  artistId: string;
+  songs: Song[];
+  creatorOrder: string[];
+  friendOrder: string[];
+}): SongMatchResult {
+  const creatorRank = new Map(creatorOrder.map((id, index) => [id, index + 1]));
+  const friendRank = new Map(friendOrder.map((id, index) => [id, index + 1]));
+  const sharedRows = songs.map((song) => {
+    const creator = creatorRank.get(song.id) ?? 99;
+    const friend = friendRank.get(song.id) ?? 99;
+    return { song, creatorRank: creator, friendRank: friend, gap: Math.abs(creator - friend) };
+  });
+  const exactIds = sharedRows
+    .filter((row) => row.creatorRank === row.friendRank)
+    .map((row) => row.song.id);
+  const commonTopCount = songs.filter((song) => {
+    const creator = creatorRank.get(song.id) ?? 99;
+    const friend = friendRank.get(song.id) ?? 99;
+    return creator <= 3 && friend <= 3;
+  }).length;
+  const gapPenalty = sharedRows.reduce((sum, row) => sum + row.gap, 0);
+  const score = Math.max(30, Math.min(99, 100 - gapPenalty * 5 + exactIds.length * 3 + commonTopCount * 2));
+  const config = copyConfig(artistId, score);
+  const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
+  return {
+    score,
+    title: config.title,
+    copy: config.copy,
+    shareSpark: config.shareSpark.replace('{exactCount}', String(exactIds.length)),
+    callToAction: config.callToAction,
+    biggestGap: biggest ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '没有明显分歧',
+    commonTopCount,
+    exactIds,
+    sharedRows: sharedRows.sort((a, b) => a.friendRank - b.friendRank),
   };
 }
 

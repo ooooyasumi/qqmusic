@@ -821,6 +821,93 @@ body::before {
   background: rgba(212, 175, 122, 0.08);
 }
 
+.song-cover {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid rgba(244, 236, 216, 0.16);
+  border-radius: 8px;
+  overflow: hidden;
+  color: rgba(244, 236, 216, 0.82);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%),
+    linear-gradient(145deg, var(--cover-a), var(--cover-b));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.song-cover::before {
+  content: '';
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 7px solid rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.18);
+}
+.song-rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.song-rank-card {
+  display: grid;
+  grid-template-columns: 42px 54px minmax(0, 1fr) 30px;
+  align-items: center;
+  gap: 12px;
+  min-height: 76px;
+  padding: 10px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  cursor: grab;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.song-rank-card:active {
+  cursor: grabbing;
+}
+.song-rank-card[data-dragging='true'] {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 122, 0.08);
+  transform: scale(0.98);
+}
+.song-rank-no {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--accent-gold);
+}
+.song-rank-info {
+  min-width: 0;
+}
+.song-rank-info b,
+.song-rank-info small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.song-rank-info b {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink-primary);
+}
+.song-rank-info small {
+  margin-top: 4px;
+  color: var(--ink-mute);
+  font-size: 12px;
+}
+.song-drag-handle {
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  letter-spacing: -0.2em;
+  transform: rotate(90deg);
+}
+
 /* === 进度条 === */
 .progress-track {
   position: relative;

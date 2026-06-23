@@ -23,10 +23,16 @@ export interface QuestionBank {
 }
 
 export interface Song {
+  id: string;
+  name: string;
   title: string;
   album: string;
-  year: string;
+  year?: string;
   reason: string;
+  note: string;
+  coverA: string;
+  coverB: string;
+  listenUrl: string;
 }
 
 export interface Artist {
@@ -65,8 +71,27 @@ export interface Room {
   link: string;
   questionIds: string[];
   creatorAnswers: Record<string, number>;
+  songIds: string[];
+  creatorOrder: string[];
   rankings: Array<{ name: string; score: number; label: string }>;
   createdAt: number;
+}
+
+export interface SongMatchResult {
+  score: number;
+  title: string;
+  copy: string;
+  shareSpark: string;
+  biggestGap: string;
+  callToAction: string;
+  commonTopCount: number;
+  exactIds: string[];
+  sharedRows: Array<{
+    song: Song;
+    creatorRank: number;
+    friendRank: number;
+    gap: number;
+  }>;
 }
 
 export type MatchTier = 'top' | 'high' | 'complement' | 'icebreaker';
