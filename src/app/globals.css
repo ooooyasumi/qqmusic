@@ -937,6 +937,7 @@ body::before {
   gap: 12px;
 }
 .song-grid-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -949,7 +950,7 @@ body::before {
   color: var(--ink-primary);
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
+  transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
 }
 .song-grid-card:hover {
   transform: translateY(-2px);
@@ -957,8 +958,41 @@ body::before {
   background: rgba(255, 255, 255, 0.04);
 }
 .song-grid-card[data-selected='true'] {
-  border-color: var(--accent-gold);
-  background: rgba(212, 175, 122, 0.08);
+  border-color: rgba(212, 175, 122, 0.95);
+  background:
+    linear-gradient(160deg, rgba(212, 175, 122, 0.16), rgba(255, 255, 255, 0.035) 58%),
+    rgba(212, 175, 122, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 122, 0.32) inset,
+    0 16px 34px rgba(212, 175, 122, 0.16);
+  transform: translateY(-2px);
+}
+.song-grid-card::after {
+  content: '✓';
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #1f1608;
+  background: var(--accent-gold);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.26);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.72);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+}
+.song-grid-card[data-selected='true']::after {
+  opacity: 1;
+  transform: scale(1);
 }
 .song-grid-card:disabled {
   opacity: 0.45;
@@ -969,6 +1003,12 @@ body::before {
   height: auto !important;
   aspect-ratio: 1;
   font-size: 12px;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+.song-grid-card[data-selected='true'] > .song-cover {
+  border-color: rgba(212, 175, 122, 0.95);
+  box-shadow: 0 0 0 3px rgba(212, 175, 122, 0.28);
+  filter: saturate(1.08) brightness(1.04);
 }
 .song-grid-card > .song-cover::before {
   width: 34px;

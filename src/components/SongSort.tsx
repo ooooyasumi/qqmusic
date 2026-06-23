@@ -81,6 +81,7 @@ export function SongGridChoiceButton({
     <button
       type="button"
       className="song-grid-card"
+      aria-pressed={selected}
       style={{
         display: 'flex',
         flexDirection: 'column',
