@@ -18,8 +18,8 @@ export function HomeScreen() {
   };
 
   return (
-    <>
-      <TopBar title="同担末期局 · EP1" showBack={false} showMenu />
+    <div className="screen screen-home">
+      <TopBar title="同担默契局 · EP1" showBack={false} showMenu />
 
       <div className="screen-content">
         <div
@@ -36,7 +36,7 @@ export function HomeScreen() {
             </span>
 
             <span className="kicker">Tongdan Mojiju</span>
-            <h1 className="display-title">同担末期局</h1>
+            <h1 className="display-title">同担默契局</h1>
             <p className="home-hero-sub">episode 1 · 第一弹</p>
             <Waveform height={28} />
           </section>
@@ -94,6 +94,6 @@ export function HomeScreen() {
 
         <Orbs />
       </div>
-    </>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useApp } from '@/lib/state';
-import { useScreenScale } from '@/lib/useScreenScale';
 import { HomeScreen } from './HomeScreen';
 import { ArtistScreen } from './ArtistScreen';
 import { CreateScreen } from './CreateScreen';
@@ -43,19 +42,8 @@ export function ScreenRouter() {
 }
 
 export function AppShell() {
-  const { ref: screenRef, scale, baseWidth, baseHeight } = useScreenScale<HTMLDivElement>();
-
   return (
-    <div
-      className="screen"
-      ref={screenRef}
-      style={{
-        width: `${baseWidth}px`,
-        height: `${baseHeight}px`,
-        transform: `scale(${scale})`,
-        transformOrigin: 'top left',
-      }}
-    >
+    <div className="app-shell">
       <ScreenContent />
       <Toast />
     </div>
