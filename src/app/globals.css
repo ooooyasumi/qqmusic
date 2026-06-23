@@ -433,13 +433,12 @@ body::before {
   z-index: 2;
 }
 
-/* 明信片块（艺人名 + 装饰点）：和照片同宽、无缝衔接 */
+/* 明信片块（艺人名）：和照片同宽、无缝衔接 */
 .grid-card-postcard {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: flex-start;
   padding: clamp(5px, 1.2vh, 8px) 10px clamp(6px, 1.3vh, 9px);
   margin-top: -1px; /* 抵消照片底边框，和明信片顶边对齐 */
   background: linear-gradient(
@@ -465,16 +464,6 @@ body::before {
   letter-spacing: 0.04em;
   line-height: 1.1;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-.grid-card-meta-dot {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  background: var(--artist-accent, var(--accent-gold));
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--artist-accent, var(--accent-gold));
-  flex-shrink: 0;
-  opacity: 0.85;
 }
 .home-artists {
   display: flex;

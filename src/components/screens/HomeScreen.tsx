@@ -69,7 +69,6 @@ export function HomeScreen() {
                   </div>
                   <div className="grid-card-postcard">
                     <span className="grid-card-name">{artist.name}</span>
-                    <span className="grid-card-meta-dot" aria-hidden="true" />
                   </div>
                 </div>
               </button>
