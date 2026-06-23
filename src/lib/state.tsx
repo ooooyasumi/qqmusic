@@ -90,7 +90,7 @@ function orderedSongs(artistId: string, ids: string[]): Song[] {
   const artist = findArtist(artistId);
   if (!artist) return [];
   return ids
-    .map((id) => artist.songs.find((song) => song.id === id) ?? findCatalogSong(artistId, id))
+    .map((id) => findCatalogSong(artistId, id) ?? artist.songs.find((song) => song.id === id))
     .filter((song): song is Song => Boolean(song));
 }
 
