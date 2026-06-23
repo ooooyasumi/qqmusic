@@ -1,0 +1,2327 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>同担默契局</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317d783'/%3E%3Cpath d='M40 14v28.5a8.5 8.5 0 1 1-4-7.2V20h14v-6H40Z' fill='%2307110d'/%3E%3C/svg%3E">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #090f0d;
+      --surface: #101714;
+      --surface-2: #17211d;
+      --surface-3: #1d2924;
+      --ink: #f6f7ef;
+      --muted: #b5beb7;
+      --dim: #78837d;
+      --line: rgba(246, 247, 239, .12);
+      --green: #17d783;
+      --mint: #9cf6c7;
+      --amber: #ffd166;
+      --pink: #ff6f91;
+      --cyan: #5bd8ff;
+      --danger: #ff775f;
+      --shadow: 0 18px 42px rgba(0, 0, 0, .36);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      min-height: 100%;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(23, 215, 131, .2), transparent 22rem),
+        radial-gradient(circle at 90% 20%, rgba(255, 111, 145, .14), transparent 18rem),
+        linear-gradient(160deg, #090f0d 0%, #101714 54%, #12151b 100%);
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(34px, 10vw, 48px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 23px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .app {
+      width: min(430px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      background: rgba(9, 15, 13, .78);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .05), var(--shadow);
+      overflow: hidden;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 58px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(9, 15, 13, .84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #06100c;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      box-shadow: 0 10px 22px rgba(23, 215, 131, .22);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+    }
+
+    .icon-btn:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+    }
+
+    main {
+      min-height: calc(100vh - 58px);
+    }
+
+    .screen {
+      min-height: calc(100vh - 58px);
+      padding: 16px;
+      display: block;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .eyebrow {
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .subcopy {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .home-hero {
+      min-height: 178px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(23, 215, 131, .18), transparent 44%),
+        linear-gradient(35deg, rgba(255, 209, 102, .13), rgba(155, 140, 255, .14)),
+        #101714;
+    }
+
+    .home-hero::after {
+      content: "";
+      position: absolute;
+      right: -26px;
+      top: 18px;
+      width: 128px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 18px solid rgba(255, 255, 255, .08);
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .08);
+    }
+
+    .section-head {
+      margin: 22px 0 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .section-head p {
+      color: var(--dim);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .masonry {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+    .artist-tile {
+      width: 100%;
+      min-height: 0;
+      margin: 0 0 10px;
+      break-inside: avoid;
+      display: inline-block;
+      padding: 0;
+      color: var(--ink);
+      text-align: left;
+      background: transparent;
+    }
+
+    .artist-poster {
+      aspect-ratio: 3 / 4;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(150deg, var(--accent, #17d783), transparent 52%),
+        linear-gradient(20deg, rgba(255, 255, 255, .1), transparent),
+        #16211d;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .2);
+    }
+
+    .artist-tile:nth-child(2n) .artist-poster {
+      margin-top: 22px;
+    }
+
+    .artist-poster::before {
+      content: "";
+      position: absolute;
+      right: -36px;
+      bottom: -34px;
+      width: 128px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 22px solid rgba(255, 255, 255, .13);
+    }
+
+    .artist-poster::after {
+      content: attr(data-short);
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      color: rgba(255, 255, 255, .16);
+      font-size: 38px;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .artist-name {
+      position: relative;
+      z-index: 1;
+      max-width: 120px;
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .artist-hook {
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 255, 255, .82);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .tile-meta {
+      padding: 9px 2px 0;
+    }
+
+    .tile-meta strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .tile-meta span {
+      display: block;
+      margin-top: 3px;
+      color: var(--dim);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .panel,
+    .song-card,
+    .rank-card,
+    .result-card,
+    .mini-card {
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(16, 23, 20, .86);
+    }
+
+    .artist-hero {
+      min-height: 184px;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(140deg, var(--accent, #17d783), transparent 44%),
+        linear-gradient(20deg, rgba(255, 209, 102, .13), rgba(91, 216, 255, .08)),
+        #121c18;
+    }
+
+    .artist-hero::after {
+      content: attr(data-short);
+      position: absolute;
+      right: 12px;
+      bottom: -8px;
+      color: rgba(255, 255, 255, .1);
+      font-size: 86px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .artist-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 310px;
+    }
+
+    .stats-card {
+      margin-top: 12px;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .stats-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 30px;
+      line-height: .95;
+    }
+
+    .stats-count {
+      color: var(--mint);
+      font-size: 44px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .stats-count small {
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .search-box {
+      position: sticky;
+      top: 70px;
+      z-index: 12;
+      margin: 14px 0 12px;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      color: var(--dim);
+      background: rgba(16, 23, 20, .94);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .search-box svg {
+      justify-self: center;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-height: 48px;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+      outline: 0;
+      font-weight: 760;
+    }
+
+    .search-box input::placeholder {
+      color: var(--dim);
+    }
+
+    .song-list {
+      display: grid;
+      gap: 9px;
+      padding-bottom: 194px;
+    }
+
+    .song-card {
+      width: 100%;
+      min-height: 76px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 58px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      color: var(--ink);
+      text-align: left;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .song-card.selected {
+      border-color: rgba(23, 215, 131, .78);
+      background: rgba(23, 215, 131, .12);
+    }
+
+    .song-card.disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .cover-art {
+      width: 58px;
+      height: 58px;
+      border-radius: 8px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .82);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .18), transparent 42%),
+        linear-gradient(145deg, var(--cover-a, #17d783), var(--cover-b, #5bd8ff));
+      border: 1px solid rgba(255, 255, 255, .16);
+      font-size: 11px;
+      font-weight: 950;
+      overflow: hidden;
+      flex: none;
+    }
+
+    .cover-art::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 6px solid rgba(0, 0, 0, .18);
+      background: rgba(255, 255, 255, .2);
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+    }
+
+    .cover-art.playing::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      position: absolute;
+      left: 6px;
+      bottom: 6px;
+      background: var(--amber);
+      box-shadow: 8px 0 0 rgba(255, 209, 102, .72), 16px 0 0 rgba(255, 209, 102, .42);
+      animation: pulse .8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      to { transform: translateY(-3px); opacity: .72; }
+    }
+
+    .song-info {
+      min-width: 0;
+    }
+
+    .song-info b {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .song-info span {
+      display: block;
+      margin-top: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--dim);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .select-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--mint);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+      font-weight: 950;
+    }
+
+    .selected-dock {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      z-index: 18;
+      width: min(430px, 100%);
+      margin: 0;
+      padding: 12px 16px max(16px, env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent, rgba(9, 15, 13, .98) 24%);
+      border-top: 1px solid rgba(246, 247, 239, .08);
+      transform: translateX(-50%);
+      backdrop-filter: blur(18px);
+    }
+
+    .dock-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .dock-head b {
+      color: var(--mint);
+      font-weight: 950;
+    }
+
+    .dock-progress {
+      height: 6px;
+      margin-bottom: 10px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .dock-progress span {
+      display: block;
+      width: var(--progress, 0%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--amber));
+      transition: width .18s ease;
+    }
+
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .slot {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--dim);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .slot .cover-art {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 50%;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .actions button {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .primary,
+    .secondary,
+    .ghost {
+      min-height: 48px;
+      border-radius: 8px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 880;
+      white-space: nowrap;
+    }
+
+    .primary {
+      flex: 1;
+      color: #06100c;
+      background: linear-gradient(135deg, var(--green), var(--mint));
+      box-shadow: 0 12px 26px rgba(23, 215, 131, .2);
+    }
+
+    .primary:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid var(--line);
+    }
+
+    .ghost {
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    .sort-help {
+      margin: 14px 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 760;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 9px;
+      padding-bottom: 134px;
+    }
+
+    .rank-card {
+      min-height: 82px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 44px 58px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .rank-card.dragging {
+      opacity: .82;
+      border-color: rgba(23, 215, 131, .8);
+      background: rgba(23, 215, 131, .15);
+      transform: scale(.99);
+    }
+
+    .rank-no {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #06100c;
+      background: var(--amber);
+      font-weight: 950;
+      font-size: 13px;
+    }
+
+    .drag-handle {
+      width: 38px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+    }
+
+    .bottom-actions {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      z-index: 18;
+      width: min(430px, 100%);
+      margin: 0;
+      padding: 12px 16px max(16px, env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent, rgba(9, 15, 13, .98) 24%);
+      border-top: 1px solid rgba(246, 247, 239, .08);
+      transform: translateX(-50%);
+      backdrop-filter: blur(18px);
+    }
+
+    .share-stage,
+    .result-stage {
+      min-height: 250px;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      display: grid;
+      align-items: center;
+      background:
+        radial-gradient(circle at 56% 20%, rgba(23, 215, 131, .24), transparent 8rem),
+        linear-gradient(145deg, rgba(255, 255, 255, .07), transparent),
+        rgba(16, 23, 20, .9);
+    }
+
+    .share-stage h1,
+    .result-stage h1 {
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .result-title-kicker {
+      width: max-content;
+      max-width: 100%;
+      min-height: 30px;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #06100c;
+      background: var(--amber);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .creator-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #06100c;
+      background: linear-gradient(135deg, var(--green), var(--amber));
+      font-weight: 950;
+    }
+
+    .stack-card {
+      margin-top: 16px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cover-stack {
+      height: 76px;
+      position: relative;
+    }
+
+    .cover-stack .cover-art {
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .24);
+    }
+
+    .cover-stack .cover-art:nth-child(1) { left: 0; top: 10px; }
+    .cover-stack .cover-art:nth-child(2) { left: 32px; top: 4px; }
+    .cover-stack .cover-art:nth-child(3) { left: 64px; top: 0; }
+
+    .result-score {
+      margin: 12px 0;
+      color: var(--mint);
+      font-size: 76px;
+      line-height: .9;
+      font-weight: 950;
+    }
+
+    .score-bar {
+      height: 10px;
+      margin-top: 12px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .score-bar span {
+      display: block;
+      height: 100%;
+      width: var(--score, 0%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--amber));
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin: 12px 0;
+    }
+
+    .mini-card {
+      min-height: 78px;
+      padding: 12px;
+    }
+
+    .mini-card b {
+      display: block;
+      color: var(--mint);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .mini-card span {
+      display: block;
+      margin-top: 7px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 760;
+    }
+
+    .result-card {
+      margin-top: 10px;
+      padding: 14px;
+    }
+
+    .label {
+      margin-bottom: 9px;
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .match-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .match-row {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 9px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .match-row small {
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .duel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .duel-board {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .duel-board h3 {
+      margin-bottom: 10px;
+    }
+
+    .duel-song {
+      display: grid;
+      grid-template-columns: 24px 30px 1fr;
+      gap: 7px;
+      align-items: center;
+      min-height: 34px;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .duel-song .cover-art {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      font-size: 8px;
+    }
+
+    .duel-song.same {
+      border-radius: 7px;
+      background: rgba(23, 215, 131, .1);
+    }
+
+    .empty {
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--muted);
+      border-radius: 8px;
+      border: 1px dashed var(--line);
+      background: rgba(255, 255, 255, .035);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 50;
+      width: min(360px, calc(100% - 36px));
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(9, 15, 13, .94);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transform: translateX(-50%) translateY(120px);
+      transition: transform .2s ease;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .player-bubble {
+      position: fixed;
+      right: max(14px, calc((100vw - 430px) / 2 + 14px));
+      bottom: calc(112px + env(safe-area-inset-bottom));
+      z-index: 42;
+      width: min(292px, calc(100% - 28px));
+      min-height: 64px;
+      padding: 9px 10px;
+      border-radius: 999px;
+      display: grid;
+      grid-template-columns: 46px 1fr 38px;
+      gap: 9px;
+      align-items: center;
+      color: var(--ink);
+      background: rgba(16, 23, 20, .94);
+      border: 1px solid rgba(156, 246, 199, .28);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, .38);
+      transform: translateY(130px) scale(.96);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform .2s ease, opacity .2s ease, visibility .2s ease;
+      backdrop-filter: blur(18px);
+    }
+
+    .player-bubble.show {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .player-cover {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .84);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .18), transparent 42%),
+        linear-gradient(145deg, var(--cover-a, #17d783), var(--cover-b, #5bd8ff));
+      border: 1px solid rgba(255, 255, 255, .16);
+      font-size: 10px;
+      font-weight: 950;
+      animation: spin 5s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .player-meta {
+      min-width: 0;
+    }
+
+    .player-meta b,
+    .player-meta span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .player-meta b {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .player-meta span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .player-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #06100c;
+      background: var(--mint);
+    }
+
+    .share-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: end center;
+      padding: 18px;
+      background: rgba(0, 0, 0, .68);
+      backdrop-filter: blur(12px);
+    }
+
+    .share-panel {
+      width: min(430px, 100%);
+      max-height: calc(100vh - 24px);
+      overflow: auto;
+      padding: 16px 16px 0;
+      border-radius: 16px 16px 0 0;
+      border: 1px solid rgba(0, 0, 0, .08);
+      color: #151515;
+      background: linear-gradient(180deg, #f4f4f4, #e8edf5);
+      box-shadow: 0 -16px 44px rgba(0, 0, 0, .22);
+    }
+
+    .share-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .share-panel-head .icon-btn {
+      color: #151515;
+      background: rgba(0, 0, 0, .05);
+      border-color: rgba(0, 0, 0, .08);
+    }
+
+    .share-panel-head p {
+      margin-top: 4px;
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .share-preview {
+      width: 108px;
+      max-height: 144px;
+      object-fit: cover;
+      margin: 0 auto 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, .1);
+      background: #07110d;
+      display: block;
+    }
+
+    .share-platforms {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 22px 16px;
+      margin: 8px 0 24px;
+    }
+
+    .share-platforms button {
+      min-height: 94px;
+      padding: 0;
+      border-radius: 0;
+      color: #161616;
+      background: transparent;
+      border: 0;
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    .share-platforms b {
+      font-weight: 500;
+    }
+
+    .share-app-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #fff;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .04);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .share-app-icon.wechat { background: #2ac44f; }
+    .share-app-icon.moments { background: conic-gradient(#4b6fff, #43d17c, #f7ce45, #e85050, #4b6fff); }
+    .share-app-icon.weibo { background: #e53935; }
+    .share-app-icon.qq { background: #20aeea; }
+    .share-app-icon.qzone { background: #f7c724; }
+    .share-app-icon.redbook { background: #f08dbc; }
+    .share-app-icon.message,
+    .share-app-icon.copy,
+    .share-app-icon.save {
+      color: #222;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .share-cancel {
+      width: calc(100% + 32px);
+      min-height: 64px;
+      margin: 0 -16px;
+      color: #151515;
+      background: rgba(255, 255, 255, .62);
+      border-top: 1px solid rgba(0, 0, 0, .08);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><i data-lucide="music-2" aria-hidden="true"></i></div>
+        <span>同担默契局</span>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" type="button" id="backBtn" aria-label="返回上一步" title="返回上一步">
+          <i data-lucide="chevron-left" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" type="button" id="homeBtn" aria-label="返回主页" title="返回主页">
+          <i data-lucide="house" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <main id="appMain"></main>
+  </div>
+
+  <div class="player-bubble" id="playerBubble" aria-live="polite">
+    <div class="player-cover" id="playerCover">歌</div>
+    <div class="player-meta">
+      <b id="playerTitle">正在播放</b>
+      <span id="playerAlbum">试听片段</span>
+    </div>
+    <button class="player-toggle" type="button" id="playerToggle" aria-label="暂停播放" title="暂停播放">
+      <i data-lucide="pause" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="share-modal hidden" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <div class="share-panel">
+      <div class="share-panel-head">
+        <div>
+          <h3 id="shareModalTitle">分享到</h3>
+          <p>已生成挑战海报，选择平台发送给好友。</p>
+        </div>
+        <button class="icon-btn" type="button" id="closeShareModal" aria-label="关闭分享弹窗" title="关闭">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <img class="share-preview" id="sharePreview" alt="同担排序挑战海报预览">
+      <div class="share-platforms">
+        <button type="button" data-share-channel="wechat"><span class="share-app-icon wechat">微</span><b>微信好友</b></button>
+        <button type="button" data-share-channel="moments"><span class="share-app-icon moments">圈</span><b>朋友圈</b></button>
+        <button type="button" data-share-channel="weibo"><span class="share-app-icon weibo">微</span><b>新浪微博</b></button>
+        <button type="button" data-share-channel="qq"><span class="share-app-icon qq">Q</span><b>QQ 好友</b></button>
+        <button type="button" data-share-channel="qzone"><span class="share-app-icon qzone">星</span><b>QQ 空间</b></button>
+        <button type="button" data-share-channel="xiaohongshu"><span class="share-app-icon redbook">薯</span><b>小红书</b></button>
+        <button type="button" data-share-channel="message"><span class="share-app-icon message">信</span><b>私信</b></button>
+        <button type="button" data-share-channel="copy"><span class="share-app-icon copy">链</span><b>复制链接</b></button>
+        <button type="button" data-share-channel="download"><span class="share-app-icon save">存</span><b>保存图片</b></button>
+      </div>
+      <button class="share-cancel" type="button" id="cancelShareModal">取消</button>
+    </div>
+  </div>
+
+  <script>
+    const appMain = document.getElementById("appMain");
+    const toast = document.getElementById("toast");
+    const playerBubble = document.getElementById("playerBubble");
+    const playerCover = document.getElementById("playerCover");
+    const playerTitle = document.getElementById("playerTitle");
+    const playerAlbum = document.getElementById("playerAlbum");
+    const playerToggle = document.getElementById("playerToggle");
+    const shareModal = document.getElementById("shareModal");
+    const sharePreview = document.getElementById("sharePreview");
+    const closeShareModal = document.getElementById("closeShareModal");
+    const cancelShareModal = document.getElementById("cancelShareModal");
+    const historyStack = [];
+    const requiredCount = 6;
+    let currentShareCardUrl = "";
+    let playingSongId = "";
+    let draggingSongId = "";
+
+    const artists = [
+      {
+        id: "jay",
+        name: "周杰伦",
+        short: "杰伦",
+        accent: "#C7A45A",
+        hook: "敢来排你的 Top 吗",
+        card: "青春回忆、神专争议、冷门私货",
+        title: "创建你的周杰伦单曲排序",
+        intro: "从歌库里选 6 首最能代表你的周杰伦单曲，再拖动排出真实 Top。",
+        tags: ["Top6 排序", "青春BGM", "老粉暗号"],
+        songs: [
+          song("jay-01", "晴天", "叶惠美", "全员青春白月光", "#c7a45a", "#77b9a6"),
+          song("jay-02", "七里香", "七里香", "盛夏风一吹就会想起", "#8ec5a7", "#f7d36c"),
+          song("jay-03", "以父之名", "叶惠美", "神级前奏与暗黑叙事", "#2b2f3a", "#c7a45a"),
+          song("jay-04", "夜曲", "十一月的萧邦", "一响就知道拿奖到手软", "#1d2633", "#8b7cff"),
+          song("jay-05", "青花瓷", "我很忙", "中国风全民破圈曲", "#8abcc4", "#e7e1c7"),
+          song("jay-06", "半岛铁盒", "八度空间", "老歌迷的回忆开关", "#b1885d", "#324b63"),
+          song("jay-07", "梯田", "叶惠美", "藏在神专里的私货", "#6d8f5f", "#d2b56b"),
+          song("jay-08", "双截棍", "范特西", "出圈速度像开场鼓点", "#171717", "#17d783"),
+          song("jay-09", "稻香", "魔杰座", "低谷时的温柔拉回", "#ffd166", "#5e9f72"),
+          song("jay-10", "搁浅", "七里香", "后劲很重的遗憾情歌", "#6e88a1", "#d9d2c1"),
+          song("jay-11", "东风破", "叶惠美", "中国风叙事入口", "#935a43", "#dfc17c"),
+          song("jay-12", "夜的第七章", "依然范特西", "侦探感和编曲控必选", "#1b1f29", "#9277a8")
+        ]
+      },
+      {
+        id: "jj",
+        name: "林俊杰",
+        short: "JJ",
+        accent: "#5bd8ff",
+        hook: "你们听懂的是同一种情歌吗",
+        card: "情歌表达、唱作理解、现场高光",
+        title: "创建你的林俊杰单曲排序",
+        intro: "选出 6 首你最在意的 JJ 单曲，让好友来排同一组歌。",
+        tags: ["情歌共鸣", "唱作理解", "现场高光"],
+        songs: [
+          song("jj-01", "江南", "第二天堂", "国民记忆入口", "#5bd8ff", "#d5b77c"),
+          song("jj-02", "修炼爱情", "因你而在", "遗憾浓度很高", "#495b7b", "#c19f8a"),
+          song("jj-03", "可惜没如果", "新地球", "关系复盘名场面", "#6c7b8b", "#e5d7c4"),
+          song("jj-04", "她说", "她说", "情歌叙事代表作", "#2f4058", "#9bb8c8"),
+          song("jj-05", "背对背拥抱", "100天", "克制但很痛", "#3e5b62", "#dfbd74"),
+          song("jj-06", "不为谁而作的歌", "和自己对话", "现场爆发与自我命题", "#242a31", "#5bd8ff"),
+          song("jj-07", "伟大的渺小", "伟大的渺小", "成熟唱作理解", "#182032", "#f4d56f"),
+          song("jj-08", "小酒窝", "JJ陆", "甜感入口", "#ff9bb1", "#ffd166"),
+          song("jj-09", "曹操", "曹操", "节奏记忆点强", "#5a2020", "#dba94f"),
+          song("jj-10", "学不会", "学不会", "成熟情绪表达", "#313440", "#8ec5ff"),
+          song("jj-11", "关键词", "和自己对话", "温柔直球", "#b8a589", "#5bd8ff"),
+          song("jj-12", "醉赤壁", "JJ陆", "古风旋律入口", "#7b4937", "#d8c084")
+        ]
+      },
+      {
+        id: "taylor",
+        name: "Taylor Swift",
+        short: "TS",
+        accent: "#ff6f91",
+        hook: "测测你们是不是同一个 Era",
+        card: "Era 偏好、歌词叙事、专辑人格",
+        title: "Create your Taylor Top 6",
+        intro: "Choose 6 tracks and rank them. Your friend will sort the same set to reveal your Era chemistry.",
+        tags: ["Era 偏好", "歌词叙事", "专辑人格"],
+        songs: [
+          song("ts-01", "Love Story", "Fearless", "golden entry point", "#d6b35d", "#f7efe0"),
+          song("ts-02", "All Too Well", "Red", "storytelling standard", "#9f2f2f", "#f28b74"),
+          song("ts-03", "Cruel Summer", "Lover", "bright pop rush", "#ff6f91", "#ffd166"),
+          song("ts-04", "Blank Space", "1989", "sharp pop persona", "#79a7d8", "#f7f4ed"),
+          song("ts-05", "cardigan", "folklore", "quiet fiction mood", "#7b7f76", "#d8d1c1"),
+          song("ts-06", "Delicate", "reputation", "night city pulse", "#111111", "#b7bbc4"),
+          song("ts-07", "Anti-Hero", "Midnights", "late-night confession", "#34315b", "#b7a7ff"),
+          song("ts-08", "Style", "1989", "clean neon drive", "#8fc7ff", "#f6f7ef"),
+          song("ts-09", "Enchanted", "Speak Now", "sparkly confession", "#9b6fd3", "#f0d8ff"),
+          song("ts-10", "champagne problems", "evermore", "winter story pain", "#7c5742", "#ded2bf"),
+          song("ts-11", "August", "folklore", "summer memory blur", "#d8ae6d", "#8fb0a1"),
+          song("ts-12", "Shake It Off", "1989", "public joy switch", "#7bb9f0", "#ffcc63")
+        ]
+      },
+      {
+        id: "blackpink",
+        name: "BLACKPINK",
+        short: "BP",
+        accent: "#ffd166",
+        hook: "舞台偏好和成员雷达对得上吗",
+        card: "成员偏好、舞台名场面、风格态度",
+        title: "创建你的 BLACKPINK 单曲排序",
+        intro: "选 6 首最能代表你 BP 雷达的歌，再让好友挑战你的舞台偏好。",
+        tags: ["成员偏好", "舞台名场面", "风格态度"],
+        songs: [
+          song("bp-01", "DDU-DU DDU-DU", "SQUARE UP", "高能入口", "#111111", "#ff8fc2"),
+          song("bp-02", "How You Like That", "THE ALBUM", "舞台爆发", "#1b1b1f", "#ffd166"),
+          song("bp-03", "Lovesick Girls", "THE ALBUM", "情绪补听", "#ff6f91", "#5bd8ff"),
+          song("bp-04", "As If It's Your Last", "Single", "明亮好入口", "#ff7aa8", "#ffd166"),
+          song("bp-05", "Kill This Love", "KILL THIS LOVE", "号角一响就开场", "#202024", "#f05868"),
+          song("bp-06", "Pink Venom", "BORN PINK", "态度和气场", "#111111", "#f08dbc"),
+          song("bp-07", "Shut Down", "BORN PINK", "成熟反击", "#2a2a2e", "#ffd166"),
+          song("bp-08", "Playing With Fire", "SQUARE TWO", "早期甜酷", "#d1454f", "#20252e"),
+          song("bp-09", "Whistle", "SQUARE ONE", "极简记忆点", "#111111", "#f6f7ef"),
+          song("bp-10", "Forever Young", "SQUARE UP", "巡演氛围", "#5bd8ff", "#ff6f91"),
+          song("bp-11", "Pretty Savage", "THE ALBUM", "粉丝私货舞台", "#191919", "#d897d3"),
+          song("bp-12", "Tally", "BORN PINK", "态度表达", "#5a3d43", "#e2c08e")
+        ]
+      }
+    ];
+
+    const state = {
+      screen: "home",
+      artistId: "jay",
+      search: "",
+      selectedIds: [],
+      creatorOrder: [],
+      friendOrder: [],
+      challenge: null
+    };
+
+    const resultCopyByArtist = {
+      jay: {
+        over90: {
+          title: "晴天DNA双胞胎",
+          copy: "你们不是在排歌，是两份青春回忆自动同步。连 Top 位执念都撞上，建议立刻互查耳机播放记录。",
+          shareSpark: "{exactCount} 首同位，这不是默契是复刻",
+          callToAction: "快找下一个杰伦同担验血统"
+        },
+        over75: {
+          title: "私货相悖型同担",
+          copy: "主线偏好很接近，但你们心里的神专、白月光和冷门私货还有一点分歧。这个分数最适合发出去“吵”一轮。",
+          shareSpark: "差一点满分，必须找 TA 对质",
+          callToAction: "喊 TA 来解释为什么这首排这么低"
+        },
+        over55: {
+          title: "喜好分岔型同担",
+          copy: "你们都爱周杰伦，但一个可能守着青春白月光，一个钻进暗黑叙事或冷门私货。不是不默契，是入口不一样。",
+          shareSpark: "分歧刚好够吵一轮",
+          callToAction: "评论区求同担审判"
+        },
+        under55: {
+          title: "音乐品味异地恋",
+          copy: "你们像在同一场演唱会坐了两个看台。别急，先从对方第一名开始重新认识，也许下一轮就能翻盘。",
+          shareSpark: "低分不是输，是另一个故事",
+          callToAction: "快找人替你翻盘"
+        }
+      },
+      jj: {
+        over90: {
+          title: "修炼爱情同班同学",
+          copy: "你们听 JJ 的方式几乎一模一样：同一首歌进心里，同一句副歌卡在同一个地方。建议互相交出深夜循环记录。",
+          shareSpark: "{exactCount} 首同位，痛点都撞上了",
+          callToAction: "快找下一个情歌共犯"
+        },
+        over75: {
+          title: "情绪雷达型同担",
+          copy: "你们大部分情绪入口都很近，只是一个更爱经典情歌，一个更在意唱作阶段或现场爆发。这个分数适合发出去让 TA 解释第一名。",
+          shareSpark: "差一点满分，问题一定在排序",
+          callToAction: "喊 TA 来解释哪首不该低"
+        },
+        over55: {
+          title: "泪点错位型同担",
+          copy: "你们都听懂林俊杰，但一个可能陷在情歌遗憾里，一个更爱唱作、现场或温柔旋律。不是不默契，是哭点不在同一句。",
+          shareSpark: "分歧刚好够复盘一晚",
+          callToAction: "评论区求 JJ 粉判案"
+        },
+        under55: {
+          title: "各自修炼型同担",
+          copy: "你们像在同一首 JJ 歌里听见了两种故事。先别急着认输，从对方第一名开始补，也许下一轮就一起破防。",
+          shareSpark: "低分不是不懂，是哭错段落",
+          callToAction: "快找人替你修炼爱情"
+        }
+      },
+      taylor: {
+        over90: {
+          title: "灵魂双生型同担",
+          copy: "你们的 Taylor 排序像同一条时间线分成两份：青春、复仇、文学感和夏日热单都踩在同一个节拍上。",
+          shareSpark: "{exactCount} 首同位，Era DNA 对上了",
+          callToAction: "快找下一个 Swiftie 验证血统"
+        },
+        over75: {
+          title: "Era邻居",
+          copy: "你们大方向很同频，只是一个可能更爱流行高光，一个更爱叙事长刀或民谣宇宙。这个分数很适合发出去对线。",
+          shareSpark: "差一点满分，问题出在某个 Era",
+          callToAction: "喊 TA 来解释第一名"
+        },
+        over55: {
+          title: "一个Pop一个Folklore",
+          copy: "你们都在 Taylor 宇宙里，但一个可能追城市霓虹和热单，一个更爱长篇叙事、秋天、午夜和后劲。",
+          shareSpark: "分歧刚好够开一场 Era 辩论",
+          callToAction: "评论区求 Swiftie 审判"
+        },
+        under55: {
+          title: "Swiftie异地频道",
+          copy: "你们像同时进了 Taylor 宇宙，却走向了完全不同的门。别急，从对方第一名开始补，可能会打开新 Era。",
+          shareSpark: "低分不是不懂，是Era不同",
+          callToAction: "快找人替你翻盘"
+        }
+      },
+      blackpink: {
+        over90: {
+          title: "舞台雷达双生",
+          copy: "你们的 BP 排序几乎是同一个舞台视角：高能开场、甜酷切换、态度曲和情绪面都踩在同一个鼓点上。",
+          shareSpark: "{exactCount} 首同位，舞台雷达锁死",
+          callToAction: "快找下一个 BLINK 来验舞台感"
+        },
+        over75: {
+          title: "高能开场差一拍",
+          copy: "你们主线偏好很接近，只是在高能、甜酷、成员魅力或情绪补听之间有一点站队差异。这个分数很适合发出去开吵。",
+          shareSpark: "差一点满分，问题出在站队",
+          callToAction: "喊 TA 来解释哪首不该低"
+        },
+        over55: {
+          title: "看点分岔型同担",
+          copy: "你们都在 BP 宇宙里，但一个可能优先看舞台爆发，一个更吃旋律、成员魅力或态度表达。不是不默契，是看点不一样。",
+          shareSpark: "分歧刚好够开一轮舞台审判",
+          callToAction: "评论区求 BLINK 判案"
+        },
+        under55: {
+          title: "频道错位型同担",
+          copy: "你们像在同一场舞台看了两个直拍。先别急着认输，从对方第一名开始补，也许下一轮就能同频。",
+          shareSpark: "低分不是不懂，是镜头不同",
+          callToAction: "快找人替你翻盘"
+        }
+      }
+    };
+
+    function song(id, name, album, note, coverA, coverB) {
+      return {
+        id,
+        name,
+        album,
+        note,
+        coverA,
+        coverB,
+        listenUrl: `https://y.qq.com/n/ryqq/search?w=${encodeURIComponent(name)}`
+      };
+    }
+
+    function currentArtist() {
+      return artists.find(item => item.id === state.artistId) || artists[0];
+    }
+
+    function currentSongPool() {
+      if (state.screen === "friendSort" || state.screen === "friendResult") {
+        return state.challenge?.songs || [];
+      }
+      return currentArtist().songs;
+    }
+
+    function findSong(id) {
+      return currentArtist().songs.find(item => item.id === id) || state.challenge?.songs?.find(item => item.id === id);
+    }
+
+    function go(screen, push = true) {
+      if (push && state.screen !== screen) historyStack.push(state.screen);
+      state.screen = screen;
+      render();
+    }
+
+    function back() {
+      const previous = historyStack.pop();
+      if (previous) {
+        state.screen = previous;
+        render();
+      } else {
+        go("home", false);
+      }
+    }
+
+    function icon(name) {
+      return `<i data-lucide="${name}" aria-hidden="true"></i>`;
+    }
+
+    function refreshIcons() {
+      if (window.lucide) {
+        window.lucide.createIcons({ attrs: { width: 18, height: 18, strokeWidth: 2.2 } });
+      }
+    }
+
+    function notify(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(notify.timer);
+      notify.timer = window.setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function setPlayingSong(songId) {
+      playingSongId = playingSongId === songId ? "" : songId;
+      document.querySelectorAll(".cover-art.playing").forEach(item => item.classList.remove("playing"));
+      if (playingSongId) {
+        document.querySelectorAll(`[data-play="${playingSongId}"]`).forEach(item => item.classList.add("playing"));
+      }
+      updatePlayerBubble();
+    }
+
+    function updatePlayerBubble() {
+      const item = playingSongId ? findSong(playingSongId) : null;
+      if (!item) {
+        playerBubble.classList.remove("show");
+        playerToggle.innerHTML = icon("play");
+        refreshIcons();
+        return;
+      }
+      playerCover.textContent = item.name.slice(0, 2).toUpperCase();
+      playerCover.style.setProperty("--cover-a", item.coverA);
+      playerCover.style.setProperty("--cover-b", item.coverB);
+      playerTitle.textContent = item.name;
+      playerAlbum.textContent = `${currentArtist().name} - ${item.album}`;
+      playerToggle.innerHTML = icon("pause");
+      playerBubble.classList.add("show");
+      refreshIcons();
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(text);
+      }
+    }
+
+    function renderCover(item, extraClass = "") {
+      return `<span class="cover-art ${playingSongId === item.id ? "playing" : ""} ${extraClass}" data-play="${item.id}" style="--cover-a:${item.coverA};--cover-b:${item.coverB}" title="播放${item.name}">${item.name.slice(0, 2).toUpperCase()}</span>`;
+    }
+
+    function renderHome() {
+      return `
+        <section class="screen">
+          <div class="home-hero">
+            <p class="eyebrow">QQ 音乐 AI 社交测试</p>
+            <h1>同担默契局</h1>
+            <p class="subcopy">选择你喜欢的艺人，进入专项页选择 6 首单曲，排出你的 Top 顺序，再发给好友挑战默契。</p>
+          </div>
+
+          <div class="section-head">
+            <div>
+              <h2>正在预热</h2>
+              <p>选择一个艺人开始创建单曲排序</p>
+            </div>
+          </div>
+
+          <div class="masonry">
+            ${artists.map(item => `
+              <button class="artist-tile" type="button" data-artist="${item.id}">
+                <div class="artist-poster" data-short="${item.short}" style="--accent:${item.accent}">
+                  <div class="artist-name">${item.name}</div>
+                  <div class="artist-hook">${item.hook}</div>
+                </div>
+                <div class="tile-meta">
+                  <strong>${item.name}同担排序</strong>
+                  <span>${item.card}</span>
+                </div>
+              </button>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSelectSongs() {
+      const artist = currentArtist();
+      const keyword = state.search.trim().toLowerCase();
+      const songs = artist.songs.filter(item => {
+        const text = `${item.name} ${item.album} ${item.note}`.toLowerCase();
+        return !keyword || text.includes(keyword);
+      });
+      return `
+        <section class="screen">
+          <div class="artist-hero" data-short="${artist.short}" style="--accent:${artist.accent}">
+            <div class="artist-hero-content">
+              <p class="eyebrow">正在选择</p>
+              <h1>${artist.name}</h1>
+              <p class="subcopy">${artist.intro}</p>
+            </div>
+          </div>
+
+          <div class="stats-card panel">
+            <div>
+              <p class="eyebrow">选择歌曲</p>
+              <strong>${artist.short} Top6</strong>
+            </div>
+            <div class="stats-count">${state.selectedIds.length}<small>/${requiredCount}</small></div>
+          </div>
+
+          <label class="search-box">
+            ${icon("search")}
+            <input id="songSearch" type="search" value="${escapeHtml(state.search)}" placeholder="搜索这位歌手的歌曲">
+          </label>
+
+          <div class="song-list">
+            ${songs.map(item => renderSongChoice(item)).join("") || `<div class="empty">没有搜到这首歌，换个关键词试试。</div>`}
+          </div>
+
+          <div class="selected-dock">
+            <div class="dock-head">
+              <span>已选择 <b>${state.selectedIds.length}</b>/${requiredCount}</span>
+              <span>${state.selectedIds.length === requiredCount ? "可以开始排序了" : "点封面可试听，点歌曲加入"}</span>
+            </div>
+            <div class="dock-progress" aria-hidden="true"><span style="--progress:${state.selectedIds.length / requiredCount * 100}%"></span></div>
+            <div class="slots">
+              ${Array.from({ length: requiredCount }, (_, index) => {
+                const songItem = findSong(state.selectedIds[index]);
+                return `<button class="slot" type="button" ${songItem ? `data-remove-selected="${songItem.id}" aria-label="移除${songItem.name}"` : "disabled"}>${songItem ? renderCover(songItem) : index + 1}</button>`;
+              }).join("")}
+            </div>
+            <div class="actions">
+              <button class="secondary" type="button" data-action="clear-selection">${icon("rotate-ccw")}重选</button>
+              <button class="primary" type="button" data-action="to-creator-sort" ${state.selectedIds.length === requiredCount ? "" : "disabled"}>${icon("arrow-right")}开始排序</button>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSongChoice(item) {
+      const selectedIndex = state.selectedIds.indexOf(item.id);
+      const selected = selectedIndex > -1;
+      const disabled = !selected && state.selectedIds.length >= requiredCount;
+      return `
+        <button class="song-card ${selected ? "selected" : ""} ${disabled ? "disabled" : ""}" type="button" data-song="${item.id}" ${disabled ? "aria-disabled=\"true\"" : ""}>
+          ${renderCover(item)}
+          <span class="song-info">
+            <b>${item.name}</b>
+            <span>${currentArtist().name} - ${item.album}</span>
+          </span>
+          <span class="select-mark">${selected ? selectedIndex + 1 : icon("plus")}</span>
+        </button>
+      `;
+    }
+
+    function renderSort(isFriend = false) {
+      const artist = currentArtist();
+      const order = isFriend ? state.friendOrder : state.creatorOrder;
+      const selectedSongs = order.map(findSong).filter(Boolean);
+      return `
+        <section class="screen">
+          <div class="stats-card panel">
+            <div>
+              <p class="eyebrow">${isFriend ? "好友挑战中" : "正在排序"}</p>
+              <strong>${artist.name}</strong>
+            </div>
+            <div class="stats-count">${selectedSongs.length}<small>/${requiredCount}</small></div>
+          </div>
+
+          <p class="sort-help">按住右侧拖动条上下拖动，调整你心里的 Top 顺序。封面可播放预览。</p>
+
+          <div class="rank-list" data-rank-list="${isFriend ? "friend" : "creator"}">
+            ${selectedSongs.map((item, index) => `
+              <div class="rank-card" data-rank-song="${item.id}">
+                <div class="rank-no">#${index + 1}</div>
+                ${renderCover(item)}
+                <span class="song-info">
+                  <b>${item.name}</b>
+                  <span>${item.album}</span>
+                </span>
+                <button class="drag-handle" type="button" aria-label="拖动排序">${icon("grip")}</button>
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="bottom-actions">
+            <div class="dock-head">
+              <span>${isFriend ? "你的排序" : "我的排序"} <b>${selectedSongs.length}</b>/${requiredCount}</span>
+              <span>把最喜欢的拖到最上面</span>
+            </div>
+            <div class="dock-progress" aria-hidden="true"><span style="--progress:100%"></span></div>
+            <div class="actions">
+              ${isFriend ? "" : `<button class="secondary" type="button" data-action="back-to-select">${icon("shuffle")}返回换歌</button>`}
+              <button class="primary" type="button" data-action="${isFriend ? "finish-friend" : "create-challenge"}">${icon(isFriend ? "sparkles" : "send")} ${isFriend ? "查看默契" : "生成挑战"}</button>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSharePage() {
+      const artist = currentArtist();
+      const songs = state.creatorOrder.map(findSong).filter(Boolean);
+      return `
+        <section class="screen">
+          <div class="share-stage">
+            <div>
+              <p class="eyebrow">挑战已生成</p>
+              <h1>把你的同担 Top 发给朋友。</h1>
+              <p class="subcopy">好友会对你选出的 6 首歌重新排序，完成后解锁你们的默契度和双人榜单。</p>
+              <div class="creator-row">
+                <div class="avatar">我</div>
+                <strong>${artist.name} Top6 挑战</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-card panel">
+            <div class="cover-stack">
+              ${songs.slice(0, 3).map(item => renderCover(item)).join("")}
+            </div>
+            <div>
+              <h3>只有 6 首歌，快来排排看</h3>
+              <p class="subcopy">挑战链接会带上你的 Top 顺序，好友打开即可参与。</p>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
+            <button class="secondary" type="button" data-action="new-challenge">${icon("plus")}创建新挑战</button>
+            <button class="primary" type="button" data-action="share-result">${icon("share-2")}分享给好友</button>
+          </div>
+
+          <button class="ghost" style="width:100%;margin-top:10px;" type="button" data-action="receiver-preview">${icon("scan-line")}预览好友挑战</button>
+        </section>
+      `;
+    }
+
+    function renderFriendResult() {
+      const result = calculateMatch();
+      const artist = currentArtist();
+      return `
+        <section class="screen">
+          <div class="result-stage">
+            <div>
+              <p class="eyebrow">${artist.name} Top6 默契结果</p>
+              <div class="result-title-kicker">你的同担关系称号</div>
+              <h1>${result.title}</h1>
+              <div class="result-score">${result.score}%</div>
+              <p class="subcopy">${result.copy}</p>
+              <div class="score-bar" aria-hidden="true"><span style="--score:${result.score}%"></span></div>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div class="mini-card"><b>共同 Top3</b><span>${result.commonTopCount}/3 首</span></div>
+            <div class="mini-card"><b>晒图爆点</b><span>${result.shareSpark}</span></div>
+            <div class="mini-card"><b>最大分歧</b><span>${result.biggestGap}</span></div>
+            <div class="mini-card"><b>召唤好友</b><span>${result.callToAction}</span></div>
+          </div>
+
+          <div class="result-card">
+            <div class="label">你们都选了</div>
+            <div class="match-list">
+              ${result.sharedRows.map(item => `
+                <div class="match-row">
+                  ${renderCover(item.song)}
+                  <div class="song-info"><b>${item.song.name}</b><span>${item.song.album}</span></div>
+                  <small>你 #${item.friendRank} / 友 #${item.creatorRank}</small>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="duel-grid">
+            ${renderDuelBoard("我的 Top6", state.friendOrder, result.exactIds)}
+            ${renderDuelBoard("TA 的 Top6", state.creatorOrder, result.exactIds)}
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
+            <button class="secondary" type="button" data-action="share-result">${icon("share-2")}分享结果</button>
+            <button class="primary" type="button" data-action="go-home">${icon("music-2")}再选艺人</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderDuelBoard(title, order, exactIds) {
+      return `
+        <div class="duel-board">
+          <h3>${title}</h3>
+          ${order.map((id, index) => {
+            const item = findSong(id);
+            return `
+              <div class="duel-song ${exactIds.includes(id) ? "same" : ""}">
+                <b>${index + 1}</b>
+                ${renderCover(item)}
+                <span>${item.name}</span>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderChallengeMissing() {
+      return `
+        <section class="screen">
+          <div class="empty">这个挑战暂时无法打开。请确认链接完整，或让发起者重新分享挑战。</div>
+          <div class="actions" style="margin-top:14px;">
+            <button class="primary" type="button" data-action="go-home">${icon("house")}回到首页</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function render() {
+      const screens = {
+        home: renderHome,
+        selectSongs: renderSelectSongs,
+        creatorSort: () => renderSort(false),
+        sharePage: renderSharePage,
+        friendSort: () => renderSort(true),
+        friendResult: renderFriendResult,
+        challengeMissing: renderChallengeMissing
+      };
+      appMain.innerHTML = (screens[state.screen] || renderHome)();
+      document.getElementById("backBtn").disabled = state.screen === "home";
+      bindScreenEvents();
+      updatePlayerBubble();
+      refreshIcons();
+    }
+
+    function bindScreenEvents() {
+      document.querySelectorAll("[data-artist]").forEach(button => {
+        button.addEventListener("click", () => {
+          state.artistId = button.dataset.artist;
+          state.search = "";
+          state.selectedIds = [];
+          state.creatorOrder = [];
+          state.friendOrder = [];
+          state.challenge = null;
+          playingSongId = "";
+          updatePlayerBubble();
+          window.location.hash = "";
+          go("selectSongs");
+        });
+      });
+
+      const search = document.getElementById("songSearch");
+      if (search) {
+        search.addEventListener("input", event => {
+          state.search = event.target.value;
+          render();
+          document.getElementById("songSearch")?.focus();
+        });
+      }
+
+      document.querySelectorAll("[data-song]").forEach(button => {
+        button.addEventListener("click", event => {
+          if (event.target.closest("[data-play]")) return;
+          const songId = button.dataset.song;
+          const selected = state.selectedIds.includes(songId);
+          if (selected) {
+            state.selectedIds = state.selectedIds.filter(id => id !== songId);
+          } else if (state.selectedIds.length < requiredCount) {
+            state.selectedIds = [...state.selectedIds, songId];
+          } else {
+            notify("已经选满 6 首，先取消一首再选。");
+          }
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-remove-selected]").forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          state.selectedIds = state.selectedIds.filter(id => id !== button.dataset.removeSelected);
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-play]").forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          const item = findSong(button.dataset.play);
+          setPlayingSong(item.id);
+          notify(playingSongId ? `正在播放预览：${item.name}` : "已暂停播放预览。");
+        });
+      });
+
+      document.querySelectorAll("[data-rank-list]").forEach(list => bindDragSort(list));
+
+      document.querySelectorAll("[data-action]").forEach(button => {
+        button.addEventListener("click", () => handleAction(button.dataset.action));
+      });
+    }
+
+    function bindDragSort(list) {
+      list.querySelectorAll(".rank-card").forEach(card => {
+        const handle = card.querySelector(".drag-handle");
+        handle.addEventListener("pointerdown", event => {
+          event.preventDefault();
+          draggingSongId = card.dataset.rankSong;
+          card.classList.add("dragging");
+          handle.setPointerCapture(event.pointerId);
+        });
+
+        handle.addEventListener("pointermove", event => {
+          if (!draggingSongId) return;
+          const target = document.elementFromPoint(event.clientX, event.clientY)?.closest(".rank-card");
+          if (!target || target.dataset.rankSong === draggingSongId) return;
+          const current = list.querySelector(`[data-rank-song="${draggingSongId}"]`);
+          const cards = [...list.querySelectorAll(".rank-card")];
+          if (cards.indexOf(current) < cards.indexOf(target)) {
+            target.after(current);
+          } else {
+            target.before(current);
+          }
+          refreshRankNumbers(list);
+        });
+
+        handle.addEventListener("pointerup", event => {
+          handle.releasePointerCapture(event.pointerId);
+          commitRankOrder(list);
+          draggingSongId = "";
+          card.classList.remove("dragging");
+        });
+
+        handle.addEventListener("pointercancel", () => {
+          draggingSongId = "";
+          card.classList.remove("dragging");
+        });
+      });
+    }
+
+    function refreshRankNumbers(list) {
+      list.querySelectorAll(".rank-card").forEach((card, index) => {
+        card.querySelector(".rank-no").textContent = `#${index + 1}`;
+      });
+    }
+
+    function commitRankOrder(list) {
+      const key = list.dataset.rankList === "friend" ? "friendOrder" : "creatorOrder";
+      state[key] = [...list.querySelectorAll(".rank-card")].map(card => card.dataset.rankSong);
+      render();
+    }
+
+    function handleAction(action) {
+      if (action === "clear-selection") {
+        state.selectedIds = [];
+        render();
+      }
+      if (action === "to-creator-sort") {
+        state.creatorOrder = [...state.selectedIds];
+        go("creatorSort");
+      }
+      if (action === "back-to-select") {
+        go("selectSongs");
+      }
+      if (action === "create-challenge") {
+        const songs = state.creatorOrder.map(findSong).filter(Boolean);
+        state.challenge = { artistId: state.artistId, order: [...state.creatorOrder], songs };
+        go("sharePage");
+      }
+      if (action === "receiver-preview") {
+        const songs = state.challenge?.songs || state.creatorOrder.map(findSong).filter(Boolean);
+        state.challenge = { artistId: state.artistId, order: [...state.creatorOrder], songs };
+        state.friendOrder = shuffledOrder(songs.map(item => item.id), state.creatorOrder);
+        go("friendSort");
+      }
+      if (action === "finish-friend") {
+        go("friendResult");
+      }
+      if (action === "share-result") {
+        openShareModal();
+      }
+      if (action === "new-challenge") {
+        state.selectedIds = [];
+        state.creatorOrder = [];
+        state.friendOrder = [];
+        state.challenge = null;
+        playingSongId = "";
+        updatePlayerBubble();
+        window.location.hash = "";
+        go("selectSongs");
+      }
+      if (action === "go-home") {
+        playingSongId = "";
+        updatePlayerBubble();
+        window.location.hash = "";
+        go("home");
+      }
+    }
+
+    function challengeLink() {
+      const url = new URL(window.location.href);
+      url.search = "";
+      const songs = (state.challenge?.songs || state.creatorOrder.map(findSong)).filter(Boolean);
+      const payload = {
+        artistId: state.artistId,
+        order: [...(state.challenge?.order || state.creatorOrder)],
+        songs
+      };
+      url.hash = `challenge=${encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))))}`;
+      return url.toString();
+    }
+
+    function initRoute() {
+      const match = window.location.hash.match(/challenge=([^&]+)/);
+      if (!match) return false;
+      try {
+        const challenge = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(match[1])))));
+        const artistExists = artists.some(artist => artist.id === challenge.artistId);
+        if (!artistExists || !Array.isArray(challenge.order) || !Array.isArray(challenge.songs)) {
+          state.screen = "challengeMissing";
+          return true;
+        }
+        state.artistId = challenge.artistId;
+        state.challenge = challenge;
+        state.creatorOrder = [...challenge.order];
+        state.selectedIds = [...challenge.order];
+        state.friendOrder = shuffledOrder(challenge.songs.map(item => item.id), challenge.order);
+        state.screen = "friendSort";
+        return true;
+      } catch (error) {
+        state.screen = "challengeMissing";
+        return true;
+      }
+    }
+
+    function shuffledOrder(ids, sourceOrder = []) {
+      const next = [...ids];
+      if (next.length < 2) return next;
+      const swapCount = Math.min(2, Math.floor(next.length / 2));
+      for (let count = 0; count < swapCount; count += 1) {
+        const from = Math.floor(Math.random() * next.length);
+        const direction = Math.random() > .5 ? 1 : -1;
+        const to = Math.max(0, Math.min(next.length - 1, from + direction));
+        if (from !== to) {
+          [next[from], next[to]] = [next[to], next[from]];
+        }
+      }
+      if (sourceOrder.length === next.length && next.every((id, index) => sourceOrder[index] === id)) {
+        [next[0], next[1]] = [next[1], next[0]];
+      }
+      return next;
+    }
+
+    function calculateMatch() {
+      const creator = state.creatorOrder;
+      const friend = state.friendOrder;
+      const n = creator.length;
+      const maxDistance = Math.floor((n * n) / 2);
+      const distances = creator.map(id => Math.abs(creator.indexOf(id) - friend.indexOf(id)));
+      const totalDistance = distances.reduce((sum, value) => sum + value, 0);
+      const creatorTop = creator.slice(0, 3);
+      const friendTop = friend.slice(0, 3);
+      const commonTopCount = friendTop.filter(id => creatorTop.includes(id)).length;
+      const exactIds = creator.filter((id, index) => friend[index] === id);
+      const distanceRatio = maxDistance ? totalDistance / maxDistance : 0;
+      const score = Math.min(99, Math.max(35, Math.round(
+        45
+        + (1 - distanceRatio) * 45
+        + commonTopCount * 4
+        + exactIds.length * 2
+      )));
+      const biggest = creator.reduce((best, id) => {
+        const gap = Math.abs(creator.indexOf(id) - friend.indexOf(id));
+        return gap > best.gap ? { id, gap } : best;
+      }, { id: creator[0], gap: 0 });
+      const biggestSong = findSong(biggest.id);
+      const sharedRows = creator.map(id => ({
+        song: findSong(id),
+        creatorRank: creator.indexOf(id) + 1,
+        friendRank: friend.indexOf(id) + 1
+      }));
+      const copy = resultCopyConfig(score, exactIds.length);
+      return {
+        score,
+        title: copy.title,
+        copy: copy.copy,
+        commonTopCount,
+        exactCount: exactIds.length,
+        exactIds,
+        biggestGap: biggest.gap === 0 ? "没有明显分歧" : `${biggestSong.name} 差 ${biggest.gap} 位`,
+        shareSpark: copy.shareSpark,
+        callToAction: copy.callToAction,
+        sharedRows
+      };
+    }
+
+    function resultCopyConfig(score, exactCount) {
+      const tier = score >= 90 ? "over90" : score >= 75 ? "over75" : score >= 55 ? "over55" : "under55";
+      const fallback = resultCopyByArtist.jay[tier];
+      const config = resultCopyByArtist[state.artistId]?.[tier] || fallback;
+      return {
+        title: config.title,
+        copy: config.copy,
+        shareSpark: config.shareSpark.replace("{exactCount}", exactCount),
+        callToAction: config.callToAction
+      };
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+      const chars = String(text).split("");
+      const lines = [];
+      let line = "";
+      chars.forEach(char => {
+        const testLine = line + char;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          lines.push(line);
+          line = char;
+        } else {
+          line = testLine;
+        }
+      });
+      if (line) lines.push(line);
+      lines.slice(0, maxLines).forEach((item, index) => {
+        const output = index === maxLines - 1 && lines.length > maxLines ? item.slice(0, -1) + "…" : item;
+        ctx.fillText(output, x, y + index * lineHeight);
+      });
+    }
+
+    function drawRoundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.arcTo(x + width, y, x + width, y + height, radius);
+      ctx.arcTo(x + width, y + height, x, y + height, radius);
+      ctx.arcTo(x, y + height, x, y, radius);
+      ctx.arcTo(x, y, x + width, y, radius);
+      ctx.closePath();
+    }
+
+    function hexToRgb(hex) {
+      const value = hex.replace("#", "");
+      return {
+        r: parseInt(value.slice(0, 2), 16),
+        g: parseInt(value.slice(2, 4), 16),
+        b: parseInt(value.slice(4, 6), 16)
+      };
+    }
+
+    function generateShareCard() {
+      const artist = currentArtist();
+      const songs = (state.challenge?.songs || state.creatorOrder.map(findSong)).filter(Boolean);
+      const canvas = document.createElement("canvas");
+      const width = 900;
+      const height = 1200;
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      const accent = hexToRgb(artist.accent);
+
+      const bg = ctx.createLinearGradient(0, 0, width, height);
+      bg.addColorStop(0, "#101714");
+      bg.addColorStop(.5, "#090f0d");
+      bg.addColorStop(1, "#141820");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
+
+      const glow = ctx.createRadialGradient(260, 140, 20, 260, 140, 520);
+      glow.addColorStop(0, `rgba(${accent.r}, ${accent.g}, ${accent.b}, .42)`);
+      glow.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "#9cf6c7";
+      ctx.font = "800 28px sans-serif";
+      ctx.fillText("同担 Top6 挑战", 64, 86);
+
+      ctx.fillStyle = "#f6f7ef";
+      ctx.font = "900 72px sans-serif";
+      wrapCanvasText(ctx, `${artist.name} 排序默契`, 64, 180, 720, 82, 2);
+
+      ctx.fillStyle = "rgba(246,247,239,.76)";
+      ctx.font = "400 30px sans-serif";
+      wrapCanvasText(ctx, "我选好了 6 首歌，来排出你心里的顺序，看看我们默契有多高。", 66, 340, 740, 42, 3);
+
+      songs.slice(0, 6).forEach((songItem, index) => {
+        const y = 500 + index * 78;
+        drawRoundRect(ctx, 64, y, 760, 58, 16);
+        ctx.fillStyle = "rgba(255,255,255,.075)";
+        ctx.fill();
+        const c1 = hexToRgb(songItem.coverA);
+        const c2 = hexToRgb(songItem.coverB);
+        const cover = ctx.createLinearGradient(92, y + 10, 136, y + 48);
+        cover.addColorStop(0, `rgb(${c1.r}, ${c1.g}, ${c1.b})`);
+        cover.addColorStop(1, `rgb(${c2.r}, ${c2.g}, ${c2.b})`);
+        ctx.fillStyle = cover;
+        drawRoundRect(ctx, 88, y + 8, 42, 42, 8);
+        ctx.fill();
+        ctx.fillStyle = "#ffd166";
+        ctx.font = "900 22px sans-serif";
+        ctx.fillText(`#${index + 1}`, 150, y + 38);
+        ctx.fillStyle = "#f6f7ef";
+        ctx.font = "800 26px sans-serif";
+        ctx.fillText(songItem.name, 220, y + 38);
+        ctx.fillStyle = "rgba(246,247,239,.58)";
+        ctx.font = "400 22px sans-serif";
+        ctx.fillText(songItem.album, 520, y + 38);
+      });
+
+      drawRoundRect(ctx, 64, 1028, 772, 92, 20);
+      ctx.fillStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, .18)`;
+      ctx.fill();
+      ctx.fillStyle = "#f6f7ef";
+      ctx.font = "900 32px sans-serif";
+      ctx.fillText("扫码或点链接参与挑战", 94, 1084);
+      ctx.fillStyle = "rgba(246,247,239,.5)";
+      ctx.font = "400 20px sans-serif";
+      ctx.fillText("QQ 音乐同担默契局", 94, 1118);
+
+      return canvas.toDataURL("image/png");
+    }
+
+    function openShareModal() {
+      currentShareCardUrl = generateShareCard();
+      sharePreview.src = currentShareCardUrl;
+      shareModal.classList.remove("hidden");
+      refreshIcons();
+    }
+
+    function closeShare() {
+      shareModal.classList.add("hidden");
+    }
+
+    function downloadShareCard() {
+      if (!currentShareCardUrl) currentShareCardUrl = generateShareCard();
+      const artist = currentArtist();
+      const link = document.createElement("a");
+      link.href = currentShareCardUrl;
+      link.download = `${artist.name}-同担Top6挑战.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      notify("挑战海报已下载。");
+    }
+
+    function dataUrlToFile(dataUrl, fileName) {
+      const [meta, data] = dataUrl.split(",");
+      const mime = meta.match(/data:(.*);base64/)?.[1] || "image/png";
+      const binary = atob(data);
+      const bytes = new Uint8Array(binary.length);
+      for (let index = 0; index < binary.length; index += 1) {
+        bytes[index] = binary.charCodeAt(index);
+      }
+      return new File([bytes], fileName, { type: mime });
+    }
+
+    async function shareToChannel(channel) {
+      if (channel === "download") {
+        downloadShareCard();
+        return;
+      }
+      const artist = currentArtist();
+      const link = challengeLink();
+      const text = `我创建了${artist.name}同担 Top6 排序挑战，来测测我们的默契度：${link}`;
+      copyText(text);
+      const names = { wechat: "微信好友", moments: "朋友圈", weibo: "新浪微博", qq: "QQ 好友", qzone: "QQ 空间", xiaohongshu: "小红书", message: "私信", copy: "链接" };
+      notify(channel === "copy" ? "链接已复制，好友打开后会排序同一组歌。" : `已复制${names[channel] || "平台"}分享文案，请保存图片后发布。`);
+      if (navigator.share && !["xiaohongshu", "copy"].includes(channel)) {
+        const file = dataUrlToFile(currentShareCardUrl || generateShareCard(), `${artist.name}-同担Top6挑战.png`);
+        const sharePayload = { title: `${artist.name}同担 Top6 挑战`, text, url: link };
+        if (navigator.canShare?.({ files: [file] })) {
+          sharePayload.files = [file];
+        }
+        try {
+          await navigator.share(sharePayload);
+        } catch (error) {
+          // Native share cancellation is expected.
+        }
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;");
+    }
+
+    document.getElementById("homeBtn").addEventListener("click", () => {
+      playingSongId = "";
+      updatePlayerBubble();
+      go("home");
+    });
+    document.getElementById("backBtn").addEventListener("click", back);
+    playerToggle.addEventListener("click", () => {
+      const wasPlaying = Boolean(playingSongId);
+      playingSongId = "";
+      updatePlayerBubble();
+      if (wasPlaying) notify("已暂停播放预览。");
+    });
+    closeShareModal.addEventListener("click", closeShare);
+    cancelShareModal.addEventListener("click", closeShare);
+    shareModal.addEventListener("click", event => {
+      if (event.target === shareModal) closeShare();
+    });
+    document.querySelectorAll("[data-share-channel]").forEach(button => {
+      button.addEventListener("click", () => shareToChannel(button.dataset.shareChannel));
+    });
+
+    window.addEventListener("hashchange", () => {
+      if (!initRoute()) go("home");
+      render();
+    });
+
+    initRoute();
+    render();
+  </script>
+</body>
+</html>
