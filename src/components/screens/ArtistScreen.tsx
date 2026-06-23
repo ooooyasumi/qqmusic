@@ -76,8 +76,7 @@ export function ArtistScreen() {
 
         <div className="mt-5 flex flex-col gap-3">
           {songs.map((song) => {
-            const selectedIndex = selectedSongIds.indexOf(song.id);
-            const selected = selectedIndex > -1;
+            const selected = selectedSongIds.includes(song.id);
             const disabled = !selected && selectedSongIds.length >= 6;
             return (
               <button
@@ -94,9 +93,6 @@ export function ArtistScreen() {
                     <b>{song.name}</b>
                     <small>{artist.name} · {song.album} · {song.note}</small>
                   </span>
-                </span>
-                <span className="ink-display" style={{ fontSize: 18, color: selected ? artist.accent : 'var(--ink-faint)', width: 24, textAlign: 'center' }}>
-                  {selected ? selectedIndex + 1 : '+'}
                 </span>
               </button>
             );
