@@ -50,6 +50,18 @@ export function SortableSongList({
     setDragIndex(to);
   };
 
+  const shouldMoveInto = (
+    event: React.DragEvent<HTMLDivElement>,
+    from: number,
+    to: number,
+  ) => {
+    if (from === to) return false;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const downThreshold = rect.top + rect.height * 0.35;
+    const upThreshold = rect.bottom - rect.height * 0.35;
+    return from < to ? event.clientY >= downThreshold : event.clientY <= upThreshold;
+  };
+
   useLayoutEffect(() => {
     const rects = previousRects.current;
     if (!rects) return;
@@ -110,7 +122,7 @@ export function SortableSongList({
             event.preventDefault();
             event.dataTransfer.dropEffect = 'move';
             const current = dragIndexRef.current;
-            if (current !== null && current !== index) {
+            if (current !== null && shouldMoveInto(event, current, index)) {
               moveWithAnimation(current, index);
             }
           }}
