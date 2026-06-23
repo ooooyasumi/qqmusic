@@ -472,6 +472,95 @@ body::before {
   flex: 1;
   min-height: 0;
 }
+
+.artist-page-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  align-items: center;
+  gap: 16px;
+  min-height: 178px;
+  padding: 18px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 18%, var(--artist-accent-soft, rgba(212, 175, 122, 0.22)), transparent 46%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+}
+.artist-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(13, 10, 31, 0.5), transparent 62%);
+  z-index: 0;
+}
+.artist-page-copy,
+.artist-page-photo {
+  position: relative;
+  z-index: 1;
+}
+.artist-page-title {
+  margin-top: 12px;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.08;
+}
+.artist-page-subtitle {
+  margin-top: 8px;
+  color: var(--ink-secondary);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.artist-page-intro {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.68;
+}
+.artist-page-photo {
+  justify-self: end;
+  width: 118px;
+  aspect-ratio: 3 / 4.1;
+  border: 1px solid rgba(244, 236, 216, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.48);
+  overflow: hidden;
+  transform: rotate(2deg);
+}
+.artist-page-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 20%;
+  filter: contrast(1.08) saturate(0.96);
+}
+.artist-page-photo span {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  padding: 2px 6px 1px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: rgba(244, 236, 216, 0.86);
+  background: rgba(13, 10, 31, 0.58);
+}
+
+@media (max-width: 360px) {
+  .artist-page-hero {
+    grid-template-columns: minmax(0, 1fr) 104px;
+    gap: 12px;
+    padding: 16px;
+  }
+  .artist-page-title {
+    font-size: 27px;
+  }
+  .artist-page-photo {
+    width: 100px;
+  }
+}
 .home-hero {
   position: relative;
   text-align: center;

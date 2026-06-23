@@ -6,6 +6,7 @@ import { findArtist } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongChoiceButton } from '@/components/SongSort';
+import { ArtistPageHero } from '@/components/ArtistPageHero';
 
 export function ArtistScreen() {
   const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
@@ -27,15 +28,12 @@ export function ArtistScreen() {
       <TopBar title={`${artist.short} Top6`} />
 
       <div className="screen-content-scrollable no-scrollbar">
-        <div className="relative">
-          <p className="kicker">正在选择 · Pick 6 Songs</p>
-          <h1 className="ink-display mt-3" style={{ fontSize: 34, fontWeight: 500, lineHeight: 1.1 }}>
-            {artist.title}
-          </h1>
-          <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            {artist.intro}
-          </p>
-        </div>
+        <ArtistPageHero
+          artist={artist}
+          eyebrow="正在选择 · Pick 6 Songs"
+          title={artist.title}
+          copy={artist.intro}
+        />
 
         <div className="mt-6 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>
           <div>
