@@ -37,14 +37,6 @@ export function ArtistScreen() {
           </p>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {artist.tags.map((tag) => (
-            <span key={tag} className="kicker" style={{ padding: '4px 12px', border: '1px solid var(--ink-faint)', borderRadius: 999, letterSpacing: '0.18em' }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
         <div className="mt-6 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>
           <div>
             <p className="kicker" style={{ color: artist.accent }}>Selected</p>
