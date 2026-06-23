@@ -1,0 +1,99 @@
+'use client';
+
+import { useApp } from '@/lib/state';
+import { artists } from '@/lib/data';
+import { Orbs } from '@/components/Orbs';
+import { Waveform } from '@/components/Waveform';
+import { TopBar } from '@/components/TopBar';
+import { useScaleToFit } from '@/lib/useScaleToFit';
+import type { Artist } from '@/lib/types';
+
+export function HomeScreen() {
+  const { go, setArtist } = useApp();
+  const { ref: scalerRef, scale } = useScaleToFit<HTMLDivElement>();
+
+  const handleSelect = (artist: Artist) => {
+    setArtist(artist.id);
+    go('artist');
+  };
+
+  return (
+    <>
+      <TopBar title="同担末期局 · EP1" showBack={false} showMenu />
+
+      <div className="screen-content">
+        <div
+          className="screen-content-scaler"
+          ref={scalerRef}
+          style={{
+            transform: `scale(${scale})`,
+            transformOrigin: 'top center',
+          }}
+        >
+          <section className="home-hero">
+            <span className="home-hero-year" aria-hidden="true">
+              2026
+            </span>
+
+            <span className="kicker">Tongdan Mojiju</span>
+            <h1 className="display-title">同担末期局</h1>
+            <p className="home-hero-sub">episode 1 · 第一弹</p>
+            <Waveform height={28} />
+          </section>
+
+          <div className="section-head">
+            <span className="section-head-line" />
+            <span className="section-head-text">本弹嘉宾</span>
+            <span className="section-head-en">This Episode</span>
+            <span className="section-head-line" />
+          </div>
+
+          <div className="home-grid">
+            {artists.map((artist, i) => (
+              <button
+                key={artist.id}
+                type="button"
+                className="grid-card"
+                onClick={() => handleSelect(artist)}
+                style={
+                  {
+                    '--artist-accent': artist.accent,
+                    '--card-tilt': i % 2 === 0 ? '-2.5deg' : '2deg',
+                  } as React.CSSProperties
+                }
+              >
+                <div className="grid-card-stack">
+                  <div className="grid-card-photo">
+                    <div
+                      className="grid-card-img"
+                      style={{
+                        backgroundImage: artist.cover
+                          ? `url(${artist.cover})`
+                          : undefined,
+                      }}
+                    />
+                    <span className="grid-card-photo-tag" aria-hidden="true">
+                      {artist.short}
+                    </span>
+                  </div>
+                  <div className="grid-card-postcard">
+                    <span className="grid-card-name">{artist.name}</span>
+                    <span className="grid-card-meta-dot" aria-hidden="true" />
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <footer className="home-foot">
+            <span>EP 01 / 2026</span>
+            <span>·</span>
+            <span>No. 001</span>
+          </footer>
+        </div>
+
+        <Orbs />
+      </div>
+    </>
+  );
+}
