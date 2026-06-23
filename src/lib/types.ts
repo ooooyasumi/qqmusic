@@ -32,6 +32,7 @@ export interface Song {
   note: string;
   coverA: string;
   coverB: string;
+  coverUrl?: string;
   listenUrl: string;
 }
 

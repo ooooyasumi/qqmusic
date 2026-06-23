@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useApp } from '@/lib/state';
 import { findArtist } from '@/lib/data';
+import { getCatalogSongsByArtist } from '@/lib/appleMusicCatalog';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongGridChoiceButton } from '@/components/SongSort';
@@ -14,9 +15,10 @@ export function SongListScreen() {
   const artist = findArtist(artistId);
   const songs = useMemo(() => {
     if (!artist) return [];
+    const catalogSongs = getCatalogSongsByArtist(artist.id);
     const q = keyword.trim().toLowerCase();
-    return artist.songs.filter((song) =>
-      `${song.name} ${song.album} ${song.note}`.toLowerCase().includes(q),
+    return catalogSongs.filter((song) =>
+      `${song.name} ${song.album}`.toLowerCase().includes(q),
     );
   }, [artist, keyword]);
 

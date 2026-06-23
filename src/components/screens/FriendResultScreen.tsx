@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useApp } from '@/lib/state';
 import { findArtist } from '@/lib/data';
+import { findCatalogSong } from '@/lib/appleMusicCatalog';
 import { calculateSongMatch } from '@/lib/match';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
@@ -14,7 +15,7 @@ export function FriendResultScreen() {
   const result = useMemo(() => {
     if (!room || !artist) return null;
     const songs = room.songIds
-      .map((id) => artist.songs.find((song) => song.id === id))
+      .map((id) => artist.songs.find((song) => song.id === id) ?? findCatalogSong(artist.id, id))
       .filter((song): song is NonNullable<typeof song> => Boolean(song));
     return calculateSongMatch({
       artistId: artist.id,
@@ -104,7 +105,7 @@ function DuelBoard({ title, order, artistId }: { title: string; order: string[];
       <p className="kicker mb-3" style={{ letterSpacing: '0.18em' }}>{title}</p>
       <div className="flex flex-col gap-2">
         {order.map((id, index) => {
-          const song = artist.songs.find((item) => item.id === id);
+          const song = artist.songs.find((item) => item.id === id) ?? findCatalogSong(artist.id, id);
           if (!song) return null;
           return (
             <div key={id} className="flex items-center gap-2 min-w-0">

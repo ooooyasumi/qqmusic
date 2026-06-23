@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from 'react';
 import { findArtist } from './data';
+import { findCatalogSong } from './appleMusicCatalog';
 import { loadRooms, makeRoom, saveRooms } from './match';
 import type { Question, Room, Screen, Song } from './types';
 
@@ -89,7 +90,7 @@ function orderedSongs(artistId: string, ids: string[]): Song[] {
   const artist = findArtist(artistId);
   if (!artist) return [];
   return ids
-    .map((id) => artist.songs.find((song) => song.id === id))
+    .map((id) => artist.songs.find((song) => song.id === id) ?? findCatalogSong(artistId, id))
     .filter((song): song is Song => Boolean(song));
 }
 

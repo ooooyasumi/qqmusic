@@ -19,12 +19,17 @@ export function SongCover({
         width: fill ? '100%' : size,
         height: fill ? 'auto' : size,
         aspectRatio: fill ? '1' : undefined,
+        backgroundImage: song.coverUrl
+          ? `linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%), url(${song.coverUrl})`
+          : undefined,
+        backgroundSize: song.coverUrl ? 'cover' : undefined,
+        backgroundPosition: song.coverUrl ? 'center' : undefined,
         ['--cover-a' as string]: song.coverA,
         ['--cover-b' as string]: song.coverB,
       }}
       aria-hidden="true"
     >
-      {song.name.slice(0, 2).toUpperCase()}
+      {song.coverUrl ? '' : song.name.slice(0, 2).toUpperCase()}
     </span>
   );
 }
