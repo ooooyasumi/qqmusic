@@ -24,7 +24,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%AF%B4%E4%BA%86%E5%86%8D%E8%A7%81/536247746?i=536248195&uo=4",
     "albumOrder": 0,
     "sourceOrder": 0
@@ -42,7 +42,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%98%BB%E5%93%88%E7%A9%BA%E5%A7%90/536247746?i=536248200&uo=4",
     "albumOrder": 0,
     "sourceOrder": 6
@@ -60,7 +60,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%88%91%E8%90%BD%E6%B3%AA-%E6%83%85%E7%BB%AA%E9%9B%B6%E7%A2%8E/536247746?i=536248201&uo=4",
     "albumOrder": 0,
     "sourceOrder": 24
@@ -78,7 +78,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%B7%A8%E6%97%B6%E4%BB%A3/536247746?i=536248194&uo=4",
     "albumOrder": 0,
     "sourceOrder": 57
@@ -96,7 +96,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A5%BD%E4%B9%85%E4%B8%8D%E8%A7%81/536247746?i=536248198&uo=4",
     "albumOrder": 0,
     "sourceOrder": 81
@@ -114,7 +114,7 @@ export const appleMusicCatalogSongs = [
     "reason": "跨时代",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536247746.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536247746.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%88%B1%E7%9A%84%E9%A3%9E%E8%A1%8C%E6%97%A5%E8%AE%B0-feat-%E6%9D%A8%E7%91%9E%E4%BB%A3/536247746?i=536248202&uo=4",
     "albumOrder": 0,
     "sourceOrder": 83
@@ -132,7 +132,7 @@ export const appleMusicCatalogSongs = [
     "reason": "惊叹号",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535754551.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535754551.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%BD%A0%E5%A5%BD%E5%90%97/535754551?i=535754621&uo=4",
     "albumOrder": 1,
     "sourceOrder": 1
@@ -150,7 +150,7 @@ export const appleMusicCatalogSongs = [
     "reason": "惊叹号",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535754551.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535754551.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%BF%B7%E9%AD%82%E6%9B%B2/535754551?i=535754617&uo=4",
     "albumOrder": 1,
     "sourceOrder": 46
@@ -168,7 +168,7 @@ export const appleMusicCatalogSongs = [
     "reason": "惊叹号",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535754551.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535754551.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%96%97%E4%BC%A4%E7%83%A7%E8%82%89%E7%B2%BD/535754551?i=535754622&uo=4",
     "albumOrder": 1,
     "sourceOrder": 67
@@ -186,7 +186,7 @@ export const appleMusicCatalogSongs = [
     "reason": "惊叹号",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535754551.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535754551.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%9A%AE%E5%BD%B1%E6%88%8F/535754551?i=535754672&uo=4",
     "albumOrder": 1,
     "sourceOrder": 85
@@ -204,7 +204,7 @@ export const appleMusicCatalogSongs = [
     "reason": "哎呦, 不错哦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/944321428.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/944321428.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%90%AC%E7%88%B8%E7%88%B8%E7%9A%84%E8%AF%9D/944321428?i=944321448&uo=4",
     "albumOrder": 2,
     "sourceOrder": 2
@@ -222,7 +222,7 @@ export const appleMusicCatalogSongs = [
     "reason": "哎呦, 不错哦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/944321428.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/944321428.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%9E%8B%E5%AD%90%E7%89%B9%E5%A4%A7%E5%8F%B7/944321428?i=944321447&uo=4",
     "albumOrder": 2,
     "sourceOrder": 70
@@ -240,7 +240,7 @@ export const appleMusicCatalogSongs = [
     "reason": "哎呦, 不错哦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/944321428.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/944321428.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%90%AC%E8%A7%81%E4%B8%8B%E9%9B%A8%E7%9A%84%E5%A3%B0%E9%9F%B3/944321428?i=944321451&uo=4",
     "albumOrder": 2,
     "sourceOrder": 72
@@ -258,7 +258,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%A2%A6%E6%83%B3%E5%95%93%E5%8A%A8/587743633?i=587743643&uo=4",
     "albumOrder": 3,
     "sourceOrder": 3
@@ -276,7 +276,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%82%BB%E7%AC%91-feat-%E8%A2%81%E5%92%8F%E7%90%B3/587743633?i=587743638&uo=4",
     "albumOrder": 3,
     "sourceOrder": 10
@@ -294,7 +294,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%98%8E%E6%98%8E%E5%B0%B1/587743633?i=587743637&uo=4",
     "albumOrder": 3,
     "sourceOrder": 14
@@ -312,7 +312,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%85%AC%E5%85%AC%E5%81%8F%E5%A4%B4%E7%97%9B/587743633?i=587743636&uo=4",
     "albumOrder": 3,
     "sourceOrder": 37
@@ -330,7 +330,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%93%AA%E9%87%8C%E9%83%BD%E6%98%AF%E4%BD%A0/587743633?i=587743645&uo=4",
     "albumOrder": 3,
     "sourceOrder": 44
@@ -348,7 +348,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%88%B1%E4%BD%A0%E6%B2%A1%E5%B7%AE/587743633?i=587743641&uo=4",
     "albumOrder": 3,
     "sourceOrder": 52
@@ -366,7 +366,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A4%A7%E7%AC%A8%E9%92%9F/587743633?i=587743644&uo=4",
     "albumOrder": 3,
     "sourceOrder": 60
@@ -384,7 +384,7 @@ export const appleMusicCatalogSongs = [
     "reason": "十二新作",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/587743633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/587743633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%AF%94%E8%BE%83%E5%A4%A7%E7%9A%84%E5%A4%A7%E6%8F%90%E7%90%B4-feat-%E6%9D%A8%E7%91%9E%E4%BB%A3-%E6%A2%81%E5%BF%83%E9%A2%90/587743633?i=587743640&uo=4",
     "albumOrder": 3,
     "sourceOrder": 94
@@ -402,7 +402,7 @@ export const appleMusicCatalogSongs = [
     "reason": "魔杰座",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1624000713.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1624000713.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%8A%B1%E6%B5%B7/1624000713?i=1624001317&uo=4",
     "albumOrder": 4,
     "sourceOrder": 4
@@ -420,7 +420,7 @@ export const appleMusicCatalogSongs = [
     "reason": "魔杰座",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1624000713.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1624000713.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%97%B6%E5%85%89%E6%9C%BA/1624000713?i=1624001322&uo=4",
     "albumOrder": 4,
     "sourceOrder": 9
@@ -438,7 +438,7 @@ export const appleMusicCatalogSongs = [
     "reason": "魔杰座",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1624000713.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1624000713.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%B9%94%E5%85%8B%E5%8F%94%E5%8F%94/1624000713?i=1624001323&uo=4",
     "albumOrder": 4,
     "sourceOrder": 13
@@ -456,7 +456,7 @@ export const appleMusicCatalogSongs = [
     "reason": "魔杰座",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1624000713.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1624000713.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%B5%81%E6%B5%AA%E8%AF%97%E4%BA%BA/1624000713?i=1624001321&uo=4",
     "albumOrder": 4,
     "sourceOrder": 32
@@ -474,7 +474,7 @@ export const appleMusicCatalogSongs = [
     "reason": "魔杰座",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1624000713.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1624000713.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%AD%94%E6%9C%AF%E5%85%88%E7%94%9F/1624000713?i=1624001318&uo=4",
     "albumOrder": 4,
     "sourceOrder": 51
@@ -492,7 +492,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%99%BD%E8%89%B2%E9%A3%8E%E8%BD%A6/536285027?i=536285264&uo=4",
     "albumOrder": 5,
     "sourceOrder": 5
@@ -510,7 +510,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8D%83%E9%87%8C%E4%B9%8B%E5%A4%96-feat-%E8%B4%B9%E7%8E%89%E6%B8%85/536285027?i=536285259&uo=4",
     "albumOrder": 5,
     "sourceOrder": 11
@@ -528,7 +528,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%90%AC%E5%A6%88%E5%A6%88%E7%9A%84%E8%AF%9D/536285027?i=536285258&uo=4",
     "albumOrder": 5,
     "sourceOrder": 19
@@ -546,7 +546,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%8F%8A%E8%8A%B1%E5%8F%B0/536285027?i=536285266&uo=4",
     "albumOrder": 5,
     "sourceOrder": 40
@@ -564,7 +564,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A4%9C%E7%9A%84%E7%AC%AC%E4%B8%83%E7%AB%A0/536285027?i=536285257&uo=4",
     "albumOrder": 5,
     "sourceOrder": 43
@@ -582,7 +582,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%BA%A2%E6%A8%A1%E4%BB%BF/536285027?i=536285262&uo=4",
     "albumOrder": 5,
     "sourceOrder": 54
@@ -600,7 +600,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%BF%B7%E8%BF%AD%E9%A6%99/536285027?i=536285265&uo=4",
     "albumOrder": 5,
     "sourceOrder": 63
@@ -618,7 +618,7 @@ export const appleMusicCatalogSongs = [
     "reason": "依然范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536285027.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536285027.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%80%80%E5%90%8E/536285027?i=536285261&uo=4",
     "albumOrder": 5,
     "sourceOrder": 87
@@ -636,7 +636,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%80%E5%90%8E%E7%9A%84%E6%88%98%E5%BD%B9/536161722?i=536162284&uo=4",
     "albumOrder": 6,
     "sourceOrder": 7
@@ -654,7 +654,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%BE%99%E6%8B%B3/536161722?i=536162082&uo=4",
     "albumOrder": 6,
     "sourceOrder": 20
@@ -672,7 +672,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9A%97%E5%8F%B7/536161722?i=536162080&uo=4",
     "albumOrder": 6,
     "sourceOrder": 29
@@ -690,7 +690,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8D%8A%E5%85%BD%E4%BA%BA/536161722?i=536162077&uo=4",
     "albumOrder": 6,
     "sourceOrder": 50
@@ -708,7 +708,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8D%8A%E5%B2%9B%E9%93%81%E7%9B%92/536161722?i=536162079&uo=4",
     "albumOrder": 6,
     "sourceOrder": 89
@@ -726,7 +726,7 @@ export const appleMusicCatalogSongs = [
     "reason": "八度空间",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536161722.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536161722.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%88%86%E8%A3%82/536161722?i=536162085&uo=4",
     "albumOrder": 6,
     "sourceOrder": 96
@@ -744,7 +744,7 @@ export const appleMusicCatalogSongs = [
     "reason": "周杰伦的床边故事",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1118757859.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1118757859.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%88%B1%E6%83%85%E5%BA%9F%E6%9F%B4/1118757859?i=1118757879&uo=4",
     "albumOrder": 10,
     "sourceOrder": 16
@@ -762,7 +762,7 @@ export const appleMusicCatalogSongs = [
     "reason": "周杰伦的床边故事",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1118757859.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1118757859.jpg",
     "listenUrl": "https://music.apple.com/cn/album/now-you-see-me/1118757859?i=1118757878&uo=4",
     "albumOrder": 10,
     "sourceOrder": 21
@@ -780,7 +780,7 @@ export const appleMusicCatalogSongs = [
     "reason": "周杰伦的床边故事",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1118757859.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1118757859.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%91%8A%E7%99%BD%E6%B0%94%E7%90%83/1118757859?i=1118757877&uo=4",
     "albumOrder": 10,
     "sourceOrder": 47
@@ -798,7 +798,7 @@ export const appleMusicCatalogSongs = [
     "reason": "即兴曲 - Single",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1818535428.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1818535428.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8D%B3%E5%85%B4%E6%9B%B2/1818535428?i=1818535429&uo=4",
     "albumOrder": 11,
     "sourceOrder": 23
@@ -816,7 +816,7 @@ export const appleMusicCatalogSongs = [
     "reason": "我很忙",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536030690.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536030690.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%88%91%E4%B8%8D%E9%85%8D/536030690?i=536030699&uo=4",
     "albumOrder": 12,
     "sourceOrder": 26
@@ -834,7 +834,7 @@ export const appleMusicCatalogSongs = [
     "reason": "我很忙",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536030690.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536030690.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%97%A0%E5%8F%8C/536030690?i=536030698&uo=4",
     "albumOrder": 12,
     "sourceOrder": 49
@@ -852,7 +852,7 @@ export const appleMusicCatalogSongs = [
     "reason": "我很忙",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536030690.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536030690.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%80%E9%95%BF%E7%9A%84%E7%94%B5%E5%BD%B1/536030690?i=536030702&uo=4",
     "albumOrder": 12,
     "sourceOrder": 93
@@ -870,7 +870,7 @@ export const appleMusicCatalogSongs = [
     "reason": "范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535739206.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535739206.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AF%B9%E4%B8%8D%E8%B5%B7/535739206?i=535739356&uo=4",
     "albumOrder": 13,
     "sourceOrder": 27
@@ -888,7 +888,7 @@ export const appleMusicCatalogSongs = [
     "reason": "范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535739206.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535739206.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8F%8C%E6%88%AA%E6%A3%8D/535739206?i=535739358&uo=4",
     "albumOrder": 13,
     "sourceOrder": 34
@@ -906,7 +906,7 @@ export const appleMusicCatalogSongs = [
     "reason": "范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535739206.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535739206.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%88%B1%E5%9C%A8%E8%A5%BF%E5%85%83%E5%89%8D/535739206?i=535739349&uo=4",
     "albumOrder": 13,
     "sourceOrder": 59
@@ -924,7 +924,7 @@ export const appleMusicCatalogSongs = [
     "reason": "范特西",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535739206.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535739206.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A8%81%E5%BB%89%E5%8F%A4%E5%A0%A1/535739206?i=535739357&uo=4",
     "albumOrder": 13,
     "sourceOrder": 73
@@ -942,7 +942,7 @@ export const appleMusicCatalogSongs = [
     "reason": "太阳之子",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/6771326786.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/6771326786.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%82%A3%E5%A4%A9%E4%B8%8B%E9%9B%A8%E4%BA%86/6771326786?i=6771326799&uo=4",
     "albumOrder": 14,
     "sourceOrder": 33
@@ -960,7 +960,7 @@ export const appleMusicCatalogSongs = [
     "reason": "太阳之子",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/6771326786.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/6771326786.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%B9%98%E5%A5%B3%E5%A4%9A%E6%83%85/6771326786?i=6771326803&uo=4",
     "albumOrder": 14,
     "sourceOrder": 36
@@ -978,7 +978,7 @@ export const appleMusicCatalogSongs = [
     "reason": "太阳之子",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/6771326786.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/6771326786.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%B0%81%E7%A8%80%E7%BD%95/6771326786?i=6771326805&uo=4",
     "albumOrder": 14,
     "sourceOrder": 45
@@ -996,7 +996,7 @@ export const appleMusicCatalogSongs = [
     "reason": "太阳之子",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/6771326786.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/6771326786.jpg",
     "listenUrl": "https://music.apple.com/cn/album/i-do/6771326786?i=6771326810&uo=4",
     "albumOrder": 14,
     "sourceOrder": 64
@@ -1014,7 +1014,7 @@ export const appleMusicCatalogSongs = [
     "reason": "太阳之子",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/6771326786.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/6771326786.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A5%B3%E5%84%BF%E6%AE%BF%E4%B8%8B/6771326786?i=6771326812&uo=4",
     "albumOrder": 14,
     "sourceOrder": 95
@@ -1032,7 +1032,7 @@ export const appleMusicCatalogSongs = [
     "reason": "11月的萧邦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536009641.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536009641.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8F%91%E5%A6%82%E9%9B%AA/536009641?i=536009644&uo=4",
     "albumOrder": 15,
     "sourceOrder": 35
@@ -1050,7 +1050,7 @@ export const appleMusicCatalogSongs = [
     "reason": "11月的萧邦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536009641.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536009641.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%93%9D%E8%89%B2%E9%A3%8E%E6%9A%B4/536009641?i=536009643&uo=4",
     "albumOrder": 15,
     "sourceOrder": 61
@@ -1068,7 +1068,7 @@ export const appleMusicCatalogSongs = [
     "reason": "七里香",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536114662.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536114662.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%B0%86%E5%86%9B/536114662?i=536115198&uo=4",
     "albumOrder": 16,
     "sourceOrder": 39
@@ -1086,7 +1086,7 @@ export const appleMusicCatalogSongs = [
     "reason": "七里香",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536114662.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536114662.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A4%96%E5%A9%86/536114662?i=536115197&uo=4",
     "albumOrder": 16,
     "sourceOrder": 65
@@ -1104,7 +1104,7 @@ export const appleMusicCatalogSongs = [
     "reason": "七里香",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/536114662.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/536114662.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%9B%B0%E5%85%BD%E4%B9%8B%E6%96%97/536114662?i=536115201&uo=4",
     "albumOrder": 16,
     "sourceOrder": 99
@@ -1122,7 +1122,7 @@ export const appleMusicCatalogSongs = [
     "reason": "不爱我就拉倒 - Single",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1384259101.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1384259101.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%B8%8D%E7%88%B1%E6%88%91%E5%B0%B1%E6%8B%89%E5%80%92/1384259101?i=1384259396&uo=4",
     "albumOrder": 18,
     "sourceOrder": 42
@@ -1140,7 +1140,7 @@ export const appleMusicCatalogSongs = [
     "reason": "杰伦",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/535790918.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/535790918.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8F%8D%E6%96%B9%E5%90%91%E7%9A%84%E9%92%9F/535790918?i=535791118&uo=4",
     "albumOrder": 25,
     "sourceOrder": 71
@@ -1158,7 +1158,7 @@ export const appleMusicCatalogSongs = [
     "reason": "最伟大的作品",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1633408719.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1633408719.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%AD%89%E4%BD%A0%E4%B8%8B%E8%AF%BE-with-%E6%9D%A8%E7%91%9E%E4%BB%A3/1633408719?i=1633408818&uo=4",
     "albumOrder": 27,
     "sourceOrder": 80
@@ -1176,7 +1176,7 @@ export const appleMusicCatalogSongs = [
     "reason": "最伟大的作品",
     "coverA": "#7fb069",
     "coverB": "#d4af7a",
-    "coverUrl": "/apple-music-covers/jay/1633408719.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jay/1633408719.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%80%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BD%9C%E5%93%81/1633408719?i=1633408721&uo=4",
     "albumOrder": 27,
     "sourceOrder": 86
@@ -1194,7 +1194,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%BB%91%E6%9A%97%E9%AA%91%E5%A3%AB-feat-%E4%BA%94%E6%9C%88%E5%A4%A9/1694849133?i=1694849137&uo=4",
     "albumOrder": 29,
     "sourceOrder": 100
@@ -1212,7 +1212,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8F%8B%E4%BA%BA%E8%AF%B4-feat-%E6%80%80%E7%A7%8B/1694849133?i=1694849143&uo=4",
     "albumOrder": 29,
     "sourceOrder": 128
@@ -1230,7 +1230,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%9B%A0%E4%BD%A0%E8%80%8C%E5%9C%A8/1694849133?i=1694849135&uo=4",
     "albumOrder": 29,
     "sourceOrder": 146
@@ -1248,7 +1248,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%BF%AE%E7%82%BC%E7%88%B1%E6%83%85/1694849133?i=1694849138&uo=4",
     "albumOrder": 29,
     "sourceOrder": 151
@@ -1266,7 +1266,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%A3%82%E7%BC%9D%E4%B8%AD%E7%9A%84%E9%98%B3%E5%85%89/1694849133?i=1694849142&uo=4",
     "albumOrder": 29,
     "sourceOrder": 166
@@ -1284,7 +1284,7 @@ export const appleMusicCatalogSongs = [
     "reason": "因你 而在",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1694849133.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1694849133.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%B7%B4%E6%B4%9B%E5%85%8B%E5%85%88%E7%94%9F-%E5%B0%8F%E6%8F%90%E7%90%B4%E7%89%B9%E5%88%AB%E6%BC%94%E5%A5%8F-feat-%E7%8E%8B%E5%8A%9B%E5%AE%8F/1694849133?i=1694849140&uo=4",
     "albumOrder": 29,
     "sourceOrder": 191
@@ -1302,7 +1302,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%BA%8F%E6%9B%B2-%E4%B8%AD%E5%9C%BA%E4%BC%91%E6%81%AF/1871400633?i=1871400638&uo=4",
     "albumOrder": 30,
     "sourceOrder": 101
@@ -1320,7 +1320,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%89%E6%A2%A6%E4%B8%8D%E9%9A%BE/1871400633?i=1871400644&uo=4",
     "albumOrder": 30,
     "sourceOrder": 107
@@ -1338,7 +1338,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%BC%B9%E5%94%B1/1871400633?i=1871400643&uo=4",
     "albumOrder": 30,
     "sourceOrder": 112
@@ -1356,7 +1356,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%B8%8D%E4%B8%BA%E8%B0%81%E8%80%8C%E4%BD%9C%E7%9A%84%E6%AD%8C/1871400633?i=1871400637&uo=4",
     "albumOrder": 30,
     "sourceOrder": 123
@@ -1374,7 +1374,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%BD%A0-%E6%9C%89%E6%B2%A1%E6%9C%89%E8%BF%87-%E7%94%B5%E5%BD%B1-%E7%A0%B4%E9%A3%8E-%E4%B8%BB%E9%A2%98%E6%9B%B2/1871400633?i=1871400838&uo=4",
     "albumOrder": 30,
     "sourceOrder": 181
@@ -1392,7 +1392,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%BA%8F%E6%9B%B2-%E6%B5%B7%E8%BE%B9-%E7%BB%88/1871400633?i=1871400837&uo=4",
     "albumOrder": 30,
     "sourceOrder": 195
@@ -1410,7 +1410,7 @@ export const appleMusicCatalogSongs = [
     "reason": "和自己对话",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1871400633.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1871400633.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%8E%B0%E5%9C%A8%E7%9A%84%E6%88%91%E5%92%8C%E5%A5%B9/1871400633?i=1871400832&uo=4",
     "albumOrder": 30,
     "sourceOrder": 196
@@ -1428,7 +1428,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%98%9F%E7%90%83/1071516327?i=1071516336&uo=4",
     "albumOrder": 31,
     "sourceOrder": 102
@@ -1446,7 +1446,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%98%9F%E7%A9%BA%E4%B8%8B%E7%9A%84%E5%90%BB/1071516327?i=1071516340&uo=4",
     "albumOrder": 31,
     "sourceOrder": 132
@@ -1464,7 +1464,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%AE%A9%E6%88%91%E5%BF%83%E5%8A%A8%E7%9A%84%E4%BA%BA/1071516327?i=1071516581&uo=4",
     "albumOrder": 31,
     "sourceOrder": 149
@@ -1482,7 +1482,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%86%BB%E7%BB%93/1071516327?i=1071516337&uo=4",
     "albumOrder": 31,
     "sourceOrder": 164
@@ -1500,7 +1500,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%B0%B1%E6%98%AF%E6%88%91/1071516327?i=1071516333&uo=4",
     "albumOrder": 31,
     "sourceOrder": 183
@@ -1518,7 +1518,7 @@ export const appleMusicCatalogSongs = [
     "reason": "乐行者",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071516327.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071516327.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A5%B3%E5%84%BF%E5%AE%B6/1071516327?i=1071516339&uo=4",
     "albumOrder": 31,
     "sourceOrder": 186
@@ -1536,7 +1536,7 @@ export const appleMusicCatalogSongs = [
     "reason": "二缺一",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/543167397.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/543167397.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%B0%8F%E9%85%92%E7%AA%9D-feat-%E8%94%A1%E5%8D%93%E5%A6%8D-%E5%9B%BD/543167397?i=543167471&uo=4",
     "albumOrder": 32,
     "sourceOrder": 103
@@ -1554,7 +1554,7 @@ export const appleMusicCatalogSongs = [
     "reason": "100天",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071517704.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071517704.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%A1%A8%E8%BE%BE%E7%88%B1-feat-%E5%BB%96%E5%90%9B/1071517704?i=1071517717&uo=4",
     "albumOrder": 34,
     "sourceOrder": 105
@@ -1572,7 +1572,7 @@ export const appleMusicCatalogSongs = [
     "reason": "100天",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071517704.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071517704.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A6%88%E5%A6%88%E7%9A%84%E5%A8%9C%E9%B2%81%E5%A8%83/1071517704?i=1071517715&uo=4",
     "albumOrder": 34,
     "sourceOrder": 152
@@ -1590,7 +1590,7 @@ export const appleMusicCatalogSongs = [
     "reason": "100天",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071517704.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071517704.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%BD%AC%E5%8A%A8/1071517704?i=1071517714&uo=4",
     "albumOrder": 34,
     "sourceOrder": 175
@@ -1608,7 +1608,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%9B%97/1072021753?i=1072021771&uo=4",
     "albumOrder": 35,
     "sourceOrder": 106
@@ -1626,7 +1626,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A%E7%9A%84%E5%A4%A9%E5%88%86/1072021753?i=1072021766&uo=4",
     "albumOrder": 35,
     "sourceOrder": 115
@@ -1644,7 +1644,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%BC%96%E5%8F%B789757/1072021753?i=1072021765&uo=4",
     "albumOrder": 35,
     "sourceOrder": 117
@@ -1662,7 +1662,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%90%AC%E4%B8%8D%E6%87%82%E6%B2%A1%E5%85%B3%E7%B3%BB/1072021753?i=1072021772&uo=4",
     "albumOrder": 35,
     "sourceOrder": 121
@@ -1680,7 +1680,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%A8%E4%B9%83%E4%BC%8A/1072021753?i=1072021764&uo=4",
     "albumOrder": 35,
     "sourceOrder": 142
@@ -1698,7 +1698,7 @@ export const appleMusicCatalogSongs = [
     "reason": "编号89757",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072021753.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072021753.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%AA%81%E7%84%B6%E7%B4%AF%E4%BA%86/1072021753?i=1072021767&uo=4",
     "albumOrder": 35,
     "sourceOrder": 147
@@ -1716,7 +1716,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%9B%B8%E4%BF%A1%E6%97%A0%E9%99%90/1071753622?i=1071753632&uo=4",
     "albumOrder": 36,
     "sourceOrder": 108
@@ -1734,7 +1734,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%B1%86%E6%B5%86%E6%B2%B9%E6%9D%A1/1071753622?i=1071753627&uo=4",
     "albumOrder": 36,
     "sourceOrder": 113
@@ -1752,7 +1752,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%B7%9D%E7%A6%BB/1071753622?i=1071753634&uo=4",
     "albumOrder": 36,
     "sourceOrder": 131
@@ -1770,7 +1770,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%AC%AC%E4%BA%8C%E5%A4%A9%E5%A0%82/1071753622?i=1071753625&uo=4",
     "albumOrder": 36,
     "sourceOrder": 140
@@ -1788,7 +1788,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AD%90%E5%BC%B9%E5%88%97%E8%BD%A6/1071753622?i=1071753626&uo=4",
     "albumOrder": 36,
     "sourceOrder": 153
@@ -1806,7 +1806,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%A4%A9%E4%BD%BF%E5%BF%83/1071753622?i=1071753630&uo=4",
     "albumOrder": 36,
     "sourceOrder": 156
@@ -1824,7 +1824,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%BE%8E%E4%BA%BA%E9%B1%BC/1071753622?i=1071753633&uo=4",
     "albumOrder": 36,
     "sourceOrder": 161
@@ -1842,7 +1842,7 @@ export const appleMusicCatalogSongs = [
     "reason": "第二天堂(江南)",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071753622.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071753622.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AE%B3%E6%80%95/1071753622?i=1071753629&uo=4",
     "albumOrder": 36,
     "sourceOrder": 165
@@ -1860,7 +1860,7 @@ export const appleMusicCatalogSongs = [
     "reason": "曹操",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071513017.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071513017.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%8F%AA%E5%AF%B9%E4%BD%A0%E8%AF%B4/1071513017?i=1071513020&uo=4",
     "albumOrder": 37,
     "sourceOrder": 109
@@ -1878,7 +1878,7 @@ export const appleMusicCatalogSongs = [
     "reason": "曹操",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071513017.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071513017.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9B%B9%E6%93%8D/1071513017?i=1071513021&uo=4",
     "albumOrder": 37,
     "sourceOrder": 111
@@ -1896,7 +1896,7 @@ export const appleMusicCatalogSongs = [
     "reason": "曹操",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071513017.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071513017.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%86%9F%E8%83%BD%E7%94%9F%E5%B7%A7/1071513017?i=1071513022&uo=4",
     "albumOrder": 37,
     "sourceOrder": 130
@@ -1914,7 +1914,7 @@ export const appleMusicCatalogSongs = [
     "reason": "重拾_快乐",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1682458439.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1682458439.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%80%86%E5%85%89%E7%99%BD/1682458439?i=1682458441&uo=4",
     "albumOrder": 38,
     "sourceOrder": 110
@@ -1932,7 +1932,7 @@ export const appleMusicCatalogSongs = [
     "reason": "重拾_快乐",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1682458439.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1682458439.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AD%A4%E7%8B%AC%E5%A8%B1%E4%B9%90/1682458439?i=1682458442&uo=4",
     "albumOrder": 38,
     "sourceOrder": 124
@@ -1950,7 +1950,7 @@ export const appleMusicCatalogSongs = [
     "reason": "重拾_快乐",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1682458439.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1682458439.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%A2%A6%E4%B8%8D%E5%87%8C%E4%B9%B1/1682458439?i=1682458443&uo=4",
     "albumOrder": 38,
     "sourceOrder": 133
@@ -1968,7 +1968,7 @@ export const appleMusicCatalogSongs = [
     "reason": "重拾_快乐",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1682458439.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1682458439.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%84%BF%E4%B8%8E%E6%84%81/1682458439?i=1682458440&uo=4",
     "albumOrder": 38,
     "sourceOrder": 145
@@ -1986,7 +1986,7 @@ export const appleMusicCatalogSongs = [
     "reason": "重拾_快乐",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1682458439.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1682458439.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%B8%80%E6%97%B6%E7%9A%84%E9%80%89%E6%8B%A9/1682458439?i=1682458450&uo=4",
     "albumOrder": 38,
     "sourceOrder": 176
@@ -2004,7 +2004,7 @@ export const appleMusicCatalogSongs = [
     "reason": "新地球",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1788007687.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1788007687.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%BB%91%E9%94%AE/1788007687?i=1788007692&uo=4",
     "albumOrder": 39,
     "sourceOrder": 114
@@ -2022,7 +2022,7 @@ export const appleMusicCatalogSongs = [
     "reason": "新地球",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1788007687.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1788007687.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%B0%B4%E4%BB%99/1788007687?i=1788007690&uo=4",
     "albumOrder": 39,
     "sourceOrder": 143
@@ -2040,7 +2040,7 @@ export const appleMusicCatalogSongs = [
     "reason": "新地球",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1788007687.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1788007687.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%B5%AA%E6%BC%AB%E8%A1%80%E6%B6%B2/1788007687?i=1788007691&uo=4",
     "albumOrder": 39,
     "sourceOrder": 154
@@ -2058,7 +2058,7 @@ export const appleMusicCatalogSongs = [
     "reason": "新地球",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1788007687.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1788007687.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%96%B0%E5%9C%B0%E7%90%83/1788007687?i=1788007689&uo=4",
     "albumOrder": 39,
     "sourceOrder": 187
@@ -2076,7 +2076,7 @@ export const appleMusicCatalogSongs = [
     "reason": "学不会",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1663699419.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1663699419.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AD%A6%E4%B8%8D%E4%BC%9A/1663699419?i=1663699421&uo=4",
     "albumOrder": 40,
     "sourceOrder": 116
@@ -2094,7 +2094,7 @@ export const appleMusicCatalogSongs = [
     "reason": "学不会",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1663699419.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1663699419.jpg",
     "listenUrl": "https://music.apple.com/cn/album/prologue/1663699419?i=1663699420&uo=4",
     "albumOrder": 40,
     "sourceOrder": 120
@@ -2112,7 +2112,7 @@ export const appleMusicCatalogSongs = [
     "reason": "学不会",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1663699419.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1663699419.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%99%BD%E7%BE%8A%E6%A2%A6/1663699419?i=1663699424&uo=4",
     "albumOrder": 40,
     "sourceOrder": 177
@@ -2130,7 +2130,7 @@ export const appleMusicCatalogSongs = [
     "reason": "学不会",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1663699419.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1663699419.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%99%BD%E5%85%B0%E8%8A%B1/1663699419?i=1663699818&uo=4",
     "albumOrder": 40,
     "sourceOrder": 178
@@ -2148,7 +2148,7 @@ export const appleMusicCatalogSongs = [
     "reason": "无滤镜 (feat. Hiroshi Fujiwara) - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1668772093.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1668772093.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%97%A0%E6%BB%A4%E9%95%9C-feat-hiroshi-fujiwara/1668772093?i=1668772095&uo=4",
     "albumOrder": 41,
     "sourceOrder": 118
@@ -2166,7 +2166,7 @@ export const appleMusicCatalogSongs = [
     "reason": "伟大的渺小",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1321044887.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1321044887.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%9C%A3%E6%89%80/1321044887?i=1321045191&uo=4",
     "albumOrder": 42,
     "sourceOrder": 119
@@ -2184,7 +2184,7 @@ export const appleMusicCatalogSongs = [
     "reason": "伟大的渺小",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1321044887.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1321044887.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%9B%9B%E7%82%B9%E5%9B%9B%E5%8D%81%E5%9B%9B/1321044887?i=1321045194&uo=4",
     "albumOrder": 42,
     "sourceOrder": 198
@@ -2202,7 +2202,7 @@ export const appleMusicCatalogSongs = [
     "reason": "无拘 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1706145038.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1706145038.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%97%A0%E6%8B%98/1706145038?i=1706145039&uo=4",
     "albumOrder": 43,
     "sourceOrder": 122
@@ -2220,7 +2220,7 @@ export const appleMusicCatalogSongs = [
     "reason": "幸存者 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535791945.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535791945.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%80%E5%90%91%E5%BE%80%E7%9A%84%E5%9C%B0%E6%96%B9/1535791945?i=1535791946&uo=4",
     "albumOrder": 44,
     "sourceOrder": 125
@@ -2238,7 +2238,7 @@ export const appleMusicCatalogSongs = [
     "reason": "幸存者 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535791945.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535791945.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%B9%B8%E5%AD%98%E8%80%85/1535791945?i=1535791950&uo=4",
     "albumOrder": 44,
     "sourceOrder": 126
@@ -2256,7 +2256,7 @@ export const appleMusicCatalogSongs = [
     "reason": "幸存者 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535791945.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535791945.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9C%80%E5%A5%BD%E6%98%AF/1535791945?i=1535791952&uo=4",
     "albumOrder": 44,
     "sourceOrder": 129
@@ -2274,7 +2274,7 @@ export const appleMusicCatalogSongs = [
     "reason": "幸存者 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535791945.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535791945.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%9A%82%E6%97%B6%E7%9A%84%E8%AE%B0%E5%8F%B7/1535791945?i=1535791953&uo=4",
     "albumOrder": 44,
     "sourceOrder": 159
@@ -2292,7 +2292,7 @@ export const appleMusicCatalogSongs = [
     "reason": "幸存者 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535791945.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535791945.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E4%BA%A4%E6%8D%A2%E4%BD%99%E7%94%9F/1535791945?i=1535791948&uo=4",
     "albumOrder": 44,
     "sourceOrder": 179
@@ -2310,7 +2310,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Bedroom (feat. Anne-Marie) - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1563062956.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1563062956.jpg",
     "listenUrl": "https://music.apple.com/cn/album/bedroom-feat-anne-marie/1563062956?i=1563062957&uo=4",
     "albumOrder": 45,
     "sourceOrder": 134
@@ -2328,7 +2328,7 @@ export const appleMusicCatalogSongs = [
     "reason": "JJ的咖啡调调, Vol. 2 - EP",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1669406279.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1669406279.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%98%AF%E4%BD%A0/1669406279?i=1669406283&uo=4",
     "albumOrder": 48,
     "sourceOrder": 144
@@ -2346,7 +2346,7 @@ export const appleMusicCatalogSongs = [
     "reason": "光阴副本 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1784644393.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1784644393.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%85%89%E9%98%B4%E5%89%AF%E6%9C%AC/1784644393?i=1784644394&uo=4",
     "albumOrder": 50,
     "sourceOrder": 150
@@ -2364,7 +2364,7 @@ export const appleMusicCatalogSongs = [
     "reason": "她说",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071506928.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071506928.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%88%B1%E7%AC%91%E7%9A%84%E7%9C%BC%E7%9D%9B/1071506928?i=1071506930&uo=4",
     "albumOrder": 51,
     "sourceOrder": 155
@@ -2382,7 +2382,7 @@ export const appleMusicCatalogSongs = [
     "reason": "空气",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/945252544.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/945252544.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%A2%AB%E9%A3%8E%E5%90%B9%E8%BF%87%E7%9A%84%E5%A4%8F%E5%A4%A9/945252544?i=945252551&uo=4",
     "albumOrder": 52,
     "sourceOrder": 158
@@ -2400,7 +2400,7 @@ export const appleMusicCatalogSongs = [
     "reason": "自由不变 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1070837070.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1070837070.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%87%AA%E7%94%B1%E4%B8%8D%E5%8F%98/1070837070?i=1070837072&uo=4",
     "albumOrder": 54,
     "sourceOrder": 162
@@ -2418,7 +2418,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Turn Of A Page - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1784644922.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1784644922.jpg",
     "listenUrl": "https://music.apple.com/cn/album/turn-of-a-page/1784644922?i=1784644923&uo=4",
     "albumOrder": 56,
     "sourceOrder": 167
@@ -2436,7 +2436,7 @@ export const appleMusicCatalogSongs = [
     "reason": "对的时间点 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1664064632.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1664064632.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E5%AF%B9%E7%9A%84%E6%97%B6%E9%97%B4%E7%82%B9/1664064632?i=1664064633&uo=4",
     "albumOrder": 57,
     "sourceOrder": 169
@@ -2454,7 +2454,7 @@ export const appleMusicCatalogSongs = [
     "reason": "The Show - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1711454223.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1711454223.jpg",
     "listenUrl": "https://music.apple.com/cn/album/the-show/1711454223?i=1711454230&uo=4",
     "albumOrder": 59,
     "sourceOrder": 171
@@ -2472,7 +2472,7 @@ export const appleMusicCatalogSongs = [
     "reason": "JJ的咖啡调调, Vol. 1",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1666174882.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1666174882.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E7%94%9F%E7%94%9F/1666174882?i=1666174896&uo=4",
     "albumOrder": 61,
     "sourceOrder": 173
@@ -2490,7 +2490,7 @@ export const appleMusicCatalogSongs = [
     "reason": "西界",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072001105.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072001105.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%97%A0%E8%81%8A/1072001105?i=1072001773&uo=4",
     "albumOrder": 62,
     "sourceOrder": 174
@@ -2508,7 +2508,7 @@ export const appleMusicCatalogSongs = [
     "reason": "西界",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1072001105.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1072001105.jpg",
     "listenUrl": "https://music.apple.com/cn/album/ko/1072001105?i=1072001767&uo=4",
     "albumOrder": 62,
     "sourceOrder": 185
@@ -2526,7 +2526,7 @@ export const appleMusicCatalogSongs = [
     "reason": "背对背拥抱 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1070843902.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1070843902.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E8%83%8C%E5%AF%B9%E8%83%8C%E6%8B%A5%E6%8A%B1/1070843902?i=1070843903&uo=4",
     "albumOrder": 64,
     "sourceOrder": 188
@@ -2544,7 +2544,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Like You Do",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1535667486.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1535667486.jpg",
     "listenUrl": "https://music.apple.com/cn/album/not-tonight/1535667486?i=1535667490&uo=4",
     "albumOrder": 65,
     "sourceOrder": 189
@@ -2562,7 +2562,7 @@ export const appleMusicCatalogSongs = [
     "reason": "JJ陆",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1071752047.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1071752047.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E9%86%89%E8%B5%A4%E5%A3%81/1071752047?i=1071752117&uo=4",
     "albumOrder": 66,
     "sourceOrder": 190
@@ -2580,7 +2580,7 @@ export const appleMusicCatalogSongs = [
     "reason": "我为你祈祷 - Single",
     "coverA": "#64b5f6",
     "coverB": "#90caf9",
-    "coverUrl": "/apple-music-covers/jj/1015552510.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/jj/1015552510.jpg",
     "listenUrl": "https://music.apple.com/cn/album/%E6%88%91%E4%B8%BA%E4%BD%A0%E7%A5%88%E7%A5%B7/1015552510?i=1015552809&uo=4",
     "albumOrder": 68,
     "sourceOrder": 197
@@ -2598,7 +2598,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/you-need-to-calm-down/1468058165?i=1468058704&uo=4",
     "albumOrder": 69,
     "sourceOrder": 200
@@ -2616,7 +2616,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/lover/1468058165?i=1468058173&uo=4",
     "albumOrder": 69,
     "sourceOrder": 201
@@ -2634,7 +2634,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/cruel-summer/1468058165?i=1468058171&uo=4",
     "albumOrder": 69,
     "sourceOrder": 202
@@ -2652,7 +2652,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/me-feat-brendon-urie-of-panic-at-the-disco/1468058165?i=1468058706&uo=4",
     "albumOrder": 69,
     "sourceOrder": 204
@@ -2670,7 +2670,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-archer/1468058165?i=1468058177&uo=4",
     "albumOrder": 69,
     "sourceOrder": 211
@@ -2688,7 +2688,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-man/1468058165?i=1468058176&uo=4",
     "albumOrder": 69,
     "sourceOrder": 212
@@ -2706,7 +2706,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/paper-rings/1468058165?i=1468058181&uo=4",
     "albumOrder": 69,
     "sourceOrder": 230
@@ -2724,7 +2724,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/miss-americana-the-heartbreak-prince/1468058165?i=1468058180&uo=4",
     "albumOrder": 69,
     "sourceOrder": 249
@@ -2742,7 +2742,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/i-forgot-that-you-existed/1468058165?i=1468058169&uo=4",
     "albumOrder": 69,
     "sourceOrder": 252
@@ -2760,7 +2760,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/daylight/1468058165?i=1468058708&uo=4",
     "albumOrder": 69,
     "sourceOrder": 284
@@ -2778,7 +2778,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/soon-youll-get-better-feat-the-chicks/1468058165?i=1468058699&uo=4",
     "albumOrder": 69,
     "sourceOrder": 291
@@ -2796,7 +2796,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Lover",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1468058165.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1468058165.jpg",
     "listenUrl": "https://music.apple.com/us/album/london-boy/1468058165?i=1468058696&uo=4",
     "albumOrder": 69,
     "sourceOrder": 295
@@ -2814,7 +2814,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/anti-hero/1650841512?i=1650841515&uo=4",
     "albumOrder": 70,
     "sourceOrder": 203
@@ -2832,7 +2832,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/karma/1650841512?i=1650841738&uo=4",
     "albumOrder": 70,
     "sourceOrder": 220
@@ -2850,7 +2850,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/lavender-haze/1650841512?i=1650841513&uo=4",
     "albumOrder": 70,
     "sourceOrder": 225
@@ -2868,7 +2868,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/bigger-than-the-whole-sky/1650841512?i=1650841748&uo=4",
     "albumOrder": 70,
     "sourceOrder": 229
@@ -2886,7 +2886,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/bejeweled/1650841512?i=1650841735&uo=4",
     "albumOrder": 70,
     "sourceOrder": 233
@@ -2904,7 +2904,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/vigilante-shit/1650841512?i=1650841732&uo=4",
     "albumOrder": 70,
     "sourceOrder": 238
@@ -2922,7 +2922,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/wouldve-couldve-shouldve/1650841512?i=1650841755&uo=4",
     "albumOrder": 70,
     "sourceOrder": 267
@@ -2940,7 +2940,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/paris/1650841512?i=1650841749&uo=4",
     "albumOrder": 70,
     "sourceOrder": 270
@@ -2958,7 +2958,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1650841512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1650841512.jpg",
     "listenUrl": "https://music.apple.com/us/album/dear-reader/1650841512?i=1650841907&uo=4",
     "albumOrder": 70,
     "sourceOrder": 293
@@ -2976,7 +2976,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/shake-it-off/1440935467?i=1440936016&uo=4",
     "albumOrder": 71,
     "sourceOrder": 205
@@ -2994,7 +2994,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/blank-space/1440935467?i=1440935808&uo=4",
     "albumOrder": 71,
     "sourceOrder": 215
@@ -3012,7 +3012,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/wildest-dreams/1440935467?i=1440936036&uo=4",
     "albumOrder": 71,
     "sourceOrder": 218
@@ -3030,7 +3030,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/style/1440935467?i=1440935812&uo=4",
     "albumOrder": 71,
     "sourceOrder": 221
@@ -3048,7 +3048,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/bad-blood/1440935467?i=1440936028&uo=4",
     "albumOrder": 71,
     "sourceOrder": 224
@@ -3066,7 +3066,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935467.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935467.jpg",
     "listenUrl": "https://music.apple.com/us/album/welcome-to-new-york/1440935467?i=1440935802&uo=4",
     "albumOrder": 71,
     "sourceOrder": 251
@@ -3084,7 +3084,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/ready-for-it/1440933849?i=1440934248&uo=4",
     "albumOrder": 72,
     "sourceOrder": 206
@@ -3102,7 +3102,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/look-what-you-made-me-do/1440933849?i=1440934255&uo=4",
     "albumOrder": 72,
     "sourceOrder": 209
@@ -3120,7 +3120,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/delicate/1440933849?i=1440934254&uo=4",
     "albumOrder": 72,
     "sourceOrder": 213
@@ -3138,7 +3138,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/dont-blame-me/1440933849?i=1440934252&uo=4",
     "albumOrder": 72,
     "sourceOrder": 222
@@ -3156,7 +3156,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/getaway-car/1440933849?i=1440934262&uo=4",
     "albumOrder": 72,
     "sourceOrder": 244
@@ -3174,7 +3174,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/i-did-something-bad/1440933849?i=1440934251&uo=4",
     "albumOrder": 72,
     "sourceOrder": 250
@@ -3192,7 +3192,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/end-game-feat-ed-sheeran-future/1440933849?i=1440934249&uo=4",
     "albumOrder": 72,
     "sourceOrder": 283
@@ -3210,7 +3210,7 @@ export const appleMusicCatalogSongs = [
     "reason": "reputation",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933849.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933849.jpg",
     "listenUrl": "https://music.apple.com/us/album/gorgeous/1440933849?i=1440934258&uo=4",
     "albumOrder": 72,
     "sourceOrder": 285
@@ -3228,7 +3228,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Speak Now",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440920310.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440920310.jpg",
     "listenUrl": "https://music.apple.com/us/album/never-grow-up/1440920310?i=1440920610&uo=4",
     "albumOrder": 73,
     "sourceOrder": 207
@@ -3246,7 +3246,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Speak Now",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440920310.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440920310.jpg",
     "listenUrl": "https://music.apple.com/us/album/enchanted/1440920310?i=1440920614&uo=4",
     "albumOrder": 73,
     "sourceOrder": 232
@@ -3264,7 +3264,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Speak Now",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440920310.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440920310.jpg",
     "listenUrl": "https://music.apple.com/us/album/mean/1440920310?i=1440920597&uo=4",
     "albumOrder": 73,
     "sourceOrder": 247
@@ -3282,7 +3282,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Speak Now",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440920310.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440920310.jpg",
     "listenUrl": "https://music.apple.com/us/album/back-to-december/1440920310?i=1440920489&uo=4",
     "albumOrder": 73,
     "sourceOrder": 266
@@ -3300,7 +3300,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Speak Now",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440920310.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440920310.jpg",
     "listenUrl": "https://music.apple.com/us/album/mine/1440920310?i=1440920319&uo=4",
     "albumOrder": 73,
     "sourceOrder": 287
@@ -3318,7 +3318,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1544268281.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1544268281.jpg",
     "listenUrl": "https://music.apple.com/us/album/willow/1544268281?i=1544268298&uo=4",
     "albumOrder": 74,
     "sourceOrder": 208
@@ -3336,7 +3336,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1544268281.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1544268281.jpg",
     "listenUrl": "https://music.apple.com/us/album/champagne-problems/1544268281?i=1544268301&uo=4",
     "albumOrder": 74,
     "sourceOrder": 256
@@ -3354,7 +3354,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1544268281.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1544268281.jpg",
     "listenUrl": "https://music.apple.com/us/album/no-body-no-crime-feat-haim/1544268281?i=1544268348&uo=4",
     "albumOrder": 74,
     "sourceOrder": 290
@@ -3372,7 +3372,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1544268281.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1544268281.jpg",
     "listenUrl": "https://music.apple.com/us/album/evermore-feat-bon-iver/1544268281?i=1544268486&uo=4",
     "albumOrder": 74,
     "sourceOrder": 294
@@ -3390,7 +3390,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1544268281.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1544268281.jpg",
     "listenUrl": "https://music.apple.com/us/album/marjorie/1544268281?i=1544268361&uo=4",
     "albumOrder": 74,
     "sourceOrder": 296
@@ -3408,7 +3408,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/exile-feat-bon-iver/1524801260?i=1524801587&uo=4",
     "albumOrder": 76,
     "sourceOrder": 214
@@ -3426,7 +3426,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/cardigan/1524801260?i=1524801580&uo=4",
     "albumOrder": 76,
     "sourceOrder": 223
@@ -3444,7 +3444,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/august/1524801260?i=1524801944&uo=4",
     "albumOrder": 76,
     "sourceOrder": 231
@@ -3462,7 +3462,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-1/1524801260?i=1524801274&uo=4",
     "albumOrder": 76,
     "sourceOrder": 241
@@ -3480,7 +3480,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/my-tears-ricochet/1524801260?i=1524801591&uo=4",
     "albumOrder": 76,
     "sourceOrder": 263
@@ -3498,7 +3498,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/betty/1524801260?i=1524802201&uo=4",
     "albumOrder": 76,
     "sourceOrder": 280
@@ -3516,7 +3516,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1524801260.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1524801260.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-last-great-american-dynasty/1524801260?i=1524801586&uo=4",
     "albumOrder": 76,
     "sourceOrder": 298
@@ -3534,7 +3534,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE TORTURED POETS DEPARTMENT: THE ANTHOLOGY",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1742057774.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1742057774.jpg",
     "listenUrl": "https://music.apple.com/us/album/fortnight-feat-post-malone/1742057774?i=1742057775&uo=4",
     "albumOrder": 77,
     "sourceOrder": 217
@@ -3552,7 +3552,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE TORTURED POETS DEPARTMENT: THE ANTHOLOGY",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1742057774.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1742057774.jpg",
     "listenUrl": "https://music.apple.com/us/album/i-can-do-it-with-a-broken-heart/1742057774?i=1742058104&uo=4",
     "albumOrder": 77,
     "sourceOrder": 243
@@ -3570,7 +3570,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE TORTURED POETS DEPARTMENT: THE ANTHOLOGY",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1742057774.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1742057774.jpg",
     "listenUrl": "https://music.apple.com/us/album/whos-afraid-of-little-old-me/1742057774?i=1742058100&uo=4",
     "albumOrder": 77,
     "sourceOrder": 278
@@ -3588,7 +3588,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE TORTURED POETS DEPARTMENT: THE ANTHOLOGY",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1742057774.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1742057774.jpg",
     "listenUrl": "https://music.apple.com/us/album/so-high-school/1742057774?i=1742058269&uo=4",
     "albumOrder": 77,
     "sourceOrder": 299
@@ -3606,7 +3606,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Fearless",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440924803.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440924803.jpg",
     "listenUrl": "https://music.apple.com/us/album/love-story/1440924803?i=1440924808&uo=4",
     "albumOrder": 78,
     "sourceOrder": 219
@@ -3624,7 +3624,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Fearless",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440924803.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440924803.jpg",
     "listenUrl": "https://music.apple.com/us/album/you-belong-with-me/1440924803?i=1440925035&uo=4",
     "albumOrder": 78,
     "sourceOrder": 226
@@ -3642,7 +3642,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Red",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935340.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935340.jpg",
     "listenUrl": "https://music.apple.com/us/album/i-knew-you-were-trouble/1440935340?i=1440935349&uo=4",
     "albumOrder": 79,
     "sourceOrder": 227
@@ -3660,7 +3660,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Red",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935340.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935340.jpg",
     "listenUrl": "https://music.apple.com/us/album/22/1440935340?i=1440935562&uo=4",
     "albumOrder": 79,
     "sourceOrder": 236
@@ -3678,7 +3678,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Red",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935340.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935340.jpg",
     "listenUrl": "https://music.apple.com/us/album/we-are-never-ever-getting-back-together/1440935340?i=1440935564&uo=4",
     "albumOrder": 79,
     "sourceOrder": 242
@@ -3696,7 +3696,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Red",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935340.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935340.jpg",
     "listenUrl": "https://music.apple.com/us/album/all-too-well/1440935340?i=1440935561&uo=4",
     "albumOrder": 79,
     "sourceOrder": 264
@@ -3714,7 +3714,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Red",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440935340.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440935340.jpg",
     "listenUrl": "https://music.apple.com/us/album/red/1440935340?i=1440935346&uo=4",
     "albumOrder": 79,
     "sourceOrder": 292
@@ -3732,7 +3732,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Taylor Swift",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440913923.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440913923.jpg",
     "listenUrl": "https://music.apple.com/us/album/our-song/1440913923?i=1440914010&uo=4",
     "albumOrder": 80,
     "sourceOrder": 228
@@ -3750,7 +3750,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Taylor Swift",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440913923.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440913923.jpg",
     "listenUrl": "https://music.apple.com/us/album/tim-mcgraw/1440913923?i=1440913928&uo=4",
     "albumOrder": 80,
     "sourceOrder": 272
@@ -3768,7 +3768,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Taylor Swift",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440913923.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440913923.jpg",
     "listenUrl": "https://music.apple.com/us/album/picture-to-burn/1440913923?i=1440913991&uo=4",
     "albumOrder": 80,
     "sourceOrder": 286
@@ -3786,7 +3786,7 @@ export const appleMusicCatalogSongs = [
     "reason": "The Life of a Showgirl",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1838810949.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1838810949.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-fate-of-ophelia/1838810949?i=1838810951&uo=4",
     "albumOrder": 81,
     "sourceOrder": 234
@@ -3804,7 +3804,7 @@ export const appleMusicCatalogSongs = [
     "reason": "The Life of a Showgirl",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1838810949.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1838810949.jpg",
     "listenUrl": "https://music.apple.com/us/album/opalite/1838810949?i=1838810953&uo=4",
     "albumOrder": 81,
     "sourceOrder": 248
@@ -3822,7 +3822,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Christmas Tree Farm - Single",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1490369893.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1490369893.jpg",
     "listenUrl": "https://music.apple.com/us/album/christmas-tree-farm/1490369893?i=1490369895&uo=4",
     "albumOrder": 82,
     "sourceOrder": 235
@@ -3840,7 +3840,7 @@ export const appleMusicCatalogSongs = [
     "reason": "All Of The Girls You Loved Before - Single",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1676967257.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1676967257.jpg",
     "listenUrl": "https://music.apple.com/us/album/all-of-the-girls-you-loved-before/1676967257?i=1676967259&uo=4",
     "albumOrder": 84,
     "sourceOrder": 240
@@ -3858,7 +3858,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1689131527.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1689131527.jpg",
     "listenUrl": "https://music.apple.com/us/album/hits-different/1689131527?i=1689132079&uo=4",
     "albumOrder": 86,
     "sourceOrder": 246
@@ -3876,7 +3876,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Midnights",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1689131527.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1689131527.jpg",
     "listenUrl": "https://music.apple.com/us/album/snow-on-the-beach-feat-more-lana-del-rey/1689131527?i=1689132080&uo=4",
     "albumOrder": 86,
     "sourceOrder": 269
@@ -3894,7 +3894,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1547315522.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1547315522.jpg",
     "listenUrl": "https://music.apple.com/us/album/right-where-you-left-me-bonus-track/1547315522?i=1547316004&uo=4",
     "albumOrder": 91,
     "sourceOrder": 261
@@ -3912,7 +3912,7 @@ export const appleMusicCatalogSongs = [
     "reason": "evermore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1547315522.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1547315522.jpg",
     "listenUrl": "https://music.apple.com/us/album/its-time-to-go-bonus-track/1547315522?i=1547316186&uo=4",
     "albumOrder": 91,
     "sourceOrder": 277
@@ -3930,7 +3930,7 @@ export const appleMusicCatalogSongs = [
     "reason": "folklore",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1528112358.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1528112358.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-lakes-bonus-track/1528112358?i=1528112564&uo=4",
     "albumOrder": 95,
     "sourceOrder": 274
@@ -3948,7 +3948,7 @@ export const appleMusicCatalogSongs = [
     "reason": "I Knew It, I Knew You - Single",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/6775527442.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/6775527442.jpg",
     "listenUrl": "https://music.apple.com/us/album/i-knew-it-i-knew-you/6775527442?i=6775527443&uo=4",
     "albumOrder": 97,
     "sourceOrder": 276
@@ -3966,7 +3966,7 @@ export const appleMusicCatalogSongs = [
     "reason": "1989",
     "coverA": "#c792ea",
     "coverB": "#f8b4d9",
-    "coverUrl": "/apple-music-covers/ts/1440933512.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/ts/1440933512.jpg",
     "listenUrl": "https://music.apple.com/us/album/new-romantics/1440933512?i=1440933800&uo=4",
     "albumOrder": 99,
     "sourceOrder": 288
@@ -3984,7 +3984,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/how-you-like-that/1533894050?i=1533894669&uo=4",
     "albumOrder": 101,
     "sourceOrder": 300
@@ -4002,7 +4002,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/ice-cream/1533894050?i=1533894672&uo=4",
     "albumOrder": 101,
     "sourceOrder": 301
@@ -4020,7 +4020,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/lovesick-girls/1533894050?i=1533894681&uo=4",
     "albumOrder": 101,
     "sourceOrder": 305
@@ -4038,7 +4038,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/pretty-savage/1533894050?i=1533894675&uo=4",
     "albumOrder": 101,
     "sourceOrder": 311
@@ -4056,7 +4056,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/bet-you-wanna-feat-cardi-b/1533894050?i=1533894677&uo=4",
     "albumOrder": 101,
     "sourceOrder": 312
@@ -4074,7 +4074,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/crazy-over-you/1533894050?i=1533894683&uo=4",
     "albumOrder": 101,
     "sourceOrder": 314
@@ -4092,7 +4092,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/love-to-hate-me/1533894050?i=1533894684&uo=4",
     "albumOrder": 101,
     "sourceOrder": 323
@@ -4110,7 +4110,7 @@ export const appleMusicCatalogSongs = [
     "reason": "THE ALBUM",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1533894050.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1533894050.jpg",
     "listenUrl": "https://music.apple.com/us/album/you-never-know/1533894050?i=1533894686&uo=4",
     "albumOrder": 101,
     "sourceOrder": 331
@@ -4128,7 +4128,7 @@ export const appleMusicCatalogSongs = [
     "reason": "Pink Venom - Single",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1639174465.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1639174465.jpg",
     "listenUrl": "https://music.apple.com/us/album/pink-venom/1639174465?i=1639174482&uo=4",
     "albumOrder": 102,
     "sourceOrder": 302
@@ -4146,7 +4146,7 @@ export const appleMusicCatalogSongs = [
     "reason": "AS IF IT'S YOUR LAST - Single",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1251249729.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1251249729.jpg",
     "listenUrl": "https://music.apple.com/us/album/as-if-its-your-last/1251249729?i=1251249891&uo=4",
     "albumOrder": 103,
     "sourceOrder": 303
@@ -4164,7 +4164,7 @@ export const appleMusicCatalogSongs = [
     "reason": "KILL THIS LOVE - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479989.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479989.jpg",
     "listenUrl": "https://music.apple.com/us/album/kill-this-love/1551479989?i=1551479992&uo=4",
     "albumOrder": 104,
     "sourceOrder": 304
@@ -4182,7 +4182,7 @@ export const appleMusicCatalogSongs = [
     "reason": "KILL THIS LOVE - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479989.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479989.jpg",
     "listenUrl": "https://music.apple.com/us/album/kick-it/1551479989?i=1551480141&uo=4",
     "albumOrder": 104,
     "sourceOrder": 321
@@ -4200,7 +4200,7 @@ export const appleMusicCatalogSongs = [
     "reason": "KILL THIS LOVE - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479989.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479989.jpg",
     "listenUrl": "https://music.apple.com/us/album/dont-know-what-to-do/1551479989?i=1551480136&uo=4",
     "albumOrder": 104,
     "sourceOrder": 327
@@ -4218,7 +4218,7 @@ export const appleMusicCatalogSongs = [
     "reason": "KILL THIS LOVE - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479989.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479989.jpg",
     "listenUrl": "https://music.apple.com/us/album/hope-not/1551479989?i=1551480217&uo=4",
     "albumOrder": 104,
     "sourceOrder": 338
@@ -4236,7 +4236,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE UP - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479990.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479990.jpg",
     "listenUrl": "https://music.apple.com/us/album/ddu-du-ddu-du/1551479990?i=1551479993&uo=4",
     "albumOrder": 105,
     "sourceOrder": 306
@@ -4254,7 +4254,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE UP - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479990.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479990.jpg",
     "listenUrl": "https://music.apple.com/us/album/forever-young/1551479990?i=1551480140&uo=4",
     "albumOrder": 105,
     "sourceOrder": 320
@@ -4272,7 +4272,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE UP - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479990.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479990.jpg",
     "listenUrl": "https://music.apple.com/us/album/see-u-later/1551479990?i=1551480225&uo=4",
     "albumOrder": 105,
     "sourceOrder": 322
@@ -4290,7 +4290,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE UP - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1551479990.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1551479990.jpg",
     "listenUrl": "https://music.apple.com/us/album/really/1551479990?i=1551480155&uo=4",
     "albumOrder": 105,
     "sourceOrder": 335
@@ -4308,7 +4308,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE TWO - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1313151079.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1313151079.jpg",
     "listenUrl": "https://music.apple.com/us/album/playing-with-fire/1313151079?i=1313151080&uo=4",
     "albumOrder": 106,
     "sourceOrder": 307
@@ -4326,7 +4326,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE TWO - EP",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1313151079.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1313151079.jpg",
     "listenUrl": "https://music.apple.com/us/album/stay/1313151079?i=1313151081&uo=4",
     "albumOrder": 106,
     "sourceOrder": 315
@@ -4344,7 +4344,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/shut-down/1644440668?i=1644440674&uo=4",
     "albumOrder": 107,
     "sourceOrder": 308
@@ -4362,7 +4362,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/typa-girl/1644440668?i=1644440676&uo=4",
     "albumOrder": 107,
     "sourceOrder": 313
@@ -4380,7 +4380,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/yeah-yeah-yeah/1644440668?i=1644440677&uo=4",
     "albumOrder": 107,
     "sourceOrder": 319
@@ -4398,7 +4398,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/tally/1644440668?i=1644440681&uo=4",
     "albumOrder": 107,
     "sourceOrder": 324
@@ -4416,7 +4416,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/hard-to-love/1644440668?i=1644440679&uo=4",
     "albumOrder": 107,
     "sourceOrder": 325
@@ -4434,7 +4434,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/ready-for-love/1644440668?i=1644440682&uo=4",
     "albumOrder": 107,
     "sourceOrder": 329
@@ -4452,7 +4452,7 @@ export const appleMusicCatalogSongs = [
     "reason": "BORN PINK",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1644440668.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1644440668.jpg",
     "listenUrl": "https://music.apple.com/us/album/the-happiest-girl/1644440668?i=1644440680&uo=4",
     "albumOrder": 107,
     "sourceOrder": 333
@@ -4470,7 +4470,7 @@ export const appleMusicCatalogSongs = [
     "reason": "JUMP - Single",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1824672650.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1824672650.jpg",
     "listenUrl": "https://music.apple.com/us/album/jump/1824672650?i=1824672652&uo=4",
     "albumOrder": 108,
     "sourceOrder": 309
@@ -4488,7 +4488,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE ONE - Single",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1315917456.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1315917456.jpg",
     "listenUrl": "https://music.apple.com/us/album/boombayah/1315917456?i=1315917630&uo=4",
     "albumOrder": 109,
     "sourceOrder": 310
@@ -4506,7 +4506,7 @@ export const appleMusicCatalogSongs = [
     "reason": "SQUARE ONE - Single",
     "coverA": "#f5c842",
     "coverB": "#e8a5b8",
-    "coverUrl": "/apple-music-covers/bp/1315917456.jpg",
+    "coverUrl": "https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/covers/bp/1315917456.jpg",
     "listenUrl": "https://music.apple.com/us/album/whistle/1315917456?i=1315917629&uo=4",
     "albumOrder": 109,
     "sourceOrder": 316
