@@ -5,12 +5,10 @@ import { artists } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { Waveform } from '@/components/Waveform';
 import { TopBar } from '@/components/TopBar';
-import { useScaleToFit } from '@/lib/useScaleToFit';
 import type { Artist } from '@/lib/types';
 
 export function HomeScreen() {
   const { go, setArtist } = useApp();
-  const { ref: scalerRef, scale } = useScaleToFit<HTMLDivElement>();
 
   const handleSelect = (artist: Artist) => {
     setArtist(artist.id);
@@ -22,14 +20,7 @@ export function HomeScreen() {
       <TopBar title="同担默契局 · EP1" showBack={false} showMenu />
 
       <div className="screen-content">
-        <div
-          className="screen-content-scaler"
-          ref={scalerRef}
-          style={{
-            transform: `scale(${scale})`,
-            transformOrigin: 'top center',
-          }}
-        >
+        <div className="screen-content-scaler">
           <section className="home-hero">
             <span className="home-hero-year" aria-hidden="true">
               2026
@@ -84,16 +75,10 @@ export function HomeScreen() {
               </button>
             ))}
           </div>
-
-          <footer className="home-foot">
-            <span>EP 01 / 2026</span>
-            <span>·</span>
-            <span>No. 001</span>
-          </footer>
         </div>
-
-        <Orbs />
       </div>
+
+      <Orbs />
     </div>
   );
 }
