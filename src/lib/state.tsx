@@ -10,7 +10,13 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { createBackendRoom, fetchMyRooms, fetchRoomByToken, submitBackendAttempt, syncLegacyRoom } from './apiClient';
+import {
+  createBackendRoom,
+  fetchMyRoomCollections,
+  fetchRoomByToken,
+  submitBackendAttempt,
+  syncLegacyRoom,
+} from './apiClient';
 import { findArtist } from './data';
 import { findCatalogSong } from './appleMusicCatalog';
 import { loadRooms } from './match';
@@ -29,6 +35,7 @@ interface AppState {
   answerIndex: number;
   room: Room | null;
   rooms: Room[];
+  participatedRooms: Room[];
   activeChallengeToken: string | null;
   history: Screen[];
   toast: string | null;
@@ -86,6 +93,7 @@ const initial: AppState = {
   answerIndex: 0,
   room: null,
   rooms: [],
+  participatedRooms: [],
   activeChallengeToken: null,
   history: [],
   toast: null,
@@ -252,11 +260,18 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     async (token: string, isCancelled: () => boolean = () => false) => {
       const syncedRooms = await syncLegacyRooms();
       const challengeRoom = await fetchRoomByToken(token).catch(() => null);
-      const rooms = await fetchMyRooms().catch(() => syncedRooms);
+      const collections = await fetchMyRoomCollections().catch(() => ({
+        owned: syncedRooms,
+        participated: [],
+      }));
       if (isCancelled()) return;
       browserHistoryActionRef.current = 'replace';
       setState((prev) => {
-        const next = { ...prev, rooms: mergeRooms(rooms, syncedRooms) };
+        const next = {
+          ...prev,
+          rooms: mergeRooms(collections.owned, syncedRooms),
+          participatedRooms: collections.participated,
+        };
         if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
         return {
           ...applyRoomState(next, challengeRoom, 'friend'),
@@ -284,9 +299,13 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
         }
 
         const syncedRooms = await syncLegacyRooms();
-        const rooms = await fetchMyRooms();
+        const collections = await fetchMyRoomCollections();
         if (cancelled) return;
-        setState((prev) => ({ ...prev, rooms: mergeRooms(rooms, syncedRooms) }));
+        setState((prev) => ({
+          ...prev,
+          rooms: mergeRooms(collections.owned, syncedRooms),
+          participatedRooms: collections.participated,
+        }));
       } catch {
         if (!cancelled) {
           setState((prev) => ({ ...prev, toast: '房间加载失败，请稍后再试。' }));
@@ -539,6 +558,10 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       setState((prev) => ({
         ...prev,
         room: submitted.room,
+        participatedRooms: [
+          submitted.room,
+          ...prev.participatedRooms.filter((room) => room.id !== submitted.room.id),
+        ],
         screen: 'friendResult',
         history: [...prev.history, prev.screen],
       }));
@@ -571,8 +594,14 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     let cancelled = false;
     const refreshRooms = async () => {
       try {
-        const rooms = await fetchMyRooms();
-        if (!cancelled) setState((prev) => ({ ...prev, rooms }));
+        const collections = await fetchMyRoomCollections();
+        if (!cancelled) {
+          setState((prev) => ({
+            ...prev,
+            rooms: collections.owned,
+            participatedRooms: collections.participated,
+          }));
+        }
       } catch {
         if (!cancelled) setState((prev) => ({ ...prev, toast: '房间列表加载失败。' }));
       }

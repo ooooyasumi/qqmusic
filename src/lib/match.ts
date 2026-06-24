@@ -158,7 +158,16 @@ export function makeRoom(args: {
   };
 }
 
-const RESULT_COPY: Record<string, Record<string, Omit<SongMatchResult, 'score' | 'commonTopCount' | 'exactIds' | 'sharedRows' | 'biggestGap'>>> = {
+const RESULT_COPY: Record<
+  string,
+  Record<
+    string,
+    Omit<
+      SongMatchResult,
+      'score' | 'commonSongCount' | 'commonTopCount' | 'exactIds' | 'sharedRows' | 'biggestGap'
+    >
+  >
+> = {
   jay: {
     over90: {
       title: '晴天DNA双胞胎',
@@ -292,6 +301,9 @@ export function calculateSongMatch({
   const exactIds = sharedRows
     .filter((row) => row.creatorRank === row.friendRank)
     .map((row) => row.song.id);
+  const commonSongCount = sharedRows.filter(
+    (row) => row.creatorRank <= creatorOrder.length && row.friendRank <= friendOrder.length,
+  ).length;
   const commonTopCount = songs.filter((song) => {
     const creator = creatorRank.get(song.id) ?? 99;
     const friend = friendRank.get(song.id) ?? 99;
@@ -301,13 +313,15 @@ export function calculateSongMatch({
   const score = Math.max(30, Math.min(99, 100 - gapPenalty * 5 + exactIds.length * 3 + commonTopCount * 2));
   const config = copyConfig(artistId, score);
   const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
+  const biggestGap = biggest && biggest.gap > 0 ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '完全同频';
   return {
     score,
     title: config.title,
     copy: config.copy,
     shareSpark: config.shareSpark.replace('{exactCount}', String(exactIds.length)),
     callToAction: config.callToAction,
-    biggestGap: biggest ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '没有明显分歧',
+    biggestGap,
+    commonSongCount,
     commonTopCount,
     exactIds,
     sharedRows: sharedRows.sort((a, b) => a.friendRank - b.friendRank),

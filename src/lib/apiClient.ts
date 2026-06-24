@@ -5,6 +5,11 @@ export interface AttemptResponse {
   result: SongMatchResult;
 }
 
+export interface RoomCollections {
+  owned: Room[];
+  participated: Room[];
+}
+
 async function readJson<T>(response: Response): Promise<T> {
   const data = (await response.json()) as T | { error?: string };
   if (!response.ok) {
@@ -15,8 +20,18 @@ async function readJson<T>(response: Response): Promise<T> {
 }
 
 export async function fetchMyRooms(): Promise<Room[]> {
-  const data = await readJson<{ rooms: Room[] }>(await fetch('/api/rooms', { cache: 'no-store' }));
-  return data.rooms;
+  const data = await fetchMyRoomCollections();
+  return data.owned;
+}
+
+export async function fetchMyRoomCollections(): Promise<RoomCollections> {
+  const data = await readJson<{ rooms: Room[]; participatedRooms?: Room[] }>(
+    await fetch('/api/rooms', { cache: 'no-store' }),
+  );
+  return {
+    owned: data.rooms,
+    participated: data.participatedRooms ?? [],
+  };
 }
 
 export async function createBackendRoom(args: {

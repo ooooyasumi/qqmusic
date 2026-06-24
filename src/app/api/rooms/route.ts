@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createRoomFromPayload, jsonError, listMyRooms } from '@/lib/server/api';
+import { createRoomFromPayload, jsonError, listMyRoomCollections } from '@/lib/server/api';
 
 export const runtime = 'nodejs';
 
 export async function GET() {
-  const rooms = await listMyRooms();
-  return NextResponse.json({ rooms });
+  const collections = await listMyRoomCollections();
+  return NextResponse.json({
+    rooms: collections.owned,
+    participatedRooms: collections.participated,
+  });
 }
 
 export async function POST(request: NextRequest) {

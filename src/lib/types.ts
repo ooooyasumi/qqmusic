@@ -91,6 +91,7 @@ export interface SongMatchResult {
   shareSpark: string;
   biggestGap: string;
   callToAction: string;
+  commonSongCount: number;
   commonTopCount: number;
   exactIds: string[];
   sharedRows: Array<{

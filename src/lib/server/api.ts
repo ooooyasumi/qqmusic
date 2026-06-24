@@ -40,6 +40,11 @@ export interface SubmitResult {
   result: SongMatchResult;
 }
 
+export interface RoomCollections {
+  owned: StoredRoom[];
+  participated: StoredRoom[];
+}
+
 interface RequestClientInfo {
   hostname: string;
   userAgent: string | null;
@@ -253,12 +258,40 @@ export async function listMyRooms(): Promise<StoredRoom[]> {
     .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? ORDER BY created_at DESC LIMIT 50')
     .all(visitorId) as RoomRow[];
   const origin = await getOrigin();
+  return roomsFromRows(rows, origin);
+}
+
+function roomsFromRows(rows: RoomRow[], origin: string): StoredRoom[] {
   return rows.map((row) => {
     const attempts = getDb()
       .prepare('SELECT * FROM attempts WHERE room_id = ? ORDER BY score DESC, created_at DESC LIMIT 5')
       .all(row.id) as AttemptRow[];
     return roomFromRow(row, origin, rankingFromRows(attempts));
   });
+}
+
+export async function listMyRoomCollections(): Promise<RoomCollections> {
+  const visitorId = await getOrCreateVisitorId();
+  const db = getDb();
+  const ownedRows = db
+    .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? ORDER BY created_at DESC LIMIT 50')
+    .all(visitorId) as RoomRow[];
+  const participatedRows = db
+    .prepare(
+      `SELECT r.*
+       FROM rooms r
+       JOIN attempts a ON a.room_id = r.id
+       WHERE a.visitor_id = ? AND r.owner_visitor_id != ?
+       GROUP BY r.id
+       ORDER BY MAX(a.created_at) DESC
+       LIMIT 50`,
+    )
+    .all(visitorId, visitorId) as RoomRow[];
+  const origin = await getOrigin();
+  return {
+    owned: roomsFromRows(ownedRows, origin),
+    participated: roomsFromRows(participatedRows, origin),
+  };
 }
 
 export async function submitAttempt(token: string, payload: unknown): Promise<SubmitResult> {
