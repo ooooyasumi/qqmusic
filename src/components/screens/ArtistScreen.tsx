@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useApp } from '@/lib/state';
 import { findArtist } from '@/lib/data';
 import { getCatalogSongsByArtist } from '@/lib/appleMusicCatalog';
@@ -23,19 +23,12 @@ function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongId
 
 export function ArtistScreen() {
   const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
-  const [keyword, setKeyword] = useState('');
   const artist = findArtist(artistId);
   const songs = useMemo(() => {
     if (!artist) return [];
     const catalogSongs = getCatalogSongsByArtist(artist.id);
-    const q = keyword.trim().toLowerCase();
-    if (!q) {
-      return featuredSongs(artist.songs, catalogSongs, artist.featuredSongIds);
-    }
-    return catalogSongs.filter((song) =>
-      `${song.name} ${song.album}`.toLowerCase().includes(q),
-    ).slice(0, 5);
-  }, [artist, keyword]);
+    return featuredSongs(artist.songs, catalogSongs, artist.featuredSongIds);
+  }, [artist]);
 
   if (!artist) return null;
 
@@ -61,24 +54,6 @@ export function ArtistScreen() {
             <span className="ink-mute text-xs tracking-widest">/ 6</span>
           </div>
         </div>
-
-        <label className="mt-4 block">
-          <input
-            value={keyword}
-            onChange={(event) => setKeyword(event.target.value)}
-            placeholder="搜索这位歌手的歌曲"
-            className="w-full"
-            style={{
-              height: 46,
-              padding: '0 14px',
-              color: 'var(--ink-primary)',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid var(--ink-faint)',
-              borderRadius: 14,
-              outline: 'none',
-            }}
-          />
-        </label>
 
         <div className="mt-5 flex flex-col gap-3">
           {songs.map((song) => {

@@ -7,7 +7,6 @@ import { getCatalogSongsByArtist } from '@/lib/appleMusicCatalog';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongGridChoiceButton } from '@/components/SongSort';
-import { ArtistPageHero } from '@/components/ArtistPageHero';
 
 export function SongListScreen() {
   const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify } = useApp();
@@ -30,13 +29,7 @@ export function SongListScreen() {
       <TopBar title={`${artist.short} Songs`} />
 
       <div className="screen-content-scrollable no-scrollbar">
-        <ArtistPageHero
-          artist={artist}
-          eyebrow="Select Songs"
-          copy="选择 6 首最喜欢的音乐"
-        />
-
-        <label className="mt-5 block">
+        <label className="mt-4 block">
           <input
             value={keyword}
             onChange={(event) => setKeyword(event.target.value)}
