@@ -50,6 +50,9 @@ export function ShareResultScreen() {
           type="button"
           className="btn-primary"
           onClick={() => {
+            if (typeof window !== 'undefined') {
+              window.history.replaceState(window.history.state, '', window.location.pathname);
+            }
             setArtist(room.artistId);
             go('home', false);
           }}

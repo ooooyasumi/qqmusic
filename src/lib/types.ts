@@ -53,6 +53,7 @@ export interface Artist {
 }
 
 export type Screen =
+  | 'challengeLoading'
   | 'home'
   | 'artist'
   | 'friendSelect'

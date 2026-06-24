@@ -90,6 +90,15 @@ const initial: AppState = {
   toast: null,
 };
 
+function initialStateForChallenge(token?: string): AppState {
+  if (!token) return initial;
+  return {
+    ...initial,
+    screen: 'challengeLoading',
+    activeChallengeToken: token,
+  };
+}
+
 function moveItem(list: string[], from: number, to: number): string[] {
   if (from === to || from < 0 || to < 0 || from >= list.length || to >= list.length) {
     return list;
@@ -110,6 +119,7 @@ function orderedSongs(artistId: string, ids: string[]): Song[] {
 
 function isScreen(value: unknown): value is Screen {
   return (
+    value === 'challengeLoading' ||
     value === 'home' ||
     value === 'artist' ||
     value === 'friendSelect' ||
@@ -175,9 +185,10 @@ function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 
   };
 }
 
-export function AppProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AppState>(initial);
-  const stateRef = useRef<AppState>(initial);
+export function AppProvider({ children, initialChallengeToken }: { children: ReactNode; initialChallengeToken?: string }) {
+  const initialState = useMemo(() => initialStateForChallenge(initialChallengeToken), [initialChallengeToken]);
+  const [state, setState] = useState<AppState>(initialState);
+  const stateRef = useRef<AppState>(initialState);
   const browserHistoryInitializedRef = useRef(false);
   const browserHistoryActionRef = useRef<BrowserHistoryAction | null>(null);
   const lastBrowserHistoryKeyRef = useRef<string | null>(null);
@@ -192,23 +203,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const loadInitialState = async () => {
       try {
         const params = new URLSearchParams(window.location.search);
-        const token = params.get('challenge');
-        const [rooms, challengeRoom] = await Promise.all([
-          fetchMyRooms(),
-          token ? fetchRoomByToken(token).catch(() => null) : Promise.resolve(null),
-        ]);
+        const token = initialChallengeToken ?? params.get('challenge');
+        if (token) {
+          const challengeRoom = await fetchRoomByToken(token).catch(() => null);
+          const rooms = await fetchMyRooms().catch(() => []);
+          if (cancelled) return;
+          browserHistoryActionRef.current = 'replace';
+          setState((prev) => {
+            const next = { ...prev, rooms };
+            if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
+            return {
+              ...applyRoomState(next, challengeRoom, 'friend'),
+              screen: 'friendSelect',
+              history: [],
+            };
+          });
+          return;
+        }
+
+        const rooms = await fetchMyRooms();
         if (cancelled) return;
-        browserHistoryActionRef.current = 'replace';
-        setState((prev) => {
-          const next = { ...prev, rooms };
-          if (!token) return next;
-          if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
-          return {
-            ...applyRoomState(next, challengeRoom, 'friend'),
-            screen: 'friendSelect',
-            history: [],
-          };
-        });
+        setState((prev) => ({ ...prev, rooms }));
       } catch {
         if (!cancelled) {
           setState((prev) => ({ ...prev, toast: '房间加载失败，请稍后再试。' }));
@@ -219,7 +234,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initialChallengeToken]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

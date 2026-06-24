@@ -11,11 +11,14 @@ import { FriendResultScreen } from './FriendResultScreen';
 import { ShareResultScreen } from './ShareResultScreen';
 import { RoomsScreen } from './RoomsScreen';
 import { RoomMissingScreen } from './RoomMissingScreen';
+import { ChallengeLoadingScreen } from './ChallengeLoadingScreen';
 import { Toast } from '@/components/Toast';
 
 function ScreenContent() {
   const { screen } = useApp();
   switch (screen) {
+    case 'challengeLoading':
+      return <ChallengeLoadingScreen />;
     case 'home':
       return <HomeScreen />;
     case 'artist':
