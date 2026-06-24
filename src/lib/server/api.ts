@@ -204,7 +204,9 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
 }
 
 export async function findRoomByToken(token: string): Promise<StoredRoom | null> {
-  const row = getDb().prepare('SELECT * FROM rooms WHERE share_token = ?').get(token) as RoomRow | undefined;
+  const row = getDb().prepare('SELECT * FROM rooms WHERE share_token = ? OR id = ?').get(token, token) as
+    | RoomRow
+    | undefined;
   if (!row) return null;
   const attempts = getDb()
     .prepare('SELECT * FROM attempts WHERE room_id = ? ORDER BY score DESC, created_at DESC LIMIT 5')

@@ -151,6 +151,29 @@ function currentBrowserUrl(): string {
   return `${window.location.pathname}${window.location.search}${window.location.hash}`;
 }
 
+function challengeTokenFromSearch(search: string): string | null {
+  const params = new URLSearchParams(search);
+  return params.get('challenge') ?? params.get('room');
+}
+
+function challengeTokenFromHash(hash: string): string | null {
+  const raw = hash.replace(/^#/, '').replace(/^\//, '');
+  if (!raw) return null;
+
+  const query = raw.startsWith('?') ? raw.slice(1) : raw;
+  const keyed = challengeTokenFromSearch(query);
+  if (keyed) return keyed;
+
+  const pathMatch = raw.match(/^(?:challenge|room)\/([^/?#&]+)/);
+  return pathMatch ? decodeURIComponent(pathMatch[1]) : null;
+}
+
+function challengeTokenFromLocation(initialToken?: string): string | null {
+  if (initialToken) return initialToken;
+  if (typeof window === 'undefined') return null;
+  return challengeTokenFromSearch(window.location.search) ?? challengeTokenFromHash(window.location.hash);
+}
+
 function writeBrowserHistory(
   action: Exclude<BrowserHistoryAction, 'pop'>,
   screen: Screen,
@@ -193,6 +216,22 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
   const browserHistoryActionRef = useRef<BrowserHistoryAction | null>(null);
   const lastBrowserHistoryKeyRef = useRef<string | null>(null);
 
+  const openChallenge = useCallback(async (token: string, isCancelled: () => boolean = () => false) => {
+    const challengeRoom = await fetchRoomByToken(token).catch(() => null);
+    const rooms = await fetchMyRooms().catch(() => []);
+    if (isCancelled()) return;
+    browserHistoryActionRef.current = 'replace';
+    setState((prev) => {
+      const next = { ...prev, rooms };
+      if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
+      return {
+        ...applyRoomState(next, challengeRoom, 'friend'),
+        screen: 'friendSelect',
+        history: [],
+      };
+    });
+  }, []);
+
   useEffect(() => {
     stateRef.current = state;
   }, [state]);
@@ -202,22 +241,9 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     let cancelled = false;
     const loadInitialState = async () => {
       try {
-        const params = new URLSearchParams(window.location.search);
-        const token = initialChallengeToken ?? params.get('challenge');
+        const token = challengeTokenFromLocation(initialChallengeToken);
         if (token) {
-          const challengeRoom = await fetchRoomByToken(token).catch(() => null);
-          const rooms = await fetchMyRooms().catch(() => []);
-          if (cancelled) return;
-          browserHistoryActionRef.current = 'replace';
-          setState((prev) => {
-            const next = { ...prev, rooms };
-            if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
-            return {
-              ...applyRoomState(next, challengeRoom, 'friend'),
-              screen: 'friendSelect',
-              history: [],
-            };
-          });
+          await openChallenge(token, () => cancelled);
           return;
         }
 
@@ -234,13 +260,13 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     return () => {
       cancelled = true;
     };
-  }, [initialChallengeToken]);
+  }, [initialChallengeToken, openChallenge]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const onHashChange = () => {
-      const match = window.location.hash.match(/room=([^&]+)/);
-      if (!match) {
+      const token = challengeTokenFromLocation();
+      if (!token) {
         const historyEntry = isBrowserHistoryEntry(window.history.state) ? window.history.state : null;
         browserHistoryActionRef.current = 'replace';
         setState((prev) => ({
@@ -250,21 +276,11 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
         }));
         return;
       }
-      const roomId = decodeURIComponent(match[1]);
-      setState((prev) => {
-        const room = prev.rooms.find((r) => r.id === roomId);
-        if (!room) return { ...prev, screen: 'roomMissing' };
-        browserHistoryActionRef.current = 'replace';
-        return {
-          ...applyRoomState(prev, room),
-          screen: 'friendAnswer',
-          history: [],
-        };
-      });
+      void openChallenge(token);
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
+  }, [openChallenge]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
