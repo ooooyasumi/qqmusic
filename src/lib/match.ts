@@ -283,9 +283,10 @@ export function calculateSongMatch({
 }): SongMatchResult {
   const creatorRank = new Map(creatorOrder.map((id, index) => [id, index + 1]));
   const friendRank = new Map(friendOrder.map((id, index) => [id, index + 1]));
+  const missingRank = Math.max(creatorOrder.length, friendOrder.length) + 1;
   const sharedRows = songs.map((song) => {
-    const creator = creatorRank.get(song.id) ?? 99;
-    const friend = friendRank.get(song.id) ?? 99;
+    const creator = creatorRank.get(song.id) ?? missingRank;
+    const friend = friendRank.get(song.id) ?? missingRank;
     return { song, creatorRank: creator, friendRank: friend, gap: Math.abs(creator - friend) };
   });
   const exactIds = sharedRows

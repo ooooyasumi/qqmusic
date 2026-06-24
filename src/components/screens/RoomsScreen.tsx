@@ -7,7 +7,7 @@ import { TopBar } from '@/components/TopBar';
 
 export function RoomsScreen() {
   const { rooms, openRoom, go, notify } = useApp();
-  const list = rooms.slice(0, 4);
+  const list = rooms.slice(0, 20);
 
   return (
     <div className="screen screen-fade">
@@ -16,7 +16,7 @@ export function RoomsScreen() {
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative">
-          <p className="kicker">Local · 本机房间</p>
+          <p className="kicker">Links · 我的挑战</p>
           <h1
             className="ink-display mt-3"
             style={{ fontSize: 32, fontWeight: 500, lineHeight: 1.1 }}
@@ -24,7 +24,7 @@ export function RoomsScreen() {
             我的<span style={{ fontStyle: 'italic' }}> · </span>房间
           </h1>
           <p className="ink-mute text-sm mt-2">
-            数据保存在本机浏览器 · 最多展示 4 个最近房间
+            数据保存在后端 · 好友参与后会显示分数
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function RoomsScreen() {
             </p>
             <p className="ink-body ink-secondary mt-3">还没有房间</p>
             <p className="ink-mute text-xs mt-1">
-              完成一次发起者作答，就会自动生成房间
+              创建挑战后，这里会保存你的分享链接
             </p>
             <button
               type="button"

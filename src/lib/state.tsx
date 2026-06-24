@@ -10,9 +10,9 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { createBackendRoom, fetchMyRooms, fetchRoomByToken, submitBackendAttempt } from './apiClient';
 import { findArtist } from './data';
 import { findCatalogSong } from './appleMusicCatalog';
-import { loadRooms, makeRoom, saveRooms } from './match';
 import type { Question, Room, Screen, Song } from './types';
 
 interface AppState {
@@ -28,6 +28,7 @@ interface AppState {
   answerIndex: number;
   room: Room | null;
   rooms: Room[];
+  activeChallengeToken: string | null;
   history: Screen[];
   toast: string | null;
 }
@@ -51,8 +52,9 @@ interface AppContextValue extends AppState {
   startCreatorSort: () => void;
   reorderCreator: (from: number, to: number) => void;
   reorderFriend: (from: number, to: number) => void;
-  createRoom: () => Room | null;
-  finishFriend: () => void;
+  startFriendSort: () => void;
+  createRoom: () => Promise<Room | null>;
+  finishFriend: () => Promise<void>;
   openRoom: (room: Room) => void;
   notify: (msg: string) => void;
 }
@@ -83,6 +85,7 @@ const initial: AppState = {
   answerIndex: 0,
   room: null,
   rooms: [],
+  activeChallengeToken: null,
   history: [],
   toast: null,
 };
@@ -109,12 +112,14 @@ function isScreen(value: unknown): value is Screen {
   return (
     value === 'home' ||
     value === 'artist' ||
+    value === 'friendSelect' ||
     value === 'songList' ||
     value === 'create' ||
     value === 'creatorAnswer' ||
     value === 'creatorResult' ||
     value === 'friendAnswer' ||
     value === 'friendResult' ||
+    value === 'shareResult' ||
     value === 'rooms' ||
     value === 'roomMissing'
   );
@@ -157,15 +162,16 @@ function writeBrowserHistory(
   window.history.replaceState(entry, '', currentBrowserUrl());
 }
 
-function applyRoomState(state: AppState, room: Room): AppState {
+function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 'owner'): AppState {
   return {
     ...state,
     room,
     artistId: room.artistId,
     bankId: room.bankId,
-    selectedSongIds: room.songIds,
+    selectedSongIds: mode === 'friend' ? [] : room.songIds,
     creatorOrder: room.creatorOrder,
-    friendOrder: room.songIds,
+    friendOrder: mode === 'friend' ? [] : room.songIds,
+    activeChallengeToken: mode === 'friend' ? room.shareToken ?? null : state.activeChallengeToken,
   };
 }
 
@@ -181,22 +187,38 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [state]);
 
   useEffect(() => {
-    const rooms = loadRooms();
-    setState((prev) => {
-      const next = { ...prev, rooms };
-      if (typeof window === 'undefined') return next;
-      const match = window.location.hash.match(/room=([^&]+)/);
-      if (!match) return next;
-      const roomId = decodeURIComponent(match[1]);
-      const room = rooms.find((r) => r.id === roomId);
-      if (!room) return { ...next, screen: 'roomMissing' };
-      browserHistoryActionRef.current = 'replace';
-      return {
-        ...applyRoomState(next, room),
-        screen: 'friendAnswer',
-        history: [],
-      };
-    });
+    if (typeof window === 'undefined') return;
+    let cancelled = false;
+    const loadInitialState = async () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('challenge');
+        const [rooms, challengeRoom] = await Promise.all([
+          fetchMyRooms(),
+          token ? fetchRoomByToken(token).catch(() => null) : Promise.resolve(null),
+        ]);
+        if (cancelled) return;
+        browserHistoryActionRef.current = 'replace';
+        setState((prev) => {
+          const next = { ...prev, rooms };
+          if (!token) return next;
+          if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
+          return {
+            ...applyRoomState(next, challengeRoom, 'friend'),
+            screen: 'friendSelect',
+            history: [],
+          };
+        });
+      } catch {
+        if (!cancelled) {
+          setState((prev) => ({ ...prev, toast: '房间加载失败，请稍后再试。' }));
+        }
+      }
+    };
+    void loadInitialState();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -335,6 +357,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       creatorOrder: [],
       friendOrder: [],
       room: null,
+      activeChallengeToken: null,
     }));
   }, []);
 
@@ -377,6 +400,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const startFriendSort = useCallback(() => {
+    browserHistoryActionRef.current = 'push';
+    setState((prev) => {
+      if (prev.selectedSongIds.length !== REQUIRED_COUNT) {
+        browserHistoryActionRef.current = null;
+        return { ...prev, toast: '请先选满 6 首歌。' };
+      }
+      return {
+        ...prev,
+        friendOrder: prev.selectedSongIds,
+        screen: 'friendAnswer',
+        history: [...prev.history, prev.screen],
+      };
+    });
+  }, []);
+
   const reorderCreator = useCallback((from: number, to: number) => {
     setState((prev) => ({ ...prev, creatorOrder: moveItem(prev.creatorOrder, from, to) }));
   }, []);
@@ -385,63 +424,66 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState((prev) => ({ ...prev, friendOrder: moveItem(prev.friendOrder, from, to) }));
   }, []);
 
-  const createRoom = useCallback((): Room | null => {
-    let created: Room | null = null;
-    browserHistoryActionRef.current = 'push';
-    setState((prev) => {
-      const artist2 = findArtist(prev.artistId);
-      if (!artist2 || prev.creatorOrder.length !== REQUIRED_COUNT) {
-        browserHistoryActionRef.current = null;
-        return { ...prev, toast: '请先完成 6 首歌排序。' };
-      }
-      const room = makeRoom({
-        artistId: prev.artistId,
-        artistName: artist2.name,
-        bankId: 'top6',
-        bankName: 'Top6 排序',
-        songIds: prev.selectedSongIds,
-        creatorOrder: prev.creatorOrder,
+  const createRoom = useCallback(async (): Promise<Room | null> => {
+    const current = stateRef.current;
+    const artist2 = findArtist(current.artistId);
+    if (!artist2 || current.creatorOrder.length !== REQUIRED_COUNT) {
+      setState((prev) => ({ ...prev, toast: '请先完成 6 首歌排序。' }));
+      return null;
+    }
+    try {
+      const room = await createBackendRoom({
+        artistId: current.artistId,
+        songIds: current.selectedSongIds,
+        creatorOrder: current.creatorOrder,
       });
-      const rooms = [room, ...prev.rooms.filter((r) => r.id !== room.id)].slice(0, 20);
-      saveRooms(rooms);
-      created = room;
-      return {
+      browserHistoryActionRef.current = 'push';
+      setState((prev) => ({
         ...prev,
         room,
-        rooms,
+        rooms: [room, ...prev.rooms.filter((r) => r.id !== room.id)].slice(0, 50),
+        activeChallengeToken: null,
         screen: 'creatorResult',
         history: [...prev.history, prev.screen],
-      };
-    });
-    return created;
+        toast: '挑战已生成',
+      }));
+      return room;
+    } catch {
+      setState((prev) => ({ ...prev, toast: '创建失败，请稍后再试。' }));
+      return null;
+    }
   }, []);
 
-  const finishFriend = useCallback(() => {
-    browserHistoryActionRef.current = 'push';
-    setState((prev) => {
-      const room = prev.room;
-      if (!room) return { ...prev, screen: 'friendResult', history: [...prev.history, prev.screen] };
-      const updatedRoom: Room = { ...room };
-      const updatedRooms = prev.rooms.map((r) => (r.id === updatedRoom.id ? updatedRoom : r));
-      saveRooms(updatedRooms);
-      return {
+  const finishFriend = useCallback(async () => {
+    const current = stateRef.current;
+    const token = current.activeChallengeToken ?? current.room?.shareToken;
+    if (!token || current.friendOrder.length !== REQUIRED_COUNT) {
+      setState((prev) => ({ ...prev, toast: '请先完成 6 首歌排序。' }));
+      return;
+    }
+    try {
+      const submitted = await submitBackendAttempt({
+        token,
+        friendSongIds: current.selectedSongIds,
+        friendOrder: current.friendOrder,
+      });
+      browserHistoryActionRef.current = 'push';
+      setState((prev) => ({
         ...prev,
-        room: updatedRoom,
-        rooms: updatedRooms,
+        room: submitted.room,
         screen: 'friendResult',
         history: [...prev.history, prev.screen],
-      };
-    });
+      }));
+    } catch {
+      setState((prev) => ({ ...prev, toast: '结果提交失败，请稍后再试。' }));
+    }
   }, []);
 
   const openRoom = useCallback((room: Room) => {
-    if (typeof window !== 'undefined') {
-      window.location.hash = `room=${room.id}`;
-    }
     browserHistoryActionRef.current = 'replace';
     setState((prev) => ({
-      ...applyRoomState(prev, room),
-      screen: 'friendAnswer',
+      ...applyRoomState(prev, room, 'friend'),
+      screen: 'friendSelect',
       history: [],
     }));
   }, []);
@@ -455,6 +497,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const timer = window.setTimeout(() => setState((prev) => ({ ...prev, toast: null })), 2200);
     return () => window.clearTimeout(timer);
   }, [state.toast]);
+
+  useEffect(() => {
+    if (state.screen !== 'rooms') return;
+    let cancelled = false;
+    const refreshRooms = async () => {
+      try {
+        const rooms = await fetchMyRooms();
+        if (!cancelled) setState((prev) => ({ ...prev, rooms }));
+      } catch {
+        if (!cancelled) setState((prev) => ({ ...prev, toast: '房间列表加载失败。' }));
+      }
+    };
+    void refreshRooms();
+    return () => {
+      cancelled = true;
+    };
+  }, [state.screen]);
 
   const toggleQuestion = useCallback((id: string) => {
     setState((prev) => ({ ...prev, selectedQuestionIds: [id] }));
@@ -482,6 +541,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     startCreatorSort,
     reorderCreator,
     reorderFriend,
+    startFriendSort,
     createRoom,
     finishFriend,
     openRoom,

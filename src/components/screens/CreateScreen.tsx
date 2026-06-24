@@ -42,8 +42,9 @@ export function CreateScreen() {
             type="button"
             className="btn-primary"
             onClick={() => {
-              const room = createRoom();
-              if (room) notify('挑战已生成');
+              void createRoom().then((room) => {
+                if (room) notify('挑战已生成');
+              });
             }}
           >
             生成挑战

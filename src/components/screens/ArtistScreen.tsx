@@ -22,9 +22,20 @@ function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongId
     .filter((song): song is Song => Boolean(song));
 }
 
-export function ArtistScreen() {
-  const { artistId, selectedSongIds, selectedSongs, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
+export function ArtistScreen({ mode = 'creator' }: { mode?: 'creator' | 'friend' }) {
+  const {
+    artistId,
+    selectedSongIds,
+    selectedSongs,
+    toggleSong,
+    clearSongs,
+    startCreatorSort,
+    startFriendSort,
+    notify,
+    go,
+  } = useApp();
   const artist = findArtist(artistId);
+  const isFriend = mode === 'friend';
   const songs = useMemo(() => {
     if (!artist) return [];
     const catalogSongs = getCatalogSongsByArtist(artist.id);
@@ -36,9 +47,27 @@ export function ArtistScreen() {
   return (
     <div className="screen screen-fade">
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
-      <TopBar title={`${artist.short} Top6`} />
+      <TopBar title={`${artist.short} Top6`} showBack={!isFriend} />
 
       <div className="screen-content-scrollable no-scrollbar">
+        {isFriend && (
+          <div
+            className="mb-5 p-4"
+            style={{
+              background: `linear-gradient(120deg, ${artist.accent}24, rgba(255,255,255,0.025))`,
+              border: '1px solid var(--ink-faint)',
+              borderRadius: 18,
+            }}
+          >
+            <p className="kicker" style={{ color: artist.accent }}>Friend Invite</p>
+            <p className="ink-title mt-2" style={{ fontSize: 17, lineHeight: 1.4 }}>
+              朋友邀请你选 6 首歌，测一测你们的同担 Top 默契。
+            </p>
+            <p className="ink-body ink-secondary mt-2" style={{ fontSize: 12.5, lineHeight: 1.65 }}>
+              选完后按自己的偏好排序，系统会直接算出你们的同单默契值。
+            </p>
+          </div>
+        )}
         <ArtistPageHero
           artist={artist}
           eyebrow="Pick 6 Songs"
@@ -80,6 +109,10 @@ export function ArtistScreen() {
             onClick={() => {
               if (selectedSongIds.length !== 6) {
                 notify('请先选满 6 首歌。');
+                return;
+              }
+              if (isFriend) {
+                startFriendSort();
                 return;
               }
               startCreatorSort();

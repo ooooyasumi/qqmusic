@@ -85,26 +85,16 @@ export function CreatorResultScreen() {
               {room.link}
             </p>
           </div>
-          <div className="mt-3 flex gap-3">
+          <div className="mt-3">
             <button
               type="button"
-              className="btn-secondary"
+              className="btn-primary"
               onClick={() => {
                 navigator.clipboard?.writeText(room.link).catch(() => {});
                 notify('已复制链接');
               }}
             >
               复制链接
-            </button>
-            <button
-              type="button"
-              className="btn-primary"
-              onClick={() => {
-                if (typeof window !== 'undefined') window.location.hash = `room=${room.id}`;
-                notify('已打开好友挑战预览');
-              }}
-            >
-              预览挑战
             </button>
           </div>
         </div>

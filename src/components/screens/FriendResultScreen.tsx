@@ -11,11 +11,12 @@ import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
 
 export function FriendResultScreen() {
-  const { room, friendOrder, go, notify } = useApp();
+  const { room, friendOrder, activeChallengeToken, go } = useApp();
   const artist = room ? findArtist(room.artistId) : null;
   const result = useMemo(() => {
     if (!room || !artist) return null;
-    const songs = room.songIds
+    const ids = [...new Set([...room.creatorOrder, ...friendOrder])];
+    const songs = ids
       .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))
       .filter((song): song is NonNullable<typeof song> => Boolean(song));
     return calculateSongMatch({
@@ -31,7 +32,7 @@ export function FriendResultScreen() {
   return (
     <div className="screen screen-fade">
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
-      <TopBar title="Match Result" />
+      <TopBar title="Match Result" showBack={!activeChallengeToken} />
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative flex flex-col items-center text-center pt-2">
@@ -55,7 +56,7 @@ export function FriendResultScreen() {
         </div>
 
         <div className="mt-7">
-          <div className="hairline mb-4"><span>你们都选了</span></div>
+          <div className="hairline mb-4"><span>你们的排序对照</span></div>
           <div className="flex flex-col gap-2">
             {result.sharedRows.map((row) => (
               <div key={row.song.id} className="song-rank-card" data-dragging={result.exactIds.includes(row.song.id)}>
@@ -82,7 +83,7 @@ export function FriendResultScreen() {
 
       <div className="bottom-bar">
         <div className="flex flex-col gap-3">
-          <button type="button" className="btn-primary" onClick={() => notify('已生成分享卡（占位）')}>
+          <button type="button" className="btn-primary" onClick={() => go('shareResult')}>
             分享结果
           </button>
           <button type="button" className="btn-secondary" onClick={() => go('home')}>

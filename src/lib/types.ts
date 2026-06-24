@@ -55,12 +55,14 @@ export interface Artist {
 export type Screen =
   | 'home'
   | 'artist'
+  | 'friendSelect'
   | 'songList'
   | 'create'
   | 'creatorAnswer'
   | 'creatorResult'
   | 'friendAnswer'
   | 'friendResult'
+  | 'shareResult'
   | 'rooms'
   | 'roomMissing';
 
@@ -72,6 +74,7 @@ export interface Room {
   bankName: string;
   title: string;
   link: string;
+  shareToken?: string;
   questionIds: string[];
   creatorAnswers: Record<string, number>;
   songIds: string[];

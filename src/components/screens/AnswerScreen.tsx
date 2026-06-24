@@ -16,6 +16,7 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
     createRoom,
     finishFriend,
     notify,
+    activeChallengeToken,
   } = useApp();
   const artist = findArtist(artistId);
   if (!artist) return null;
@@ -25,7 +26,7 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
   return (
     <div className="screen screen-fade">
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
-      <TopBar title={isFriend ? 'Friend Top6' : 'Creator Top6'} />
+      <TopBar title={isFriend ? 'Friend Top6' : 'Creator Top6'} showBack={!isFriend || !activeChallengeToken} />
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative">
@@ -50,14 +51,15 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
           className="btn-primary"
           onClick={() => {
             if (isFriend) {
-              finishFriend();
+              void finishFriend();
               return;
             }
-            const room = createRoom();
-            if (room) notify('挑战已生成');
+            void createRoom().then((room) => {
+              if (room) notify('挑战已生成');
+            });
           }}
         >
-          {isFriend ? '查看默契' : '生成挑战'}
+          {isFriend ? '查看结果' : '生成挑战'}
         </button>
       </div>
     </div>

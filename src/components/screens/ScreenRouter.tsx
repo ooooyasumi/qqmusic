@@ -8,6 +8,7 @@ import { CreateScreen } from './CreateScreen';
 import { AnswerScreen } from './AnswerScreen';
 import { CreatorResultScreen } from './CreatorResultScreen';
 import { FriendResultScreen } from './FriendResultScreen';
+import { ShareResultScreen } from './ShareResultScreen';
 import { RoomsScreen } from './RoomsScreen';
 import { RoomMissingScreen } from './RoomMissingScreen';
 import { Toast } from '@/components/Toast';
@@ -19,6 +20,8 @@ function ScreenContent() {
       return <HomeScreen />;
     case 'artist':
       return <ArtistScreen />;
+    case 'friendSelect':
+      return <ArtistScreen mode="friend" />;
     case 'songList':
       return <SongListScreen />;
     case 'create':
@@ -31,6 +34,8 @@ function ScreenContent() {
       return <AnswerScreen role="friend" />;
     case 'friendResult':
       return <FriendResultScreen />;
+    case 'shareResult':
+      return <ShareResultScreen />;
     case 'rooms':
       return <RoomsScreen />;
     case 'roomMissing':

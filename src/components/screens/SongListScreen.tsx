@@ -10,9 +10,20 @@ import { SongGridChoiceButton } from '@/components/SongSort';
 import { SelectionReviewBottomBar } from '@/components/SelectionReviewBottomBar';
 
 export function SongListScreen() {
-  const { artistId, selectedSongIds, selectedSongs, toggleSong, clearSongs, startCreatorSort, notify } = useApp();
+  const {
+    artistId,
+    selectedSongIds,
+    selectedSongs,
+    activeChallengeToken,
+    toggleSong,
+    clearSongs,
+    startCreatorSort,
+    startFriendSort,
+    notify,
+  } = useApp();
   const [keyword, setKeyword] = useState('');
   const artist = findArtist(artistId);
+  const isFriend = Boolean(activeChallengeToken);
   const songs = useMemo(() => {
     if (!artist) return [];
     const catalogSongs = getCatalogSongsByArtist(artist.id);
@@ -27,7 +38,7 @@ export function SongListScreen() {
   return (
     <div className="screen screen-fade">
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
-      <TopBar title={`${artist.short} Songs`} />
+      <TopBar title={`${artist.short} Songs`} showBack={!isFriend} />
 
       <div className="screen-content-scrollable no-scrollbar">
         <label className="mt-4 block">
@@ -86,6 +97,10 @@ export function SongListScreen() {
             onClick={() => {
               if (selectedSongIds.length !== 6) {
                 notify('请先选满 6 首歌。');
+                return;
+              }
+              if (isFriend) {
+                startFriendSort();
                 return;
               }
               startCreatorSort();
