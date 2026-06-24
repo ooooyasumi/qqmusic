@@ -8,6 +8,7 @@ import { calculateSongMatch } from '@/lib/match';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
+import { ArtistName } from '@/components/ArtistName';
 
 export function FriendResultScreen() {
   const { room, friendOrder, go, notify } = useApp();
@@ -34,7 +35,9 @@ export function FriendResultScreen() {
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative flex flex-col items-center text-center pt-2">
-          <p className="kicker" style={{ color: artist.accent }}>{artist.name} Top6 默契结果</p>
+          <p className="kicker" style={{ color: artist.accent }}>
+            <ArtistName name={artist.name} /> Top6 默契结果
+          </p>
           <p className="ink-display mt-3" style={{ fontSize: 30, color: artist.accent, fontStyle: 'italic' }}>
             {result.title}
           </p>

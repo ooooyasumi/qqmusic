@@ -5,6 +5,7 @@ import { artists } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { Waveform } from '@/components/Waveform';
 import { TopBar } from '@/components/TopBar';
+import { ArtistName } from '@/components/ArtistName';
 import type { Artist } from '@/lib/types';
 
 export function HomeScreen() {
@@ -68,7 +69,7 @@ export function HomeScreen() {
                     </span>
                   </div>
                   <div className="grid-card-postcard">
-                    <span className="grid-card-name">{artist.name}</span>
+                    <ArtistName name={artist.name} className="grid-card-name" />
                   </div>
                 </div>
               </button>

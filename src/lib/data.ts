@@ -119,13 +119,13 @@ export const artists: Artist[] = [
   },
   {
     id: 'bp',
-    name: 'BLACKPINK',
+    name: 'BLACK PINK',
     short: 'BP',
     accent: '#f5c842',
     cover: 'https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/artists/bp.png',
     hook: '舞台偏好和成员雷达对得上吗',
     card: '成员偏好、舞台名场面、风格态度',
-    title: '创建你的 BLACKPINK 单曲排序',
+    title: '创建你的 BLACK PINK 单曲排序',
     intro: '选 6 首最能代表你 BP 雷达的歌，再让好友挑战你的舞台偏好。',
     tags: ['成员偏好', '舞台名场面', '风格态度'],
     songs: [

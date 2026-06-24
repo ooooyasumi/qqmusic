@@ -1,5 +1,6 @@
 'use client';
 
+import { ArtistName } from '@/components/ArtistName';
 import type { Artist } from '@/lib/types';
 
 export function ArtistPageHero({
@@ -26,7 +27,7 @@ export function ArtistPageHero({
           {eyebrow}
         </p>
         <h1 className="ink-display artist-page-title" data-long-name={isLongName}>
-          {artist.name}
+          <ArtistName name={artist.name} />
         </h1>
         <p className="ink-body ink-secondary artist-page-intro">{copy}</p>
       </div>

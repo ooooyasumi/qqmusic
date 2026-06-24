@@ -5,6 +5,7 @@ import { findArtist } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
+import { ArtistName } from '@/components/ArtistName';
 
 export function CreatorResultScreen() {
   const { room, creatorSongs, go, notify } = useApp();
@@ -29,7 +30,9 @@ export function CreatorResultScreen() {
         </div>
 
         <div className="mt-6 p-5" style={{ background: `linear-gradient(120deg, ${artist.accent}22, rgba(255,255,255,0.02))`, border: '1px solid var(--ink-faint)', borderRadius: 22 }}>
-          <p className="kicker" style={{ color: artist.accent }}>{artist.name} Top6</p>
+          <p className="kicker" style={{ color: artist.accent }}>
+            <ArtistName name={artist.name} /> Top6
+          </p>
           <div className="mt-4 flex -space-x-3">
             {creatorSongs.slice(0, 6).map((song) => (
               <SongCover key={song.id} song={song} size={52} />
