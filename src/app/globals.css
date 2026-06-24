@@ -950,18 +950,6 @@ body::before {
   letter-spacing: 0.06em;
   isolation: isolate;
 }
-.song-cover::before {
-  content: '';
-  position: absolute;
-  right: -4px;
-  bottom: -4px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 7px solid rgba(0, 0, 0, 0.18);
-  background: rgba(255, 255, 255, 0.18);
-  z-index: 1;
-}
 .song-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1036,11 +1024,6 @@ body::before {
   box-shadow: 0 0 0 3px rgba(212, 175, 122, 0.28);
   filter: saturate(1.08) brightness(1.04);
 }
-.song-grid-card > .song-cover::before {
-  width: 34px;
-  height: 34px;
-  border-width: 9px;
-}
 .song-grid-copy {
   display: block;
   width: 100%;
@@ -1069,6 +1052,19 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.drag-hint {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border: 1px solid rgba(244, 236, 216, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
 }
 .song-rank-card {
   display: grid;

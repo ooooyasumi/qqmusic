@@ -31,11 +31,12 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
         <div className="relative">
           <p className="kicker">{isFriend ? '好友挑战中' : '正在排序'}</p>
           <h1 className="ink-display mt-3" style={{ fontSize: 32, fontWeight: 500, lineHeight: 1.1 }}>
-            {isFriend ? '排出你心里的 Top 顺序' : '拖动排出你的真实 Top 顺序'}
+            {isFriend ? '排出你心里的同担 Top6' : '排一份你的私藏 Top6'}
           </h1>
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            按住歌曲卡片上下拖动。最喜欢的放在第一位。
+            长按拖动卡片，把本命曲放到最有分量的位置。
           </p>
+          <p className="drag-hint mt-4">长按拖动</p>
         </div>
 
         <div className="mt-6">

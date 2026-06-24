@@ -20,11 +20,12 @@ export function CreateScreen() {
         <div className="relative">
           <p className="kicker">正在排序 · Creator Top6</p>
           <h1 className="ink-display mt-3" style={{ fontSize: 32, fontWeight: 500, lineHeight: 1.1 }}>
-            拖动排出你的真实 Top 顺序
+            排一份你的私藏 Top6
           </h1>
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            把最喜欢的拖到最上面。好友会对同一组 6 首歌重新排序，然后计算你们的默契度。
+            长按拖动卡片，把本命曲放到最有分量的位置。
           </p>
+          <p className="drag-hint mt-4">长按拖动</p>
         </div>
 
         <div className="mt-6">
