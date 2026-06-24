@@ -921,6 +921,59 @@ body::before {
   filter: drop-shadow(0 6px 30px rgba(212, 175, 122, 0.18));
 }
 
+.friend-result-content {
+  padding-bottom: 18px;
+}
+
+.friend-result-score-block {
+  margin-top: 14px;
+}
+
+.friend-result-score {
+  display: block;
+  width: 100%;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(112px, 34vw, 150px);
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: var(--ink-primary);
+  background: linear-gradient(
+    180deg,
+    var(--ink-primary) 0%,
+    var(--accent-gold) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 26px rgba(212, 175, 122, 0.16));
+  overflow: visible;
+}
+
+.friend-result-title {
+  margin-top: 4px;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.14;
+}
+
+.friend-result-copy {
+  margin: 8px auto 0;
+  max-width: 330px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.friend-result-grid {
+  margin-top: 20px;
+}
+
+.friend-result-duel {
+  margin-top: 18px;
+}
+
 /* === 卡片玻璃 === */
 .glass-card {
   position: relative;

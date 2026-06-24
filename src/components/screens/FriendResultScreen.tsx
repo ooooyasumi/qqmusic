@@ -34,47 +34,31 @@ export function FriendResultScreen() {
       <Orbs accent={`${artist.accent}55`} secondary="rgba(212,175,122,0.25)" />
       <TopBar title="Match Result" showBack={!activeChallengeToken} />
 
-      <div className="screen-content-scrollable no-scrollbar">
-        <div className="relative flex flex-col items-center text-center pt-2">
+      <div className="screen-content-scrollable no-scrollbar friend-result-content">
+        <div className="relative flex flex-col items-center text-center">
           <p className="kicker" style={{ color: artist.accent }}>
             <ArtistName name={artist.name} /> Top6 默契结果
           </p>
-          <p className="ink-display mt-3" style={{ fontSize: 30, color: artist.accent, fontStyle: 'italic' }}>
+        </div>
+
+        <div className="friend-result-score-block text-center">
+          <div className="friend-result-score pop-in">{result.score}</div>
+          <p className="ink-display friend-result-title" style={{ color: artist.accent }}>
             {result.title}
           </p>
-          <div className="giant-number pop-in mt-2">{result.score}</div>
-          <p className="ink-body ink-secondary mt-2 text-sm" style={{ lineHeight: 1.7 }}>
+          <p className="ink-body ink-secondary friend-result-copy">
             {result.copy}
           </p>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-3">
+        <div className="friend-result-grid grid grid-cols-2 gap-3">
           <MiniCard title="共同 Top3" value={`${result.commonTopCount}/3 首`} />
           <MiniCard title="晒图爆点" value={result.shareSpark} />
           <MiniCard title="最大分歧" value={result.biggestGap} />
           <MiniCard title="召唤好友" value={result.callToAction} />
         </div>
 
-        <div className="mt-7">
-          <div className="hairline mb-4"><span>你们的排序对照</span></div>
-          <div className="flex flex-col gap-2">
-            {result.sharedRows.map((row) => (
-              <div key={row.song.id} className="song-rank-card" data-dragging={result.exactIds.includes(row.song.id)}>
-                <span className="song-rank-no">#{row.friendRank}</span>
-                <SongCover song={row.song} />
-                <span className="song-rank-info">
-                  <b>{row.song.name}</b>
-                  <small>你 #{row.friendRank} / TA #{row.creatorRank}</small>
-                </span>
-                <span className="ink-mono text-xs" style={{ color: row.gap === 0 ? artist.accent : 'var(--ink-mute)' }}>
-                  {row.gap === 0 ? '同位' : `${row.gap}位`}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-7 grid grid-cols-2 gap-3">
+        <div className="friend-result-duel grid grid-cols-2 gap-3">
           <DuelBoard title="我的 Top6" order={friendOrder} artistId={artist.id} />
           <DuelBoard title="TA 的 Top6" order={room.creatorOrder} artistId={artist.id} />
         </div>
@@ -82,14 +66,9 @@ export function FriendResultScreen() {
       </div>
 
       <div className="bottom-bar">
-        <div className="flex flex-col gap-3">
-          <button type="button" className="btn-primary" onClick={() => go('shareResult')}>
-            分享结果
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => go('home')}>
-            再选艺人
-          </button>
-        </div>
+        <button type="button" className="btn-primary" onClick={() => go('home')}>
+          我也要创建挑战
+        </button>
       </div>
     </div>
   );
