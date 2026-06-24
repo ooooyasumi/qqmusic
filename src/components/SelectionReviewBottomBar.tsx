@@ -9,13 +9,6 @@ import type { Artist, Song } from '@/lib/types';
 
 const REVIEW_SLOTS = [0, 1, 2, 3, 4, 5] as const;
 
-function rankColor(index: number): string {
-  if (index === 0) return '#d4af7a';
-  if (index === 1) return '#c8d0d8';
-  if (index === 2) return '#b9825a';
-  return 'var(--ink-secondary)';
-}
-
 function SelectionReviewPanel({ artist, songs }: { artist: Artist; songs: Song[] }) {
   return (
     <div
@@ -33,7 +26,7 @@ function SelectionReviewPanel({ artist, songs }: { artist: Artist; songs: Song[]
         ))}
       </div>
 
-      <ol className="mt-4 space-y-1.5">
+      <ul className="mt-4 space-y-1.5">
         {REVIEW_SLOTS.map((slot) => {
           const song = songs[slot];
           return (
@@ -48,17 +41,7 @@ function SelectionReviewPanel({ artist, songs }: { artist: Artist; songs: Song[]
                 lineHeight: 1.55,
               }}
             >
-              <span
-                className="ink-mono"
-                style={{
-                  color: rankColor(slot),
-                  width: 18,
-                  flex: '0 0 auto',
-                  fontWeight: 700,
-                }}
-              >
-                {slot + 1}.
-              </span>
+              <span className="selection-result-bullet" aria-hidden="true" />
               <span
                 key={song?.id ?? `empty-song-${slot}`}
                 className="selection-result-song-copy"
@@ -77,7 +60,7 @@ function SelectionReviewPanel({ artist, songs }: { artist: Artist; songs: Song[]
             </li>
           );
         })}
-      </ol>
+      </ul>
     </div>
   );
 }
