@@ -144,6 +144,23 @@ export function SortableSongList({
   const previousRects = useRef<Map<string, DOMRect> | null>(null);
   const cleanupTimer = useRef<number | null>(null);
 
+  const setDragPreview = (event: React.DragEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const preview = event.currentTarget.cloneNode(true) as HTMLDivElement;
+    preview.classList.add('song-rank-drag-preview');
+    preview.style.width = `${rect.width}px`;
+    preview.style.height = `${rect.height}px`;
+    preview.style.position = 'fixed';
+    preview.style.top = '-1000px';
+    preview.style.left = '-1000px';
+    preview.style.pointerEvents = 'none';
+    document.body.appendChild(preview);
+    event.dataTransfer.setDragImage(preview, event.clientX - rect.left, event.clientY - rect.top);
+    window.setTimeout(() => {
+      preview.remove();
+    }, 0);
+  };
+
   const rememberPositions = () => {
     previousRects.current = new Map(
       songs.map((song) => {
@@ -229,6 +246,7 @@ export function SortableSongList({
             dragIndexRef.current = index;
             setDragIndex(index);
             event.dataTransfer.effectAllowed = 'move';
+            setDragPreview(event);
           }}
           onDragOver={(event) => {
             event.preventDefault();
