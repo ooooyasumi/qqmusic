@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Cormorant_Garamond, JetBrains_Mono, Noto_Serif_SC } from 'next/font/google';
+import { Inspector } from 'react-dev-inspector';
 import './globals.css';
 
 const playfair = Playfair_Display({
@@ -63,6 +64,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDev = process.env.COZE_PROJECT_ENV === 'DEV';
+
   return (
     <html
       lang="zh-CN"
@@ -70,6 +73,7 @@ export default function RootLayout({
       className={`dark ${playfair.variable} ${cormorant.variable} ${jetbrains.variable} ${notoSerif.variable}`}
     >
       <body suppressHydrationWarning>
+        {isDev && <Inspector />}
         {children}
       </body>
     </html>
