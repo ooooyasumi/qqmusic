@@ -52,7 +52,7 @@ export const artists: Artist[] = [
       'jay-apple-1624001317',
       'jay-apple-536115195',
       'jay-apple-536030695',
-      'jay-01',
+      'jay-apple-535824738',
     ],
     songs: [
       song('jay-01', '晴天', '叶惠美', '全员青春白月光', '#c7a45a', '#77b9a6'),
