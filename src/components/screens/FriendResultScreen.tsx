@@ -75,7 +75,10 @@ export function FriendResultScreen() {
           <DuelBoard title="TA 的 Top6" order={room.creatorOrder} artistId={artist.id} />
         </div>
 
-        <div className="mt-7 flex flex-col gap-3">
+      </div>
+
+      <div className="bottom-bar">
+        <div className="flex flex-col gap-3">
           <button type="button" className="btn-primary" onClick={() => notify('已生成分享卡（占位）')}>
             分享结果
           </button>

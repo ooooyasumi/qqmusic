@@ -218,17 +218,16 @@ export function RoomsScreen() {
           </div>
         )}
 
-        {list.length > 0 && (
-          <div className="mt-8 text-center">
-            <button
-              type="button"
-              className="btn-secondary"
-              onClick={() => go('home')}
-            >
-              回到首页 · 创建新测试
-            </button>
-          </div>
-        )}
+      </div>
+
+      <div className="bottom-bar">
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={() => go('home')}
+        >
+          {list.length > 0 ? '回到首页 · 创建新测试' : '回到首页'}
+        </button>
       </div>
     </div>
   );

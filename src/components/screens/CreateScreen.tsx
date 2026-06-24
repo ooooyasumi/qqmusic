@@ -31,7 +31,10 @@ export function CreateScreen() {
           <SortableSongList songs={creatorSongs} onMove={reorderCreator} />
         </div>
 
-        <div className="mt-7 flex gap-3">
+      </div>
+
+      <div className="bottom-bar">
+        <div className="flex gap-3">
           <button type="button" className="btn-secondary" onClick={() => go('artist')}>
             返回换歌
           </button>

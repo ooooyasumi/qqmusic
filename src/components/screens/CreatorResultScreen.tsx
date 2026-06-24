@@ -71,7 +71,10 @@ export function CreatorResultScreen() {
           </div>
         </div>
 
-        <div className="mt-7 flex gap-3">
+      </div>
+
+      <div className="bottom-bar">
+        <div className="flex gap-3">
           <button type="button" className="btn-secondary" onClick={() => go('home')}>创建新挑战</button>
           <button type="button" className="btn-secondary" onClick={() => go('rooms')}>我的房间</button>
         </div>

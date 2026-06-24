@@ -42,9 +42,12 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
           <SortableSongList songs={songs} onMove={isFriend ? reorderFriend : reorderCreator} />
         </div>
 
+      </div>
+
+      <div className="bottom-bar">
         <button
           type="button"
-          className="btn-primary mt-7"
+          className="btn-primary"
           onClick={() => {
             if (isFriend) {
               finishFriend();

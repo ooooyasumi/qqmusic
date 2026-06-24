@@ -88,8 +88,10 @@ export function ArtistScreen() {
         <button type="button" className="btn-secondary mt-4" onClick={() => go('songList')}>
           展开
         </button>
+      </div>
 
-        <div className="mt-7 flex gap-3">
+      <div className="bottom-bar">
+        <div className="flex gap-3">
           <button type="button" className="btn-secondary" onClick={clearSongs}>重选</button>
           <button
             type="button"

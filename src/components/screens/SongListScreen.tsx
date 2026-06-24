@@ -91,7 +91,10 @@ export function SongListScreen() {
           )}
         </div>
 
-        <div className="mt-7 flex gap-3">
+      </div>
+
+      <div className="bottom-bar">
+        <div className="flex gap-3">
           <button type="button" className="btn-secondary" onClick={clearSongs}>重选</button>
           <button
             type="button"
