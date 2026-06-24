@@ -8,6 +8,18 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongChoiceButton } from '@/components/SongSort';
 import { ArtistPageHero } from '@/components/ArtistPageHero';
+import type { Song } from '@/lib/types';
+
+function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongIds?: string[]): Song[] {
+  if (!featuredSongIds?.length) {
+    return catalogSongs.slice(0, 5);
+  }
+
+  const allSongs = [...catalogSongs, ...artistSongs];
+  return featuredSongIds
+    .map((id) => allSongs.find((song) => song.id === id))
+    .filter((song): song is Song => Boolean(song));
+}
 
 export function ArtistScreen() {
   const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
@@ -17,9 +29,12 @@ export function ArtistScreen() {
     if (!artist) return [];
     const catalogSongs = getCatalogSongsByArtist(artist.id);
     const q = keyword.trim().toLowerCase();
+    if (!q) {
+      return featuredSongs(artist.songs, catalogSongs, artist.featuredSongIds);
+    }
     return catalogSongs.filter((song) =>
       `${song.name} ${song.album}`.toLowerCase().includes(q),
-    );
+    ).slice(0, 5);
   }, [artist, keyword]);
 
   if (!artist) return null;
@@ -66,7 +81,7 @@ export function ArtistScreen() {
         </label>
 
         <div className="mt-5 flex flex-col gap-3">
-          {songs.slice(0, 5).map((song) => {
+          {songs.map((song) => {
             const selected = selectedSongIds.includes(song.id);
             const disabled = !selected && selectedSongIds.length >= 6;
             return (

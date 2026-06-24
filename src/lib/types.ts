@@ -47,6 +47,7 @@ export interface Artist {
   title: string;
   intro: string;
   tags: string[];
+  featuredSongIds?: string[];
   songs: Song[];
   banks: QuestionBank[];
 }

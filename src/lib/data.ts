@@ -47,6 +47,13 @@ export const artists: Artist[] = [
     title: '创建你的周杰伦单曲排序',
     intro: '从歌库里选 6 首最能代表你的周杰伦单曲，再拖动排出真实 Top。',
     tags: ['Top6 排序', '青春 BGM', '老粉暗号'],
+    featuredSongIds: [
+      'jay-apple-1624001324',
+      'jay-apple-1624001317',
+      'jay-apple-536115195',
+      'jay-apple-536030695',
+      'jay-01',
+    ],
     songs: [
       song('jay-01', '晴天', '叶惠美', '全员青春白月光', '#c7a45a', '#77b9a6'),
       song('jay-02', '七里香', '七里香', '盛夏风一吹就会想起', '#8ec5a7', '#f7d36c'),
@@ -74,6 +81,13 @@ export const artists: Artist[] = [
     title: '创建你的林俊杰单曲排序',
     intro: '选出 6 首你最在意的 JJ 单曲，让好友来排同一组歌。',
     tags: ['情歌共鸣', '唱作理解', '现场高光'],
+    featuredSongIds: [
+      'jj-apple-1071753628',
+      'jj-apple-1694849138',
+      'jj-apple-1788007696',
+      'jj-apple-1071506929',
+      'jj-apple-1871400637',
+    ],
     songs: [
       song('jj-01', '江南', '第二天堂', '国民记忆入口', '#5bd8ff', '#d5b77c'),
       song('jj-02', '修炼爱情', '因你而在', '遗憾浓度很高', '#495b7b', '#c19f8a'),
@@ -101,6 +115,13 @@ export const artists: Artist[] = [
     title: '创建你的 Taylor Swift 单曲排序',
     intro: '选出 6 首最能代表你 Taylor 雷达的歌，再让好友挑战你的 Era 偏好。',
     tags: ['Era 偏好', '歌词叙事', '专辑人格'],
+    featuredSongIds: [
+      'ts-apple-1440924808',
+      'ts-apple-1440935808',
+      'ts-apple-1468058171',
+      'ts-apple-1650841515',
+      'ts-apple-1524801580',
+    ],
     songs: [
       song('ts-01', 'Love Story', 'Fearless', '金色乡村流行入口', '#d6b35d', '#f7efe0'),
       song('ts-02', 'All Too Well', 'Red', '叙事长刀代表作', '#9f2f2f', '#f28b74'),
@@ -128,6 +149,13 @@ export const artists: Artist[] = [
     title: '创建你的 BLACK PINK 单曲排序',
     intro: '选 6 首最能代表你 BP 雷达的歌，再让好友挑战你的舞台偏好。',
     tags: ['成员偏好', '舞台名场面', '风格态度'],
+    featuredSongIds: [
+      'bp-apple-1551479993',
+      'bp-apple-1533894669',
+      'bp-apple-1639174482',
+      'bp-apple-1644440674',
+      'bp-apple-1533894681',
+    ],
     songs: [
       song('bp-01', 'DDU-DU DDU-DU', 'SQUARE UP', '高能入口', '#111111', '#ff8fc2'),
       song('bp-02', 'How You Like That', 'THE ALBUM', '舞台爆发', '#1b1b1f', '#ffd166'),

@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react';
@@ -58,6 +59,16 @@ interface AppContextValue extends AppState {
 
 const AppContext = createContext<AppContextValue | null>(null);
 const REQUIRED_COUNT = 6;
+const HISTORY_STATE_KEY = 'tongdan-moqi-screen';
+
+type BrowserHistoryAction = 'push' | 'replace' | 'pop';
+
+interface BrowserHistoryEntry {
+  app: typeof HISTORY_STATE_KEY;
+  screen: Screen;
+  history: Screen[];
+  roomId: string | null;
+}
 
 const initial: AppState = {
   screen: 'home',
@@ -94,8 +105,80 @@ function orderedSongs(artistId: string, ids: string[]): Song[] {
     .filter((song): song is Song => Boolean(song));
 }
 
+function isScreen(value: unknown): value is Screen {
+  return (
+    value === 'home' ||
+    value === 'artist' ||
+    value === 'songList' ||
+    value === 'create' ||
+    value === 'creatorAnswer' ||
+    value === 'creatorResult' ||
+    value === 'friendAnswer' ||
+    value === 'friendResult' ||
+    value === 'rooms' ||
+    value === 'roomMissing'
+  );
+}
+
+function isBrowserHistoryEntry(value: unknown): value is BrowserHistoryEntry {
+  if (!value || typeof value !== 'object') return false;
+  const candidate = value as Partial<BrowserHistoryEntry>;
+  return (
+    candidate.app === HISTORY_STATE_KEY &&
+    isScreen(candidate.screen) &&
+    Array.isArray(candidate.history) &&
+    candidate.history.every(isScreen) &&
+    (typeof candidate.roomId === 'string' || candidate.roomId === null)
+  );
+}
+
+function currentBrowserUrl(): string {
+  return `${window.location.pathname}${window.location.search}${window.location.hash}`;
+}
+
+function writeBrowserHistory(
+  action: Exclude<BrowserHistoryAction, 'pop'>,
+  screen: Screen,
+  history: Screen[],
+  roomId: string | null,
+): void {
+  const entry: BrowserHistoryEntry = {
+    app: HISTORY_STATE_KEY,
+    screen,
+    history,
+    roomId,
+  };
+
+  if (action === 'push') {
+    window.history.pushState(entry, '', currentBrowserUrl());
+    return;
+  }
+
+  window.history.replaceState(entry, '', currentBrowserUrl());
+}
+
+function applyRoomState(state: AppState, room: Room): AppState {
+  return {
+    ...state,
+    room,
+    artistId: room.artistId,
+    bankId: room.bankId,
+    selectedSongIds: room.songIds,
+    creatorOrder: room.creatorOrder,
+    friendOrder: room.songIds,
+  };
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(initial);
+  const stateRef = useRef<AppState>(initial);
+  const browserHistoryInitializedRef = useRef(false);
+  const browserHistoryActionRef = useRef<BrowserHistoryAction | null>(null);
+  const lastBrowserHistoryKeyRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   useEffect(() => {
     const rooms = loadRooms();
@@ -107,14 +190,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const roomId = decodeURIComponent(match[1]);
       const room = rooms.find((r) => r.id === roomId);
       if (!room) return { ...next, screen: 'roomMissing' };
+      browserHistoryActionRef.current = 'replace';
       return {
-        ...next,
-        room,
-        artistId: room.artistId,
-        bankId: room.bankId,
-        selectedSongIds: room.songIds,
-        creatorOrder: room.creatorOrder,
-        friendOrder: room.songIds,
+        ...applyRoomState(next, room),
         screen: 'friendAnswer',
         history: [],
       };
@@ -126,21 +204,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const onHashChange = () => {
       const match = window.location.hash.match(/room=([^&]+)/);
       if (!match) {
-        setState((prev) => ({ ...prev, screen: 'home', history: [] }));
+        const historyEntry = isBrowserHistoryEntry(window.history.state) ? window.history.state : null;
+        browserHistoryActionRef.current = 'replace';
+        setState((prev) => ({
+          ...prev,
+          screen: historyEntry?.screen ?? 'home',
+          history: historyEntry?.history ?? [],
+        }));
         return;
       }
       const roomId = decodeURIComponent(match[1]);
       setState((prev) => {
         const room = prev.rooms.find((r) => r.id === roomId);
         if (!room) return { ...prev, screen: 'roomMissing' };
+        browserHistoryActionRef.current = 'replace';
         return {
-          ...prev,
-          room,
-          artistId: room.artistId,
-          bankId: room.bankId,
-          selectedSongIds: room.songIds,
-          creatorOrder: room.creatorOrder,
-          friendOrder: room.songIds,
+          ...applyRoomState(prev, room),
           screen: 'friendAnswer',
           history: [],
         };
@@ -149,6 +228,57 @@ export function AppProvider({ children }: { children: ReactNode }) {
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const onPopState = (event: PopStateEvent) => {
+      if (!isBrowserHistoryEntry(event.state)) return;
+      browserHistoryActionRef.current = 'pop';
+      setState((prev) => {
+        const room = event.state.roomId
+          ? prev.rooms.find((r) => r.id === event.state.roomId) ?? prev.room
+          : prev.room;
+        const next = room ? applyRoomState(prev, room) : prev;
+        return {
+          ...next,
+          screen: event.state.screen,
+          history: event.state.history,
+        };
+      });
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const roomId = state.room?.id ?? null;
+    const historyKey = `${state.screen}|${state.history.join(',')}|${roomId ?? ''}|${
+      window.location.hash
+    }`;
+    const action = browserHistoryActionRef.current;
+    browserHistoryActionRef.current = null;
+
+    if (!browserHistoryInitializedRef.current) {
+      writeBrowserHistory('replace', state.screen, state.history, roomId);
+      browserHistoryInitializedRef.current = true;
+      lastBrowserHistoryKeyRef.current = historyKey;
+      return;
+    }
+
+    if (historyKey === lastBrowserHistoryKeyRef.current) return;
+
+    if (action === 'pop') {
+      lastBrowserHistoryKeyRef.current = historyKey;
+      return;
+    }
+
+    writeBrowserHistory(action === 'push' ? 'push' : 'replace', state.screen, state.history, roomId);
+    lastBrowserHistoryKeyRef.current = historyKey;
+  }, [state.history, state.room?.id, state.screen]);
 
   const artist = findArtist(state.artistId);
   const bank = artist?.banks.find((b) => b.id === state.bankId);
@@ -167,6 +297,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
 
   const go = useCallback((screen: Screen, pushHistory = true) => {
+    browserHistoryActionRef.current = pushHistory ? 'push' : 'replace';
     setState((prev) => ({
       ...prev,
       screen,
@@ -175,6 +306,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const back = useCallback(() => {
+    const canUseBrowserHistory =
+      typeof window !== 'undefined' &&
+      stateRef.current.history.length > 0 &&
+      isBrowserHistoryEntry(window.history.state);
+
+    if (canUseBrowserHistory) {
+      window.history.back();
+      return;
+    }
+
+    browserHistoryActionRef.current = 'replace';
     setState((prev) => {
       const stack = [...prev.history];
       const previous = stack.pop();
@@ -220,8 +362,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const startCreatorSort = useCallback(() => {
+    browserHistoryActionRef.current = 'push';
     setState((prev) => {
       if (prev.selectedSongIds.length !== REQUIRED_COUNT) {
+        browserHistoryActionRef.current = null;
         return { ...prev, toast: '请先选满 6 首歌。' };
       }
       return {
@@ -243,9 +387,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const createRoom = useCallback((): Room | null => {
     let created: Room | null = null;
+    browserHistoryActionRef.current = 'push';
     setState((prev) => {
       const artist2 = findArtist(prev.artistId);
       if (!artist2 || prev.creatorOrder.length !== REQUIRED_COUNT) {
+        browserHistoryActionRef.current = null;
         return { ...prev, toast: '请先完成 6 首歌排序。' };
       }
       const room = makeRoom({
@@ -271,6 +417,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const finishFriend = useCallback(() => {
+    browserHistoryActionRef.current = 'push';
     setState((prev) => {
       const room = prev.room;
       if (!room) return { ...prev, screen: 'friendResult', history: [...prev.history, prev.screen] };
@@ -291,14 +438,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (typeof window !== 'undefined') {
       window.location.hash = `room=${room.id}`;
     }
+    browserHistoryActionRef.current = 'replace';
     setState((prev) => ({
-      ...prev,
-      room,
-      artistId: room.artistId,
-      bankId: room.bankId,
-      selectedSongIds: room.songIds,
-      creatorOrder: room.creatorOrder,
-      friendOrder: room.songIds,
+      ...applyRoomState(prev, room),
       screen: 'friendAnswer',
       history: [],
     }));

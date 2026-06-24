@@ -1,9 +1,9 @@
 'use client';
 
 import { useApp } from '@/lib/state';
+import { QQMusicLogo } from '@/components/QQMusicLogo';
 
 export function TopBar({
-  title,
   showBack = true,
   showMenu = true,
 }: {
@@ -36,7 +36,7 @@ export function TopBar({
       ) : (
         <span className="top-bar-spacer" aria-hidden />
       )}
-      <span className="center-title">{title ?? '同担默契局'}</span>
+      <QQMusicLogo className="top-bar-logo" />
       {showMenu ? (
         <button
           type="button"
