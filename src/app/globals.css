@@ -1116,7 +1116,16 @@ body::before {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 20px;
-  color: var(--accent-gold);
+  color: var(--ink-secondary);
+}
+.song-rank-no[data-rank='1'] {
+  color: #d4af7a;
+}
+.song-rank-no[data-rank='2'] {
+  color: #c8d0d8;
+}
+.song-rank-no[data-rank='3'] {
+  color: #b9825a;
 }
 .song-rank-info {
   min-width: 0;

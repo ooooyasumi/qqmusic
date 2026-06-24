@@ -250,7 +250,7 @@ export function SortableSongList({
           }}
           data-dragging={dragIndex === index}
         >
-          <span className="song-rank-no">#{index + 1}</span>
+          <span className="song-rank-no" data-rank={index + 1}>#{index + 1}</span>
           <SongCover song={song} />
           <span className="song-rank-info">
             <b>{song.name}</b>
