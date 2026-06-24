@@ -2,7 +2,8 @@ import { createServer } from 'http';
 import { parse } from 'url';
 import next from 'next';
 
-const dev = process.env.COZE_PROJECT_ENV !== 'PROD';
+const appEnv = process.env.COZE_PROJECT_ENV;
+const dev = appEnv === 'DEV' || process.env.NODE_ENV === 'development';
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = parseInt(process.env.PORT || '5000', 10);
 
@@ -28,7 +29,7 @@ app.prepare().then(() => {
   server.listen(port, () => {
     console.log(
       `> Server listening at http://${hostname}:${port} as ${
-        dev ? 'development' : process.env.COZE_PROJECT_ENV
+        dev ? 'development' : appEnv ?? process.env.NODE_ENV ?? 'production'
       }`,
     );
   });

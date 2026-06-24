@@ -926,7 +926,8 @@ body::before {
 }
 
 .friend-result-score-block {
-  margin-top: 14px;
+  margin-top: 10px;
+  overflow: visible;
 }
 
 .friend-result-score {
@@ -935,10 +936,12 @@ body::before {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(112px, 34vw, 150px);
-  line-height: 0.98;
+  font-size: clamp(132px, 38vw, 176px);
+  line-height: 1.1;
   letter-spacing: 0;
   color: var(--ink-primary);
+  padding: 10px 0 16px;
+  margin: -8px auto -6px;
   background: linear-gradient(
     180deg,
     var(--ink-primary) 0%,
