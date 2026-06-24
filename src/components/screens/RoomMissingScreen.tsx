@@ -35,7 +35,7 @@ export function RoomMissingScreen() {
           className="ink-body ink-secondary mt-3 text-sm"
           style={{ maxWidth: 320, lineHeight: 1.7 }}
         >
-          房间链接可能已失效，或者它只保存在发起者当时的浏览器里。换一台设备就找不到了。
+          服务器数据库里没有找到这个挑战。可能是链接复制不完整，或者这是后端上线前生成的旧链接。
         </p>
         <button
           type="button"

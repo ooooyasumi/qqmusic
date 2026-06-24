@@ -10,9 +10,10 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { createBackendRoom, fetchMyRooms, fetchRoomByToken, submitBackendAttempt } from './apiClient';
+import { createBackendRoom, fetchMyRooms, fetchRoomByToken, submitBackendAttempt, syncLegacyRoom } from './apiClient';
 import { findArtist } from './data';
 import { findCatalogSong } from './appleMusicCatalog';
+import { loadRooms } from './match';
 import type { Question, Room, Screen, Song } from './types';
 
 interface AppState {
@@ -117,6 +118,12 @@ function orderedSongs(artistId: string, ids: string[]): Song[] {
     .filter((song): song is Song => Boolean(song));
 }
 
+function mergeRooms(rooms: Room[], extras: Room[]): Room[] {
+  const byId = new Map<string, Room>();
+  [...extras, ...rooms].forEach((room) => byId.set(room.id, room));
+  return [...byId.values()].sort((a, b) => b.createdAt - a.createdAt);
+}
+
 function isScreen(value: unknown): value is Screen {
   return (
     value === 'challengeLoading' ||
@@ -215,22 +222,51 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
   const browserHistoryInitializedRef = useRef(false);
   const browserHistoryActionRef = useRef<BrowserHistoryAction | null>(null);
   const lastBrowserHistoryKeyRef = useRef<string | null>(null);
+  const legacySyncPromiseRef = useRef<Promise<Room[]> | null>(null);
 
-  const openChallenge = useCallback(async (token: string, isCancelled: () => boolean = () => false) => {
-    const challengeRoom = await fetchRoomByToken(token).catch(() => null);
-    const rooms = await fetchMyRooms().catch(() => []);
-    if (isCancelled()) return;
-    browserHistoryActionRef.current = 'replace';
-    setState((prev) => {
-      const next = { ...prev, rooms };
-      if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
-      return {
-        ...applyRoomState(next, challengeRoom, 'friend'),
-        screen: 'friendSelect',
-        history: [],
-      };
-    });
+  const syncLegacyRooms = useCallback((): Promise<Room[]> => {
+    if (!legacySyncPromiseRef.current) {
+      const legacyRooms = loadRooms().filter((room) => {
+        const legacySongIds = Array.isArray(room.songIds) ? room.songIds : [];
+        const legacyQuestionIds = Array.isArray(room.questionIds) ? room.questionIds : [];
+        const legacyCreatorOrder = Array.isArray(room.creatorOrder) ? room.creatorOrder : [];
+        const songIds = legacySongIds.length === REQUIRED_COUNT ? legacySongIds : legacyQuestionIds;
+        const creatorOrder = legacyCreatorOrder.length === REQUIRED_COUNT ? legacyCreatorOrder : songIds;
+        return (
+          typeof room.id === 'string' &&
+          room.id.startsWith('room-') &&
+          songIds.length === REQUIRED_COUNT &&
+          creatorOrder.length === REQUIRED_COUNT
+        );
+      });
+      legacySyncPromiseRef.current = Promise.allSettled(legacyRooms.map(syncLegacyRoom)).then((results) =>
+        results
+          .filter((result): result is PromiseFulfilledResult<Room> => result.status === 'fulfilled')
+          .map((result) => result.value),
+      );
+    }
+    return legacySyncPromiseRef.current;
   }, []);
+
+  const openChallenge = useCallback(
+    async (token: string, isCancelled: () => boolean = () => false) => {
+      const syncedRooms = await syncLegacyRooms();
+      const challengeRoom = await fetchRoomByToken(token).catch(() => null);
+      const rooms = await fetchMyRooms().catch(() => syncedRooms);
+      if (isCancelled()) return;
+      browserHistoryActionRef.current = 'replace';
+      setState((prev) => {
+        const next = { ...prev, rooms: mergeRooms(rooms, syncedRooms) };
+        if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
+        return {
+          ...applyRoomState(next, challengeRoom, 'friend'),
+          screen: 'friendSelect',
+          history: [],
+        };
+      });
+    },
+    [syncLegacyRooms],
+  );
 
   useEffect(() => {
     stateRef.current = state;
@@ -247,9 +283,10 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
           return;
         }
 
+        const syncedRooms = await syncLegacyRooms();
         const rooms = await fetchMyRooms();
         if (cancelled) return;
-        setState((prev) => ({ ...prev, rooms }));
+        setState((prev) => ({ ...prev, rooms: mergeRooms(rooms, syncedRooms) }));
       } catch {
         if (!cancelled) {
           setState((prev) => ({ ...prev, toast: '房间加载失败，请稍后再试。' }));
@@ -260,7 +297,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     return () => {
       cancelled = true;
     };
-  }, [initialChallengeToken, openChallenge]);
+  }, [initialChallengeToken, openChallenge, syncLegacyRooms]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

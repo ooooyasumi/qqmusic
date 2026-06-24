@@ -40,6 +40,10 @@ export interface SubmitResult {
   result: SongMatchResult;
 }
 
+function optionalString(value: unknown): string | null {
+  return typeof value === 'string' && value.trim() ? value.trim() : null;
+}
+
 function parseStringArray(value: string): string[] {
   try {
     const parsed = JSON.parse(value) as unknown;
@@ -160,10 +164,20 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
   const visitorId = await getOrCreateVisitorId();
   const origin = await getOrigin();
   const now = Date.now();
-  const id = `room-${randomBytes(8).toString('hex')}`;
-  const shareToken = randomBytes(12).toString('base64url');
+  const legacyId = optionalString(data.legacyId);
+  const legacyShareToken = optionalString(data.shareToken);
+  const id = legacyId && /^room-[a-zA-Z0-9_-]+$/.test(legacyId) ? legacyId : `room-${randomBytes(8).toString('hex')}`;
+  const shareToken =
+    legacyShareToken && /^[a-zA-Z0-9_-]+$/.test(legacyShareToken)
+      ? legacyShareToken
+      : randomBytes(12).toString('base64url');
+  const existing = getDb()
+    .prepare('SELECT * FROM rooms WHERE id = ? OR share_token = ?')
+    .get(id, shareToken) as RoomRow | undefined;
+  if (existing) return roomFromRow(existing, origin);
   const bankName = 'Top6 排序';
   const title = generateRoomTitle(artist.name, bankName);
+  const createdAt = typeof data.createdAt === 'number' && Number.isFinite(data.createdAt) ? data.createdAt : now;
   getDb()
     .prepare(
       `INSERT INTO rooms (
@@ -182,7 +196,7 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
       shareToken,
       JSON.stringify(songIds),
       JSON.stringify(creatorOrder),
-      now,
+      createdAt,
     );
 
   return roomFromRow(
@@ -197,7 +211,7 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
       share_token: shareToken,
       song_ids_json: JSON.stringify(songIds),
       creator_order_json: JSON.stringify(creatorOrder),
-      created_at: now,
+      created_at: createdAt,
     },
     origin,
   );
