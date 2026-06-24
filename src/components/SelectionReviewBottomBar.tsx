@@ -92,16 +92,24 @@ export function SelectionReviewBottomBar({
   children: ReactNode;
 }) {
   const [reviewOpen, setReviewOpen] = useState(false);
+  const selectedCount = Math.min(songs.length, 6);
+  const showCount = !reviewOpen && selectedCount > 0;
 
   return (
     <div className="bottom-bar selection-bottom-bar" data-review-state={reviewOpen ? 'open' : 'closed'}>
       <button
         type="button"
         className="selection-review-toggle"
-        aria-label={reviewOpen ? '收起已选歌曲' : '展开已选歌曲'}
+        data-count-visible={showCount}
+        aria-label={reviewOpen ? '收起已选歌曲' : `展开已选歌曲，已选 ${selectedCount} 首`}
         aria-expanded={reviewOpen}
         onClick={() => setReviewOpen((open) => !open)}
       >
+        {showCount && (
+          <span key={selectedCount} className="selection-review-count">
+            {selectedCount}
+          </span>
+        )}
         {reviewOpen ? <ChevronDown size={18} strokeWidth={1.8} /> : <ChevronUp size={18} strokeWidth={1.8} />}
       </button>
       <div className="selection-review-drawer" aria-hidden={!reviewOpen}>
