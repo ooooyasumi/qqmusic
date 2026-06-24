@@ -84,6 +84,18 @@ export interface Room {
   createdAt: number;
 }
 
+export interface Attempt {
+  id: string;
+  roomId: string;
+  visitorId?: string;
+  friendOrder: string[];
+  friendSongIds: string[];
+  score: number;
+  label: string;
+  resultTitle: string;
+  createdAt: number;
+}
+
 export interface SongMatchResult {
   score: number;
   title: string;

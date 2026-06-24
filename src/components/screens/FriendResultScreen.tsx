@@ -11,11 +11,13 @@ import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
 
 export function FriendResultScreen() {
-  const { room, friendOrder, activeChallengeToken, go } = useApp();
+  const { room, friendOrder, currentAttempt, activeChallengeToken, go } = useApp();
   const artist = room ? findArtist(room.artistId) : null;
+  const resultFriendOrder =
+    currentAttempt && currentAttempt.roomId === room?.id ? currentAttempt.friendOrder : friendOrder;
   const result = useMemo(() => {
     if (!room || !artist) return null;
-    const ids = [...new Set([...room.creatorOrder, ...friendOrder])];
+    const ids = [...new Set([...room.creatorOrder, ...resultFriendOrder])];
     const songs = ids
       .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))
       .filter((song): song is NonNullable<typeof song> => Boolean(song));
@@ -23,9 +25,9 @@ export function FriendResultScreen() {
       artistId: artist.id,
       songs,
       creatorOrder: room.creatorOrder,
-      friendOrder,
+      friendOrder: resultFriendOrder,
     });
-  }, [room, artist, friendOrder]);
+  }, [room, artist, resultFriendOrder]);
 
   if (!room || !artist || !result) return null;
 
@@ -59,7 +61,7 @@ export function FriendResultScreen() {
         </div>
 
         <div className="friend-result-duel grid grid-cols-2 gap-3">
-          <DuelBoard title="我的 Top6" order={friendOrder} artistId={artist.id} />
+          <DuelBoard title="我的 Top6" order={resultFriendOrder} artistId={artist.id} />
           <DuelBoard title="TA 的 Top6" order={room.creatorOrder} artistId={artist.id} />
         </div>
 

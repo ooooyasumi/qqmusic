@@ -72,6 +72,27 @@ function rankingFromRows(rows: AttemptRow[]): RankingRow[] {
   }));
 }
 
+function rankedAttemptRowsForRoom(row: RoomRow): AttemptRow[] {
+  return getDb()
+    .prepare(
+      `SELECT a.*
+       FROM attempts a
+       WHERE a.room_id = ?
+         AND a.visitor_id != ?
+         AND a.id = (
+           SELECT b.id
+           FROM attempts b
+           WHERE b.room_id = a.room_id
+             AND b.visitor_id = a.visitor_id
+           ORDER BY b.score DESC, b.created_at DESC
+           LIMIT 1
+         )
+       ORDER BY a.score DESC, a.created_at DESC
+       LIMIT 5`,
+    )
+    .all(row.id, row.owner_visitor_id) as AttemptRow[];
+}
+
 export function roomFromRow(row: RoomRow, origin: string, rankings: RankingRow[] = []): StoredRoom {
   const link = `${origin}/?challenge=${encodeURIComponent(row.share_token)}`;
   return {
@@ -246,9 +267,7 @@ export async function findRoomByToken(token: string): Promise<StoredRoom | null>
     | RoomRow
     | undefined;
   if (!row) return null;
-  const attempts = getDb()
-    .prepare('SELECT * FROM attempts WHERE room_id = ? ORDER BY score DESC, created_at DESC LIMIT 5')
-    .all(row.id) as AttemptRow[];
+  const attempts = rankedAttemptRowsForRoom(row);
   return roomFromRow(row, await getOrigin(), rankingFromRows(attempts));
 }
 
@@ -263,9 +282,7 @@ export async function listMyRooms(): Promise<StoredRoom[]> {
 
 function roomsFromRows(rows: RoomRow[], origin: string): StoredRoom[] {
   return rows.map((row) => {
-    const attempts = getDb()
-      .prepare('SELECT * FROM attempts WHERE room_id = ? ORDER BY score DESC, created_at DESC LIMIT 5')
-      .all(row.id) as AttemptRow[];
+    const attempts = rankedAttemptRowsForRoom(row);
     return roomFromRow(row, origin, rankingFromRows(attempts));
   });
 }

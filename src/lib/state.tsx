@@ -20,7 +20,7 @@ import {
 import { findArtist } from './data';
 import { findCatalogSong } from './appleMusicCatalog';
 import { loadRooms } from './match';
-import type { Question, Room, Screen, Song } from './types';
+import type { Attempt, Question, Room, Screen, Song } from './types';
 
 interface AppState {
   screen: Screen;
@@ -36,6 +36,7 @@ interface AppState {
   room: Room | null;
   rooms: Room[];
   participatedRooms: Room[];
+  currentAttempt: Attempt | null;
   activeChallengeToken: string | null;
   history: Screen[];
   toast: string | null;
@@ -78,6 +79,8 @@ interface BrowserHistoryEntry {
   screen: Screen;
   history: Screen[];
   roomId: string | null;
+  selectedSongIds?: string[];
+  friendOrder?: string[];
 }
 
 const initial: AppState = {
@@ -94,6 +97,7 @@ const initial: AppState = {
   room: null,
   rooms: [],
   participatedRooms: [],
+  currentAttempt: null,
   activeChallengeToken: null,
   history: [],
   toast: null,
@@ -158,7 +162,11 @@ function isBrowserHistoryEntry(value: unknown): value is BrowserHistoryEntry {
     isScreen(candidate.screen) &&
     Array.isArray(candidate.history) &&
     candidate.history.every(isScreen) &&
-    (typeof candidate.roomId === 'string' || candidate.roomId === null)
+    (typeof candidate.roomId === 'string' || candidate.roomId === null) &&
+    (candidate.selectedSongIds === undefined ||
+      (Array.isArray(candidate.selectedSongIds) && candidate.selectedSongIds.every((item) => typeof item === 'string'))) &&
+    (candidate.friendOrder === undefined ||
+      (Array.isArray(candidate.friendOrder) && candidate.friendOrder.every((item) => typeof item === 'string')))
   );
 }
 
@@ -194,12 +202,16 @@ function writeBrowserHistory(
   screen: Screen,
   history: Screen[],
   roomId: string | null,
+  selectedSongIds: string[],
+  friendOrder: string[],
 ): void {
   const entry: BrowserHistoryEntry = {
     app: HISTORY_STATE_KEY,
     screen,
     history,
     roomId,
+    selectedSongIds,
+    friendOrder,
   };
 
   if (action === 'push') {
@@ -219,8 +231,29 @@ function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 
     selectedSongIds: mode === 'friend' ? [] : room.songIds,
     creatorOrder: room.creatorOrder,
     friendOrder: mode === 'friend' ? [] : room.songIds,
+    currentAttempt: mode === 'friend' ? null : state.currentAttempt,
     activeChallengeToken: mode === 'friend' ? room.shareToken ?? null : state.activeChallengeToken,
   };
+}
+
+function applyRoomShell(state: AppState, room: Room): AppState {
+  return {
+    ...state,
+    room,
+    artistId: room.artistId,
+    bankId: room.bankId,
+    creatorOrder: room.creatorOrder,
+    activeChallengeToken: room.shareToken ?? state.activeChallengeToken,
+  };
+}
+
+function findKnownRoom(state: AppState, roomId: string | null): Room | null {
+  if (!roomId) return state.room;
+  return (
+    state.room?.id === roomId
+      ? state.room
+      : [...state.rooms, ...state.participatedRooms].find((room) => room.id === roomId) ?? null
+  );
 }
 
 export function AppProvider({ children, initialChallengeToken }: { children: ReactNode; initialChallengeToken?: string }) {
@@ -345,10 +378,18 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       if (!isBrowserHistoryEntry(event.state)) return;
       browserHistoryActionRef.current = 'pop';
       setState((prev) => {
-        const room = event.state.roomId
-          ? prev.rooms.find((r) => r.id === event.state.roomId) ?? prev.room
-          : prev.room;
-        const next = room ? applyRoomState(prev, room) : prev;
+        const room = findKnownRoom(prev, event.state.roomId);
+        const isFriendProgressScreen = event.state.screen === 'friendAnswer' || event.state.screen === 'friendResult';
+        const next =
+          room && isFriendProgressScreen
+            ? {
+                ...applyRoomShell(prev, room),
+                selectedSongIds: event.state.selectedSongIds ?? prev.selectedSongIds,
+                friendOrder: event.state.friendOrder ?? prev.friendOrder,
+              }
+            : room
+              ? applyRoomState(prev, room)
+              : prev;
         return {
           ...next,
           screen: event.state.screen,
@@ -372,7 +413,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     browserHistoryActionRef.current = null;
 
     if (!browserHistoryInitializedRef.current) {
-      writeBrowserHistory('replace', state.screen, state.history, roomId);
+      writeBrowserHistory('replace', state.screen, state.history, roomId, state.selectedSongIds, state.friendOrder);
       browserHistoryInitializedRef.current = true;
       lastBrowserHistoryKeyRef.current = historyKey;
       return;
@@ -385,9 +426,16 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       return;
     }
 
-    writeBrowserHistory(action === 'push' ? 'push' : 'replace', state.screen, state.history, roomId);
+    writeBrowserHistory(
+      action === 'push' ? 'push' : 'replace',
+      state.screen,
+      state.history,
+      roomId,
+      state.selectedSongIds,
+      state.friendOrder,
+    );
     lastBrowserHistoryKeyRef.current = historyKey;
-  }, [state.history, state.room?.id, state.screen]);
+  }, [state.friendOrder, state.history, state.room?.id, state.screen, state.selectedSongIds]);
 
   const artist = findArtist(state.artistId);
   const bank = artist?.banks.find((b) => b.id === state.bankId);
@@ -444,6 +492,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       creatorOrder: [],
       friendOrder: [],
       room: null,
+      currentAttempt: null,
       activeChallengeToken: null,
     }));
   }, []);
@@ -529,6 +578,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
         ...prev,
         room,
         rooms: [room, ...prev.rooms.filter((r) => r.id !== room.id)].slice(0, 50),
+        currentAttempt: null,
         activeChallengeToken: null,
         screen: 'creatorResult',
         history: [...prev.history, prev.screen],
@@ -558,6 +608,9 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       setState((prev) => ({
         ...prev,
         room: submitted.room,
+        selectedSongIds: submitted.attempt.friendSongIds,
+        friendOrder: submitted.attempt.friendOrder,
+        currentAttempt: submitted.attempt,
         participatedRooms: [
           submitted.room,
           ...prev.participatedRooms.filter((room) => room.id !== submitted.room.id),

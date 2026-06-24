@@ -1,7 +1,8 @@
-import type { Room, SongMatchResult } from './types';
+import type { Attempt, Room, SongMatchResult } from './types';
 
 export interface AttemptResponse {
   room: Room;
+  attempt: Attempt;
   result: SongMatchResult;
 }
 
