@@ -13,7 +13,7 @@ import type { Song } from '@/lib/types';
 
 function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongIds?: string[]): Song[] {
   if (!featuredSongIds?.length) {
-    return catalogSongs.slice(0, 5);
+    return catalogSongs.slice(0, 6);
   }
 
   const allSongs = [...catalogSongs, ...artistSongs];

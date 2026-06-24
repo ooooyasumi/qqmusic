@@ -53,6 +53,7 @@ export const artists: Artist[] = [
       'jay-apple-536115195',
       'jay-apple-536030695',
       'jay-apple-535824738',
+      'jay-apple-536009642',
     ],
     songs: [
       song('jay-01', '晴天', '叶惠美', '全员青春白月光', '#c7a45a', '#77b9a6'),
@@ -87,6 +88,7 @@ export const artists: Artist[] = [
       'jj-apple-1788007696',
       'jj-apple-1071506929',
       'jj-apple-1871400637',
+      'jj-apple-1071517710',
     ],
     songs: [
       song('jj-01', '江南', '第二天堂', '国民记忆入口', '#5bd8ff', '#d5b77c'),
@@ -121,6 +123,7 @@ export const artists: Artist[] = [
       'ts-apple-1468058171',
       'ts-apple-1650841515',
       'ts-apple-1524801580',
+      'ts-apple-1440935812',
     ],
     songs: [
       song('ts-01', 'Love Story', 'Fearless', '金色乡村流行入口', '#d6b35d', '#f7efe0'),
@@ -155,6 +158,7 @@ export const artists: Artist[] = [
       'bp-apple-1639174482',
       'bp-apple-1644440674',
       'bp-apple-1533894681',
+      'bp-apple-1551480140',
     ],
     songs: [
       song('bp-01', 'DDU-DU DDU-DU', 'SQUARE UP', '高能入口', '#111111', '#ff8fc2'),
