@@ -8,6 +8,7 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongChoiceButton } from '@/components/SongSort';
 import { ArtistPageHero } from '@/components/ArtistPageHero';
+import { SelectionReviewBottomBar } from '@/components/SelectionReviewBottomBar';
 import type { Song } from '@/lib/types';
 
 function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongIds?: string[]): Song[] {
@@ -22,7 +23,7 @@ function featuredSongs(artistSongs: Song[], catalogSongs: Song[], featuredSongId
 }
 
 export function ArtistScreen() {
-  const { artistId, selectedSongIds, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
+  const { artistId, selectedSongIds, selectedSongs, toggleSong, clearSongs, startCreatorSort, notify, go } = useApp();
   const artist = findArtist(artistId);
   const songs = useMemo(() => {
     if (!artist) return [];
@@ -44,18 +45,7 @@ export function ArtistScreen() {
           copy="选择 6 首最喜欢的音乐"
         />
 
-        <div className="mt-6 p-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 18 }}>
-          <div>
-            <p className="kicker" style={{ color: artist.accent }}>Selected</p>
-            <p className="ink-title mt-1" style={{ fontSize: 16 }}>{selectedSongIds.length === 6 ? '可以开始排序了' : '点歌曲加入你的 Top6'}</p>
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="ink-display" style={{ fontSize: 42, color: artist.accent, fontStyle: 'italic' }}>{selectedSongIds.length}</span>
-            <span className="ink-mute text-xs tracking-widest">/ 6</span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex flex-col gap-3">
+        <div className="mt-6 flex flex-col gap-3">
           {songs.map((song) => {
             const selected = selectedSongIds.includes(song.id);
             const disabled = !selected && selectedSongIds.length >= 6;
@@ -80,7 +70,7 @@ export function ArtistScreen() {
         </button>
       </div>
 
-      <div className="bottom-bar">
+      <SelectionReviewBottomBar artist={artist} songs={selectedSongs}>
         <div className="flex gap-3">
           <button type="button" className="btn-secondary" onClick={clearSongs}>重选</button>
           <button
@@ -98,7 +88,7 @@ export function ArtistScreen() {
             开始排序
           </button>
         </div>
-      </div>
+      </SelectionReviewBottomBar>
     </div>
   );
 }
