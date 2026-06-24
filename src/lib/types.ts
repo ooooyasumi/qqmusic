@@ -82,6 +82,8 @@ export interface Room {
   creatorOrder: string[];
   rankings: Array<{ name: string; score: number; label: string }>;
   createdAt: number;
+  myAttempt?: Attempt | null;
+  relation?: 'owned' | 'participated' | 'invited';
 }
 
 export interface Attempt {

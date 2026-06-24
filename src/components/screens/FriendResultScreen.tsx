@@ -13,8 +13,11 @@ import { ArtistName } from '@/components/ArtistName';
 export function FriendResultScreen() {
   const { room, friendOrder, currentAttempt, activeChallengeToken, go } = useApp();
   const artist = room ? findArtist(room.artistId) : null;
+  const persistedAttempt = room?.myAttempt ?? null;
   const resultFriendOrder =
-    currentAttempt && currentAttempt.roomId === room?.id ? currentAttempt.friendOrder : friendOrder;
+    currentAttempt && currentAttempt.roomId === room?.id
+      ? currentAttempt.friendOrder
+      : persistedAttempt?.friendOrder ?? friendOrder;
   const result = useMemo(() => {
     if (!room || !artist) return null;
     const ids = [...new Set([...room.creatorOrder, ...resultFriendOrder])];

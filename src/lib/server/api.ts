@@ -93,7 +93,32 @@ function rankedAttemptRowsForRoom(row: RoomRow): AttemptRow[] {
     .all(row.id, row.owner_visitor_id) as AttemptRow[];
 }
 
-export function roomFromRow(row: RoomRow, origin: string, rankings: RankingRow[] = []): StoredRoom {
+function bestAttemptRowForVisitor(roomId: string, visitorId: string): AttemptRow | null {
+  return (
+    (getDb()
+      .prepare(
+        `SELECT *
+         FROM attempts
+         WHERE room_id = ? AND visitor_id = ?
+         ORDER BY score DESC, created_at DESC
+         LIMIT 1`,
+      )
+      .get(roomId, visitorId) as AttemptRow | undefined) ?? null
+  );
+}
+
+function relationForRoom(row: RoomRow, visitorId: string, myAttempt: StoredAttempt | null): StoredRoom['relation'] {
+  if (row.owner_visitor_id === visitorId) return 'owned';
+  if (myAttempt) return 'participated';
+  return 'invited';
+}
+
+export function roomFromRow(
+  row: RoomRow,
+  origin: string,
+  rankings: RankingRow[] = [],
+  options: { myAttempt?: StoredAttempt | null; relation?: StoredRoom['relation'] } = {},
+): StoredRoom {
   const link = `${origin}/?challenge=${encodeURIComponent(row.share_token)}`;
   return {
     id: row.id,
@@ -110,6 +135,8 @@ export function roomFromRow(row: RoomRow, origin: string, rankings: RankingRow[]
     creatorOrder: parseStringArray(row.creator_order_json),
     rankings,
     createdAt: row.created_at,
+    myAttempt: options.myAttempt ?? null,
+    relation: options.relation,
   };
 }
 
@@ -259,6 +286,8 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
       created_at: createdAt,
     },
     origin,
+    [],
+    { relation: 'owned' },
   );
 }
 
@@ -267,8 +296,14 @@ export async function findRoomByToken(token: string): Promise<StoredRoom | null>
     | RoomRow
     | undefined;
   if (!row) return null;
+  const visitorId = await getOrCreateVisitorId();
+  const myAttemptRow = bestAttemptRowForVisitor(row.id, visitorId);
+  const myAttempt = myAttemptRow ? attemptFromRow(myAttemptRow) : null;
   const attempts = rankedAttemptRowsForRoom(row);
-  return roomFromRow(row, await getOrigin(), rankingFromRows(attempts));
+  return roomFromRow(row, await getOrigin(), rankingFromRows(attempts), {
+    myAttempt,
+    relation: relationForRoom(row, visitorId, myAttempt),
+  });
 }
 
 export async function listMyRooms(): Promise<StoredRoom[]> {
@@ -277,13 +312,23 @@ export async function listMyRooms(): Promise<StoredRoom[]> {
     .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? ORDER BY created_at DESC LIMIT 50')
     .all(visitorId) as RoomRow[];
   const origin = await getOrigin();
-  return roomsFromRows(rows, origin);
+  return roomsFromRows(rows, origin, visitorId, 'owned');
 }
 
-function roomsFromRows(rows: RoomRow[], origin: string): StoredRoom[] {
+function roomsFromRows(
+  rows: RoomRow[],
+  origin: string,
+  visitorId: string,
+  fallbackRelation?: StoredRoom['relation'],
+): StoredRoom[] {
   return rows.map((row) => {
+    const myAttemptRow = bestAttemptRowForVisitor(row.id, visitorId);
+    const myAttempt = myAttemptRow ? attemptFromRow(myAttemptRow) : null;
     const attempts = rankedAttemptRowsForRoom(row);
-    return roomFromRow(row, origin, rankingFromRows(attempts));
+    return roomFromRow(row, origin, rankingFromRows(attempts), {
+      myAttempt,
+      relation: fallbackRelation ?? relationForRoom(row, visitorId, myAttempt),
+    });
   });
 }
 
@@ -306,8 +351,8 @@ export async function listMyRoomCollections(): Promise<RoomCollections> {
     .all(visitorId, visitorId) as RoomRow[];
   const origin = await getOrigin();
   return {
-    owned: roomsFromRows(ownedRows, origin),
-    participated: roomsFromRows(participatedRows, origin),
+    owned: roomsFromRows(ownedRows, origin, visitorId, 'owned'),
+    participated: roomsFromRows(participatedRows, origin, visitorId, 'participated'),
   };
 }
 

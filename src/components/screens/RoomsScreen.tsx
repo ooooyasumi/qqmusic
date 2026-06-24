@@ -138,6 +138,7 @@ function RoomCard({
   const artist = findArtist(room.artistId);
   const accent = artist?.accent ?? '#d4af7a';
   const ranking = room.rankings.slice(0, 5);
+  const enterLabel = room.relation === 'owned' ? '查看挑战' : room.myAttempt ? '查看结果' : '进入房间';
 
   return (
     <div
@@ -250,7 +251,7 @@ function RoomCard({
           style={{ padding: '10px 18px', fontSize: 13 }}
           onClick={() => openRoom(room)}
         >
-          进入房间
+          {enterLabel}
         </button>
       </div>
     </div>

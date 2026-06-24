@@ -223,16 +223,27 @@ function writeBrowserHistory(
 }
 
 function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 'owner'): AppState {
+  const friendAttempt = mode === 'friend' ? room.myAttempt ?? null : null;
   return {
     ...state,
     room,
     artistId: room.artistId,
     bankId: room.bankId,
-    selectedSongIds: mode === 'friend' ? [] : room.songIds,
+    selectedSongIds: mode === 'friend' ? friendAttempt?.friendSongIds ?? [] : room.songIds,
     creatorOrder: room.creatorOrder,
-    friendOrder: mode === 'friend' ? [] : room.songIds,
-    currentAttempt: mode === 'friend' ? null : state.currentAttempt,
+    friendOrder: mode === 'friend' ? friendAttempt?.friendOrder ?? [] : room.songIds,
+    currentAttempt: mode === 'friend' ? friendAttempt : null,
     activeChallengeToken: mode === 'friend' ? room.shareToken ?? null : state.activeChallengeToken,
+  };
+}
+
+function applyAttemptState(state: AppState, room: Room, attempt: Attempt): AppState {
+  return {
+    ...applyRoomShell(state, room),
+    selectedSongIds: attempt.friendSongIds,
+    friendOrder: attempt.friendOrder,
+    currentAttempt: attempt,
+    activeChallengeToken: room.shareToken ?? state.activeChallengeToken,
   };
 }
 
@@ -306,6 +317,13 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
           participatedRooms: collections.participated,
         };
         if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
+        if (challengeRoom.myAttempt) {
+          return {
+            ...applyAttemptState(next, challengeRoom, challengeRoom.myAttempt),
+            screen: 'friendResult',
+            history: [],
+          };
+        }
         return {
           ...applyRoomState(next, challengeRoom, 'friend'),
           screen: 'friendSelect',
@@ -624,11 +642,15 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
   }, []);
 
   const openRoom = useCallback((room: Room) => {
-    browserHistoryActionRef.current = 'replace';
+    browserHistoryActionRef.current = 'push';
     setState((prev) => ({
-      ...applyRoomState(prev, room, 'friend'),
-      screen: 'friendSelect',
-      history: [],
+      ...(room.relation === 'owned'
+        ? applyRoomState(prev, room, 'owner')
+        : room.myAttempt
+          ? applyAttemptState(prev, room, room.myAttempt)
+          : applyRoomState(prev, room, 'friend')),
+      screen: room.relation === 'owned' ? 'creatorResult' : room.myAttempt ? 'friendResult' : 'friendSelect',
+      history: [...prev.history, prev.screen],
     }));
   }, []);
 
