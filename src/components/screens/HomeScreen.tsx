@@ -28,7 +28,9 @@ export function HomeScreen() {
             </span>
 
             <span className="kicker">Tongdan Mojiju</span>
-            <h1 className="display-title">同担默契局</h1>
+            <h1 className="display-title title-highlight-sweep" data-text="同担默契局">
+              同担默契局
+            </h1>
             <p className="home-hero-sub">episode 1 · 第一弹</p>
             <Waveform height={28} />
           </section>

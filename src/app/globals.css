@@ -618,11 +618,13 @@ body::before {
   margin-bottom: 8px;
 }
 .display-title {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-display);
   font-size: 42px;
   font-weight: 500;
   font-style: italic;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   line-height: 1.05;
   color: var(--ink-primary);
   background: linear-gradient(180deg, var(--ink-primary) 0%, rgba(244, 236, 216, 0.7) 100%);
@@ -630,6 +632,59 @@ body::before {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.title-highlight-sweep::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: transparent;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 36%,
+      rgba(255, 255, 255, 0.35) 44%,
+      rgba(255, 241, 196, 0.92) 50%,
+      rgba(255, 255, 255, 0.32) 56%,
+      transparent 64%,
+      transparent 100%
+    );
+  background-size: 240% 100%;
+  background-position: 140% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 229, 166, 0.24));
+  animation: titleHighlightSweep 8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+
+@keyframes titleHighlightSweep {
+  0%,
+  12% {
+    background-position: 140% 0;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 1;
+  }
+  86%,
+  100% {
+    background-position: -140% 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-highlight-sweep::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 .home-hero-sub {
   margin-top: 8px;
   font-family: var(--font-serif);
