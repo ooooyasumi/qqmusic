@@ -1325,7 +1325,7 @@ body::before {
   position: absolute;
   top: -15px;
   left: 50%;
-  z-index: 2;
+  z-index: 10;
   display: grid;
   place-items: center;
   width: 34px;
@@ -1340,6 +1340,7 @@ body::before {
   transform: translateX(-50%);
   transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s ease;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .selection-review-toggle:hover {
@@ -1351,131 +1352,84 @@ body::before {
 }
 
 .selection-review-drawer {
+  position: relative;
+  z-index: 1;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transform: translateY(12px);
+  visibility: hidden;
   pointer-events: none;
   transition:
-    max-height 0.42s cubic-bezier(0.2, 0.7, 0.2, 1),
-    opacity 0.26s ease,
-    transform 0.42s cubic-bezier(0.2, 0.7, 0.2, 1),
-    margin-bottom 0.42s cubic-bezier(0.2, 0.7, 0.2, 1);
+    max-height 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.28s ease,
+    transform 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    margin-bottom 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    visibility 0s linear 0.44s;
 }
 
-.selection-bottom-bar[data-expanded='true'] .selection-review-drawer {
-  max-height: 270px;
+.selection-bottom-bar[data-review-state='open'] .selection-review-drawer {
+  max-height: 320px;
   margin-bottom: 14px;
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
   pointer-events: auto;
+  transition:
+    max-height 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.28s ease,
+    transform 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    margin-bottom 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    visibility 0s linear 0s;
 }
 
-.selection-review-panel {
-  padding: 14px 14px 13px;
-  border: 1px solid rgba(244, 236, 216, 0.14);
-  border-radius: 18px;
-  background:
-    linear-gradient(120deg, rgba(212, 175, 122, 0.1), rgba(255, 255, 255, 0.025)),
-    rgba(255, 255, 255, 0.025);
+.selection-result-card {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+  animation: selectionPanelIn 0.34s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.selection-review-covers {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  margin-bottom: 12px;
+.selection-result-covers {
+  min-height: 52px;
 }
 
-.selection-review-cover-slot {
+.selection-result-cover-item {
   display: inline-grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  margin-left: -8px;
-  border-radius: 8px;
-  color: var(--ink-mute);
-}
-
-.selection-review-cover-slot:first-child {
-  margin-left: 0;
-}
-
-.selection-review-cover-slot[data-filled='true'] {
   animation: selectionCoverIn 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.selection-review-cover-slot > .song-cover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+.selection-result-cover-item > .song-cover {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
 }
 
-.selection-review-cover-empty {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px dashed rgba(244, 236, 216, 0.18);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--ink-mute);
-  font-family: var(--font-mono);
-  font-size: 16px;
-}
-
-.selection-review-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.selection-review-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  min-width: 0;
-  color: var(--ink-primary);
-  font-size: 12.5px;
-  line-height: 1.45;
-}
-
-.selection-review-rank {
-  flex: 0 0 18px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.selection-review-copy {
-  min-width: 0;
-  flex: 1;
-  color: var(--ink-secondary);
-}
-
-.selection-review-copy-value {
+.selection-result-song-copy {
   display: block;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--ink-secondary);
   animation: selectionCopyIn 0.24s ease both;
 }
 
-.selection-review-copy-value[data-filled='true'] {
+.selection-result-song-copy[data-filled='true'] {
   color: var(--ink-primary);
 }
 
-.selection-review-album {
-  color: var(--ink-secondary);
+@keyframes selectionPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes selectionCoverIn {
   from {
     opacity: 0;
-    transform: translateX(14px) scale(0.92);
+    transform: translateX(16px) scale(0.94);
   }
   to {
     opacity: 1;
