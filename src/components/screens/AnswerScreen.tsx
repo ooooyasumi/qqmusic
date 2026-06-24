@@ -36,7 +36,6 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
             长按拖动卡片，把本命曲放到最有分量的位置。
           </p>
-          <p className="drag-hint mt-4">长按拖动</p>
         </div>
 
         <div className="mt-6">
