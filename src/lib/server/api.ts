@@ -40,6 +40,12 @@ export interface SubmitResult {
   result: SongMatchResult;
 }
 
+interface RequestClientInfo {
+  hostname: string;
+  userAgent: string | null;
+  clientIp: string | null;
+}
+
 function optionalString(value: unknown): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : null;
 }
@@ -102,27 +108,40 @@ export async function getOrigin(): Promise<string> {
   return `${proto}://${host}`;
 }
 
+async function getRequestClientInfo(): Promise<RequestClientInfo> {
+  const h = await headers();
+  const forwardedFor = h.get('x-forwarded-for');
+  const clientIp = forwardedFor?.split(',')[0]?.trim() || h.get('x-real-ip');
+  return {
+    hostname: h.get('x-forwarded-host') ?? h.get('host') ?? 'unknown',
+    userAgent: h.get('user-agent'),
+    clientIp,
+  };
+}
+
 export async function getOrCreateVisitorId(): Promise<string> {
   const cookieStore = await cookies();
   const existing = cookieStore.get(VISITOR_COOKIE)?.value;
-  const h = await headers();
-  const hostname = h.get('x-forwarded-host') ?? h.get('host') ?? 'unknown';
+  const clientInfo = await getRequestClientInfo();
   const now = Date.now();
   const db = getDb();
 
   if (existing) {
-    db.prepare('UPDATE visitors SET hostname = ?, last_seen = ? WHERE id = ?').run(hostname, now, existing);
+    db.prepare('UPDATE visitors SET hostname = ?, user_agent = ?, client_ip = ?, last_seen = ? WHERE id = ?').run(
+      clientInfo.hostname,
+      clientInfo.userAgent,
+      clientInfo.clientIp,
+      now,
+      existing,
+    );
     const found = db.prepare('SELECT id FROM visitors WHERE id = ?').get(existing) as { id: string } | undefined;
     if (found) return existing;
   }
 
   const id = `visitor-${randomBytes(8).toString('hex')}`;
-  db.prepare('INSERT INTO visitors (id, hostname, created_at, last_seen) VALUES (?, ?, ?, ?)').run(
-    id,
-    hostname,
-    now,
-    now,
-  );
+  db.prepare(
+    'INSERT INTO visitors (id, hostname, user_agent, client_ip, created_at, last_seen) VALUES (?, ?, ?, ?, ?, ?)',
+  ).run(id, clientInfo.hostname, clientInfo.userAgent, clientInfo.clientIp, now, now);
   cookieStore.set(VISITOR_COOKIE, id, {
     httpOnly: true,
     sameSite: 'lax',
