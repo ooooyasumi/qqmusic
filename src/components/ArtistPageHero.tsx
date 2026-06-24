@@ -11,6 +11,8 @@ export function ArtistPageHero({
   eyebrow: string;
   copy: string;
 }) {
+  const isLongName = artist.name.length >= 9;
+
   return (
     <section
       className="artist-page-hero"
@@ -23,7 +25,9 @@ export function ArtistPageHero({
         <p className="kicker" style={{ color: artist.accent }}>
           {eyebrow}
         </p>
-        <h1 className="ink-display artist-page-title">{artist.name}</h1>
+        <h1 className="ink-display artist-page-title" data-long-name={isLongName}>
+          {artist.name}
+        </h1>
         <p className="ink-body ink-secondary artist-page-intro">{copy}</p>
       </div>
       <div className="artist-page-photo" aria-hidden="true">

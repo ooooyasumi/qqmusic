@@ -32,7 +32,7 @@ export function ArtistScreen() {
       <div className="screen-content-scrollable no-scrollbar">
         <ArtistPageHero
           artist={artist}
-          eyebrow="正在选择 · Pick 6 Songs"
+          eyebrow="Pick 6 Songs"
           copy="选择 6 首最喜欢的音乐"
         />
 

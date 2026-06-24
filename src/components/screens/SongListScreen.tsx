@@ -32,7 +32,7 @@ export function SongListScreen() {
       <div className="screen-content-scrollable no-scrollbar">
         <ArtistPageHero
           artist={artist}
-          eyebrow="完整歌单 · Select Songs"
+          eyebrow="Select Songs"
           copy="选择 6 首最喜欢的音乐"
         />
 
