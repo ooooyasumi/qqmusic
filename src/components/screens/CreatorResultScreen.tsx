@@ -7,6 +7,13 @@ import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
 
+function rankColor(index: number): string {
+  if (index === 0) return '#d4af7a';
+  if (index === 1) return '#c8d0d8';
+  if (index === 2) return '#b9825a';
+  return 'var(--ink-secondary)';
+}
+
 export function CreatorResultScreen() {
   const { room, creatorSongs, go, notify } = useApp();
   if (!room) return null;
@@ -22,10 +29,10 @@ export function CreatorResultScreen() {
         <div className="relative">
           <p className="kicker">挑战已生成 · Share</p>
           <h1 className="ink-display mt-3" style={{ fontSize: 34, fontWeight: 500, lineHeight: 1.1 }}>
-            把你的同担 Top 发给朋友
+            分享给朋友
           </h1>
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            好友会对你选出的 6 首歌重新排序，完成后解锁你们的默契度和双人榜单。
+            朋友会按同一组 6 首歌排出自己的顺序，完成后就能看到你们的默契度和双人榜单。
           </p>
         </div>
 
@@ -38,9 +45,37 @@ export function CreatorResultScreen() {
               <SongCover key={song.id} song={song} size={52} />
             ))}
           </div>
-          <p className="ink-title mt-4" style={{ fontSize: 18, lineHeight: 1.45 }}>
-            只有 6 首歌，快来排排看。
-          </p>
+          <ol className="mt-4 space-y-1.5">
+            {creatorSongs.slice(0, 6).map((song, index) => (
+              <li
+                key={song.id}
+                className="ink-body"
+                style={{
+                  display: 'flex',
+                  gap: 10,
+                  color: 'var(--ink-primary)',
+                  fontSize: 13,
+                  lineHeight: 1.55,
+                }}
+              >
+                <span
+                  className="ink-mono"
+                  style={{
+                    color: rankColor(index),
+                    width: 18,
+                    flex: '0 0 auto',
+                    fontWeight: 700,
+                  }}
+                >
+                  {index + 1}.
+                </span>
+                <span style={{ minWidth: 0 }}>
+                  <span>{song.name}</span>
+                  <span style={{ color: 'var(--ink-secondary)' }}> · {song.album}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </div>
 
         <div className="mt-7">
