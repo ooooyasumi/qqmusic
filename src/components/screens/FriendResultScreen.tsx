@@ -9,17 +9,30 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
+import type { Attempt, Room } from '@/lib/types';
+
+const REQUIRED_COUNT = 6;
+
+function isCompleteAttemptForRoom(room: Room, attempt: Attempt | null | undefined): attempt is Attempt {
+  return Boolean(
+    attempt &&
+      attempt.roomId === room.id &&
+      attempt.friendOrder.length === REQUIRED_COUNT &&
+      attempt.friendSongIds.length === REQUIRED_COUNT,
+  );
+}
 
 export function FriendResultScreen() {
   const { room, friendOrder, currentAttempt, activeChallengeToken, go } = useApp();
   const artist = room ? findArtist(room.artistId) : null;
-  const persistedAttempt = room?.myAttempt ?? null;
+  const persistedAttempt = room && isCompleteAttemptForRoom(room, room.myAttempt) ? room.myAttempt : null;
+  const liveAttempt = room && isCompleteAttemptForRoom(room, currentAttempt) ? currentAttempt : null;
   const resultFriendOrder =
-    currentAttempt && currentAttempt.roomId === room?.id
-      ? currentAttempt.friendOrder
+    liveAttempt
+      ? liveAttempt.friendOrder
       : persistedAttempt?.friendOrder ?? friendOrder;
   const result = useMemo(() => {
-    if (!room || !artist) return null;
+    if (!room || !artist || resultFriendOrder.length !== REQUIRED_COUNT) return null;
     const ids = [...new Set([...room.creatorOrder, ...resultFriendOrder])];
     const songs = ids
       .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))

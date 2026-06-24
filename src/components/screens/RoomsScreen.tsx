@@ -5,6 +5,8 @@ import { findArtist } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 
+const REQUIRED_COUNT = 6;
+
 export function RoomsScreen() {
   const { rooms, participatedRooms, openRoom, go, notify } = useApp();
   const createdList = rooms.slice(0, 20);
@@ -138,7 +140,13 @@ function RoomCard({
   const artist = findArtist(room.artistId);
   const accent = artist?.accent ?? '#d4af7a';
   const ranking = room.rankings.slice(0, 5);
-  const enterLabel = room.relation === 'owned' ? '查看挑战' : room.myAttempt ? '查看结果' : '进入房间';
+  const hasCompleteAttempt = Boolean(
+    room.myAttempt &&
+      room.myAttempt.roomId === room.id &&
+      room.myAttempt.friendOrder.length === REQUIRED_COUNT &&
+      room.myAttempt.friendSongIds.length === REQUIRED_COUNT,
+  );
+  const enterLabel = room.relation === 'owned' ? '查看挑战' : hasCompleteAttempt ? '查看结果' : '进入房间';
 
   return (
     <div

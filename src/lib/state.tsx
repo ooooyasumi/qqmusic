@@ -222,8 +222,17 @@ function writeBrowserHistory(
   window.history.replaceState(entry, '', currentBrowserUrl());
 }
 
+function isCompleteAttemptForRoom(room: Room, attempt: Attempt | null | undefined): attempt is Attempt {
+  return Boolean(
+    attempt &&
+      attempt.roomId === room.id &&
+      attempt.friendOrder.length === REQUIRED_COUNT &&
+      attempt.friendSongIds.length === REQUIRED_COUNT,
+  );
+}
+
 function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 'owner'): AppState {
-  const friendAttempt = mode === 'friend' ? room.myAttempt ?? null : null;
+  const friendAttempt = mode === 'friend' && isCompleteAttemptForRoom(room, room.myAttempt) ? room.myAttempt : null;
   return {
     ...state,
     room,
@@ -317,7 +326,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
           participatedRooms: collections.participated,
         };
         if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
-        if (challengeRoom.myAttempt) {
+        if (isCompleteAttemptForRoom(challengeRoom, challengeRoom.myAttempt)) {
           return {
             ...applyAttemptState(next, challengeRoom, challengeRoom.myAttempt),
             screen: 'friendResult',
@@ -643,15 +652,18 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
 
   const openRoom = useCallback((room: Room) => {
     browserHistoryActionRef.current = 'push';
-    setState((prev) => ({
-      ...(room.relation === 'owned'
-        ? applyRoomState(prev, room, 'owner')
-        : room.myAttempt
-          ? applyAttemptState(prev, room, room.myAttempt)
-          : applyRoomState(prev, room, 'friend')),
-      screen: room.relation === 'owned' ? 'creatorResult' : room.myAttempt ? 'friendResult' : 'friendSelect',
-      history: [...prev.history, prev.screen],
-    }));
+    setState((prev) => {
+      const completeAttempt = isCompleteAttemptForRoom(room, room.myAttempt) ? room.myAttempt : null;
+      return {
+        ...(room.relation === 'owned'
+          ? applyRoomState(prev, room, 'owner')
+          : completeAttempt
+            ? applyAttemptState(prev, room, completeAttempt)
+            : applyRoomState(prev, room, 'friend')),
+        screen: room.relation === 'owned' ? 'creatorResult' : completeAttempt ? 'friendResult' : 'friendSelect',
+        history: [...prev.history, prev.screen],
+      };
+    });
   }, []);
 
   const notify = useCallback((msg: string) => {
