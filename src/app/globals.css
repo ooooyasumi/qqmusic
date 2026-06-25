@@ -1077,7 +1077,8 @@ body::before {
   min-width: 0;
 }
 .song-choice-content .song-rank-info {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  max-width: calc(100% - 112px);
 }
 .song-preview-btn {
   position: relative;

@@ -100,7 +100,6 @@ function SongPreviewButton({
       className="song-preview-btn"
       data-variant={variant}
       data-playing={isPlaying}
-      disabled={!audioUrl}
       aria-label={isPlaying ? `停止播放 ${song.name}` : `播放 ${song.name} 15 秒片段`}
       onClick={playPreview}
       onKeyDown={(event) => event.stopPropagation()}
