@@ -27,6 +27,10 @@ export interface AttemptRow {
   score: number;
   label: string;
   result_title: string;
+  common_song_count: number;
+  common_top_count: number;
+  exact_count: number;
+  gap_sum: number;
   created_at: number;
 }
 
@@ -35,7 +39,7 @@ interface TableColumnRow {
 }
 
 let db: Database.Database | null = null;
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 function databasePath(): string {
   const configured = process.env.QQMUSIC_DB_PATH;
@@ -78,6 +82,10 @@ function migrate(database: Database.Database): void {
 
   addColumnIfMissing(database, 'visitors', 'user_agent', 'user_agent TEXT');
   addColumnIfMissing(database, 'visitors', 'client_ip', 'client_ip TEXT');
+  addColumnIfMissing(database, 'attempts', 'common_song_count', 'common_song_count INTEGER NOT NULL DEFAULT 0');
+  addColumnIfMissing(database, 'attempts', 'common_top_count', 'common_top_count INTEGER NOT NULL DEFAULT 0');
+  addColumnIfMissing(database, 'attempts', 'exact_count', 'exact_count INTEGER NOT NULL DEFAULT 0');
+  addColumnIfMissing(database, 'attempts', 'gap_sum', 'gap_sum INTEGER NOT NULL DEFAULT 0');
 
   database
     .prepare(
@@ -133,6 +141,10 @@ export function getDb(): Database.Database {
       score INTEGER NOT NULL,
       label TEXT NOT NULL,
       result_title TEXT NOT NULL,
+      common_song_count INTEGER NOT NULL DEFAULT 0,
+      common_top_count INTEGER NOT NULL DEFAULT 0,
+      exact_count INTEGER NOT NULL DEFAULT 0,
+      gap_sum INTEGER NOT NULL DEFAULT 0,
       created_at INTEGER NOT NULL,
       FOREIGN KEY(room_id) REFERENCES rooms(id) ON DELETE CASCADE,
       FOREIGN KEY(visitor_id) REFERENCES visitors(id)

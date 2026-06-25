@@ -107,6 +107,7 @@ export interface SongMatchResult {
   callToAction: string;
   commonSongCount: number;
   commonTopCount: number;
+  gapSum: number;
   exactIds: string[];
   sharedRows: Array<{
     song: Song;

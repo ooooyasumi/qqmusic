@@ -70,9 +70,9 @@ export function FriendResultScreen() {
         </div>
 
         <div className="friend-result-grid grid grid-cols-2 gap-3">
-          <MiniCard title="Top6 撞歌" value={`${result.commonSongCount}/6 首`} />
-          <MiniCard title="Top3 撞歌" value={`${result.commonTopCount}/3 首`} />
-          <MiniCard title="同位歌曲" value={`${result.exactIds.length} 首`} />
+          <MiniCard title="共同歌单" value={`${result.commonSongCount}/6 首`} />
+          <MiniCard title="Top3 同频" value={`${result.commonTopCount}/3 首`} />
+          <MiniCard title="顺位同频" value={`${result.exactIds.length}/6 首`} />
           <MiniCard title={result.biggestGap === '完全同频' ? '最大分歧' : '最想争的一首'} value={result.biggestGap} />
         </div>
 

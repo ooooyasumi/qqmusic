@@ -164,7 +164,7 @@ const RESULT_COPY: Record<
     string,
     Omit<
       SongMatchResult,
-      'score' | 'commonSongCount' | 'commonTopCount' | 'exactIds' | 'sharedRows' | 'biggestGap'
+      'score' | 'commonSongCount' | 'commonTopCount' | 'gapSum' | 'exactIds' | 'sharedRows' | 'biggestGap'
     >
   >
 > = {
@@ -275,7 +275,7 @@ const RESULT_COPY: Record<
 };
 
 function copyConfig(artistId: string, score: number) {
-  const bucket = score >= 90 ? 'over90' : score >= 75 ? 'over75' : score >= 55 ? 'over55' : 'under55';
+  const bucket = score >= 90 ? 'over90' : score >= 75 ? 'over75' : score >= 60 ? 'over55' : 'under55';
   return (RESULT_COPY[artistId] ?? RESULT_COPY.jay)[bucket];
 }
 
@@ -310,7 +310,13 @@ export function calculateSongMatch({
     return creator <= 3 && friend <= 3;
   }).length;
   const gapPenalty = sharedRows.reduce((sum, row) => sum + row.gap, 0);
-  const score = Math.max(30, Math.min(99, 100 - gapPenalty * 5 + exactIds.length * 3 + commonTopCount * 2));
+  const rawScore =
+    50 +
+    commonSongCount * 5 +
+    commonTopCount * 4 +
+    exactIds.length * 3 -
+    gapPenalty * 1.2;
+  const score = Math.max(35, Math.min(99, Math.round(rawScore)));
   const config = copyConfig(artistId, score);
   const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
   const biggestGap = biggest && biggest.gap > 0 ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '完全同频';
@@ -323,6 +329,7 @@ export function calculateSongMatch({
     biggestGap,
     commonSongCount,
     commonTopCount,
+    gapSum: gapPenalty,
     exactIds,
     sharedRows: sharedRows.sort((a, b) => a.friendRank - b.friendRank),
   };

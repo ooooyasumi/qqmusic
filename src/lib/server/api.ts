@@ -379,8 +379,9 @@ export async function submitAttempt(token: string, payload: unknown): Promise<Su
     .prepare(
       `INSERT INTO attempts (
         id, room_id, visitor_id, friend_order_json, friend_song_ids_json,
-        score, label, result_title, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        score, label, result_title, common_song_count, common_top_count,
+        exact_count, gap_sum, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .run(
       id,
@@ -391,6 +392,10 @@ export async function submitAttempt(token: string, payload: unknown): Promise<Su
       result.score,
       result.title,
       result.title,
+      result.commonSongCount,
+      result.commonTopCount,
+      result.exactIds.length,
+      result.gapSum,
       now,
     );
 
