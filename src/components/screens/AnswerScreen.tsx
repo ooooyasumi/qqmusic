@@ -35,7 +35,7 @@ export function AnswerScreen({ role }: { role: 'creator' | 'friend' }) {
             {isFriend ? '排出你心里的同担 Top6' : '排一份你的私藏 Top6'}
           </h1>
           <p className="ink-body ink-secondary mt-3" style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-            长按拖动卡片，把本命曲放到最有分量的位置。
+            按住右侧拖动按钮拖动，把本命曲放到最有分量的位置。
           </p>
         </div>
 
