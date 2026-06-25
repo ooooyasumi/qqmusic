@@ -1609,10 +1609,11 @@ body::before {
   background: rgba(212, 175, 122, 0.16);
 }
 .share-poster-header,
+.share-poster-brand,
 .share-poster-hero,
 .share-poster-score,
-.share-poster-challenge-mark,
-.share-poster-song-list,
+.share-poster-artist-card,
+.share-poster-duel,
 .share-poster-stats,
 .share-poster-footer {
   position: relative;
@@ -1626,12 +1627,24 @@ body::before {
   border-bottom: 1px solid rgba(244, 236, 216, 0.18);
   color: rgba(244, 236, 216, 0.62);
   font-family: var(--font-mono);
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+.share-poster-logo {
+  display: block;
+  width: 178px;
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(244, 236, 216, 0.1));
+}
+.share-poster-brand {
+  margin-top: 54px;
+}
 .share-poster-hero {
-  margin-top: 70px;
+  margin-top: 34px;
+}
+.share-poster-hero[data-kind='challenge'] {
+  margin-top: 48px;
 }
 .share-poster-kicker {
   color: var(--poster-accent);
@@ -1640,115 +1653,226 @@ body::before {
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-.share-poster-hero h1 {
-  width: 820px;
-  margin: 24px 0 0;
+.share-poster-brand h1 {
+  position: relative;
+  display: inline-block;
+  margin: 18px 0 0;
   color: var(--ink-primary);
   font-family: var(--font-display);
-  font-size: 84px;
-  font-weight: 500;
-  line-height: 0.98;
-}
-.share-poster-hero p {
-  width: 720px;
-  margin-top: 28px;
-  color: rgba(244, 236, 216, 0.68);
-  font-size: 30px;
-  line-height: 1.5;
-}
-.share-poster-challenge-mark {
-  display: flex;
-  align-items: baseline;
-  gap: 28px;
-  margin-top: 52px;
-  color: var(--poster-accent);
-}
-.share-poster-challenge-mark span {
-  font-family: var(--font-mono);
-  font-size: 42px;
-  letter-spacing: 0.24em;
-}
-.share-poster-challenge-mark b {
-  font-family: var(--font-display);
-  font-size: 168px;
+  font-size: 106px;
   font-style: italic;
   font-weight: 500;
-  line-height: 0.8;
+  line-height: 0.98;
+  letter-spacing: 0;
+  background: linear-gradient(180deg, var(--ink-primary) 0%, rgba(244, 236, 216, 0.68) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.share-poster-brand h1::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 255, 255, 0.3) 43%,
+      rgba(255, 241, 196, 0.88) 50%,
+      rgba(255, 255, 255, 0.28) 57%,
+      transparent 66%,
+      transparent 100%
+    );
+  background-position: 52% 0;
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(255, 229, 166, 0.18));
+}
+.share-poster-hero h2 {
+  width: 840px;
+  margin: 18px 0 0;
+  color: var(--ink-primary);
+  font-family: var(--font-display);
+  font-size: 66px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+.share-poster-hero p {
+  width: 820px;
+  margin-top: 20px;
+  color: rgba(244, 236, 216, 0.68);
+  font-size: 28px;
+  line-height: 1.45;
+}
+.share-poster-artist-card {
+  display: grid;
+  grid-template-columns: 390px minmax(0, 1fr);
+  gap: 34px;
+  align-items: stretch;
+  margin-top: 64px;
+  padding: 30px;
+  border: 1px solid rgba(244, 236, 216, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--poster-accent) 18%, transparent), rgba(255, 255, 255, 0.03));
+}
+.share-poster-artist-photo {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--poster-accent) 28%, transparent), rgba(212, 175, 122, 0.16));
+}
+.share-poster-artist-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.share-poster-artist-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.share-poster-artist-copy span {
+  color: var(--poster-accent);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.share-poster-artist-copy b {
+  display: block;
+  margin-top: 24px;
+  color: var(--ink-primary);
+  font-family: var(--font-display);
+  font-size: 68px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.04;
+}
+.share-poster-artist-copy p {
+  margin-top: 28px;
+  color: rgba(244, 236, 216, 0.66);
+  font-size: 28px;
+  line-height: 1.48;
 }
 .share-poster-score {
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr);
-  gap: 44px;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: 36px;
   align-items: center;
-  margin-top: 54px;
+  margin-top: 34px;
 }
 .share-poster-score-number {
   color: var(--poster-accent);
   font-family: var(--font-display);
-  font-size: 190px;
+  font-size: 156px;
   font-style: italic;
   line-height: 0.86;
 }
-.share-poster-score-copy h2 {
+.share-poster-score-copy h3 {
   margin: 0;
   color: var(--ink-primary);
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 500;
   line-height: 1.2;
 }
 .share-poster-score-copy p {
-  margin-top: 18px;
+  display: -webkit-box;
+  margin-top: 14px;
+  overflow: hidden;
   color: rgba(244, 236, 216, 0.66);
-  font-size: 24px;
-  line-height: 1.56;
+  font-size: 22px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
-.share-poster-song-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 54px;
-}
-.share-poster-song-row {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
+.share-poster-duel {
+  display: flex;
+  flex-direction: column;
   gap: 18px;
-  min-height: 104px;
-  padding: 22px 24px;
+  margin-top: 30px;
+}
+.share-poster-duel-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.share-poster-duel-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(244, 236, 216, 0.16);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.035);
-}
-.share-poster-song-row > span {
+  background: color-mix(in srgb, var(--poster-accent) 14%, rgba(255, 255, 255, 0.026));
   color: var(--poster-accent);
   font-family: var(--font-mono);
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: uppercase;
+}
+.share-poster-duel-songs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+.share-poster-duel-song {
+  min-width: 0;
+  min-height: 112px;
+  padding: 14px 12px;
+  border: 1px solid rgba(244, 236, 216, 0.15);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.share-poster-duel-song span {
+  display: block;
+  color: var(--poster-accent);
+  font-family: var(--font-mono);
+  font-size: 19px;
   font-weight: 700;
 }
-.share-poster-song-row b,
-.share-poster-song-row small {
+.share-poster-duel-song b,
+.share-poster-duel-song small {
   display: block;
   overflow: hidden;
+}
+.share-poster-duel-song b {
+  display: -webkit-box;
+  margin-top: 10px;
+  color: var(--ink-primary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.22;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.share-poster-duel-song small {
+  margin-top: 7px;
+  color: rgba(244, 236, 216, 0.5);
+  font-size: 13px;
+  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.share-poster-song-row b {
-  color: var(--ink-primary);
-  font-size: 26px;
-  font-weight: 600;
-}
-.share-poster-song-row small {
-  margin-top: 9px;
-  color: rgba(244, 236, 216, 0.5);
-  font-size: 18px;
 }
 .share-poster-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  margin-top: 28px;
+  margin-top: 24px;
 }
 .share-poster-stats div {
-  padding: 18px 20px;
+  padding: 14px 18px;
   border: 1px solid rgba(244, 236, 216, 0.15);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.026);
@@ -1758,7 +1882,7 @@ body::before {
   display: block;
   color: rgba(244, 236, 216, 0.52);
   font-family: var(--font-mono);
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -1767,7 +1891,7 @@ body::before {
   margin-top: 10px;
   color: var(--ink-primary);
   font-family: var(--font-display);
-  font-size: 42px;
+  font-size: 34px;
   font-weight: 500;
 }
 .share-poster-footer {
@@ -1799,6 +1923,16 @@ body::before {
   display: block;
   width: 100%;
   height: 100%;
+}
+.share-poster-canvas[data-kind='result'] .share-poster-footer {
+  bottom: 46px;
+  grid-template-columns: minmax(0, 1fr) 168px;
+}
+.share-poster-canvas[data-kind='result'] .share-poster-qr {
+  width: 168px;
+  height: 168px;
+  padding: 12px;
+  border-radius: 20px;
 }
 
 /* === 屏幕切换 === */

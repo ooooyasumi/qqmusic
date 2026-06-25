@@ -52,6 +52,9 @@ export function FriendResultScreen() {
   const resultSongs = resultFriendOrder
     .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))
     .filter((song): song is NonNullable<typeof song> => Boolean(song));
+  const creatorSongs = room.creatorOrder
+    .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))
+    .filter((song): song is NonNullable<typeof song> => Boolean(song));
 
   return (
     <div className="screen screen-fade">
@@ -94,9 +97,10 @@ export function FriendResultScreen() {
           <SharePosterModal
             kind="result"
             artist={artist}
-            songs={resultSongs}
             qrValue={homeLinkForShare()}
             downloadName={`tongdan-${artist.id}-result.png`}
+            creatorSongs={creatorSongs}
+            friendSongs={resultSongs}
             result={result}
           />
           <button type="button" className="btn-primary" onClick={() => go('home')}>

@@ -103,7 +103,6 @@ export function CreatorResultScreen() {
             <SharePosterModal
               kind="challenge"
               artist={artist}
-              songs={creatorSongs}
               qrValue={shareLink}
               downloadName={`tongdan-${artist.id}-challenge.png`}
             />

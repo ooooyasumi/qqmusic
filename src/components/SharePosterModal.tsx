@@ -6,6 +6,7 @@ import { forwardRef, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { toPng } from 'html-to-image';
 import { ArtistName } from '@/components/ArtistName';
+import { QQMusicLogo } from '@/components/QQMusicLogo';
 import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
 type PosterKind = 'challenge' | 'result';
@@ -13,10 +14,11 @@ type PosterKind = 'challenge' | 'result';
 interface SharePosterModalProps {
   kind: PosterKind;
   artist: Artist;
-  songs: Song[];
   qrValue: string;
   triggerLabel?: string;
   downloadName: string;
+  creatorSongs?: Song[];
+  friendSongs?: Song[];
   result?: Pick<
     SongMatchResult,
     'score' | 'title' | 'copy' | 'shareSpark' | 'commonSongCount' | 'commonTopCount' | 'exactIds' | 'biggestGap'
@@ -26,8 +28,8 @@ interface SharePosterModalProps {
 type PosterStatus = 'idle' | 'generating' | 'ready' | 'failed';
 
 function posterTitle(kind: PosterKind, artist: Artist): string {
-  if (kind === 'challenge') return `${artist.short} Top6 挑战`;
-  return `${artist.short} 默契结果`;
+  if (kind === 'challenge') return `来排你的 ${artist.short} Top6`;
+  return `${artist.short} 同担默契结果`;
 }
 
 function waitForRender(): Promise<void> {
@@ -50,10 +52,11 @@ function downloadDataUrl(dataUrl: string, filename: string): void {
 export function SharePosterModal({
   kind,
   artist,
-  songs,
   qrValue,
   triggerLabel = '生成分享图',
   downloadName,
+  creatorSongs,
+  friendSongs,
   result,
 }: SharePosterModalProps) {
   const posterRef = useRef<HTMLDivElement | null>(null);
@@ -144,7 +147,15 @@ export function SharePosterModal({
           </div>
 
           <div className="share-poster-source" aria-hidden="true">
-            <PosterCanvas ref={posterRef} kind={kind} artist={artist} songs={songs} qrDataUrl={qrDataUrl} result={result} />
+            <PosterCanvas
+              ref={posterRef}
+              kind={kind}
+              artist={artist}
+              qrDataUrl={qrDataUrl}
+              creatorSongs={creatorSongs}
+              friendSongs={friendSongs}
+              result={result}
+            />
           </div>
         </div>
       )}
@@ -155,16 +166,18 @@ export function SharePosterModal({
 interface PosterCanvasProps {
   kind: PosterKind;
   artist: Artist;
-  songs: Song[];
   qrDataUrl: string;
+  creatorSongs?: Song[];
+  friendSongs?: Song[];
   result?: SharePosterModalProps['result'];
 }
 
 const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function PosterCanvas({
   kind,
   artist,
-  songs,
   qrDataUrl,
+  creatorSongs = [],
+  friendSongs = [],
   result,
 }, ref) {
   const isResult = kind === 'result';
@@ -173,6 +186,7 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
     <div
       ref={ref}
       className="share-poster-canvas"
+      data-kind={kind}
       style={{ '--poster-accent': artist.accent } as CSSProperties}
     >
       <div className="share-poster-orb share-poster-orb-a" />
@@ -180,44 +194,50 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
       <div className="share-poster-noise" />
 
       <div className="share-poster-header">
-        <span>Tongdan Mojiju</span>
+        <QQMusicLogo className="share-poster-logo" />
         <span>QQ Music Social Test</span>
       </div>
 
-      <section className="share-poster-hero">
+      <section className="share-poster-brand">
+        <p className="share-poster-kicker">Tongdan Mojiju</p>
+        <h1 data-text="同担默契局">同担默契局</h1>
+      </section>
+
+      <section className="share-poster-hero" data-kind={kind}>
         <p className="share-poster-kicker">
           <ArtistName name={artist.name} /> / Top6
         </p>
-        <h1>{posterTitle(kind, artist)}</h1>
-        <p>{isResult ? result?.shareSpark ?? result?.title : '扫二维码来排你的同担 Top6，看我们到底有多默契。'}</p>
+        <h2>{posterTitle(kind, artist)}</h2>
+        <p>{isResult ? result?.shareSpark ?? result?.title : '选出你的 6 首本命歌，看看我们是不是同一副耳机里的同担。'}</p>
       </section>
 
       {isResult && result ? (
-        <section className="share-poster-score">
-          <div className="share-poster-score-number">{result.score}</div>
-          <div className="share-poster-score-copy">
-            <h2>{result.title}</h2>
-            <p>{result.copy}</p>
-          </div>
-        </section>
+        <>
+          <section className="share-poster-score">
+            <div className="share-poster-score-number">{result.score}</div>
+            <div className="share-poster-score-copy">
+              <h3>{result.title}</h3>
+              <p>{result.copy}</p>
+            </div>
+          </section>
+
+          <section className="share-poster-duel">
+            <PosterDuelRow title="我的 Top6" songs={friendSongs.slice(0, 6)} />
+            <PosterDuelRow title="TA 的 Top6" songs={creatorSongs.slice(0, 6)} />
+          </section>
+        </>
       ) : (
-        <section className="share-poster-challenge-mark">
-          <span>TOP</span>
-          <b>6</b>
+        <section className="share-poster-artist-card">
+          <div className="share-poster-artist-photo">
+            {artist.cover ? <img src={artist.cover} alt="" crossOrigin="anonymous" /> : null}
+          </div>
+          <div className="share-poster-artist-copy">
+            <span>Featured Artist</span>
+            <b><ArtistName name={artist.name} /></b>
+            <p>{artist.hook}</p>
+          </div>
         </section>
       )}
-
-      <section className="share-poster-song-list">
-        {songs.slice(0, 6).map((song, index) => (
-          <div key={song.id} className="share-poster-song-row">
-            <span>{index + 1}</span>
-            <div>
-              <b>{song.name}</b>
-              <small>{song.album}</small>
-            </div>
-          </div>
-        ))}
-      </section>
 
       {isResult && result ? (
         <section className="share-poster-stats">
@@ -248,3 +268,20 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
     </div>
   );
 });
+
+function PosterDuelRow({ title, songs }: { title: string; songs: Song[] }) {
+  return (
+    <div className="share-poster-duel-row">
+      <div className="share-poster-duel-title">{title}</div>
+      <div className="share-poster-duel-songs">
+        {songs.map((song, index) => (
+          <div key={`${title}-${song.id}`} className="share-poster-duel-song">
+            <span>{index + 1}</span>
+            <b>{song.name}</b>
+            <small>{song.album}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
