@@ -9,7 +9,9 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
+import { SharePosterModal } from '@/components/SharePosterModal';
 import type { Attempt, Room } from '@/lib/types';
+import { homeLinkForShare } from '@/lib/share';
 
 const REQUIRED_COUNT = 6;
 
@@ -46,6 +48,10 @@ export function FriendResultScreen() {
   }, [room, artist, resultFriendOrder]);
 
   if (!room || !artist || !result) return null;
+
+  const resultSongs = resultFriendOrder
+    .map((id) => findCatalogSong(artist.id, id) ?? artist.songs.find((song) => song.id === id))
+    .filter((song): song is NonNullable<typeof song> => Boolean(song));
 
   return (
     <div className="screen screen-fade">
@@ -84,9 +90,19 @@ export function FriendResultScreen() {
       </div>
 
       <div className="bottom-bar">
-        <button type="button" className="btn-primary" onClick={() => go('home')}>
-          我也要创建挑战
-        </button>
+        <div className="flex gap-3">
+          <SharePosterModal
+            kind="result"
+            artist={artist}
+            songs={resultSongs}
+            qrValue={homeLinkForShare()}
+            downloadName={`tongdan-${artist.id}-result.png`}
+            result={result}
+          />
+          <button type="button" className="btn-primary" onClick={() => go('home')}>
+            我也要创建挑战
+          </button>
+        </div>
       </div>
     </div>
   );

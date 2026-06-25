@@ -15,6 +15,11 @@ export function shareLinkForRoom(room: Pick<Room, 'id' | 'link' | 'shareToken'>)
   return `${window.location.origin}${window.location.pathname}?challenge=${encodeURIComponent(token)}`;
 }
 
+export function homeLinkForShare(): string {
+  if (typeof window === 'undefined') return '';
+  return `${window.location.origin}${window.location.pathname}`;
+}
+
 export async function copyText(text: string): Promise<boolean> {
   if (navigator.clipboard?.writeText) {
     try {

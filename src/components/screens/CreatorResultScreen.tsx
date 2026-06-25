@@ -6,6 +6,7 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
+import { SharePosterModal } from '@/components/SharePosterModal';
 import { copyText, shareLinkForRoom } from '@/lib/share';
 
 function rankColor(index: number): string {
@@ -87,7 +88,7 @@ export function CreatorResultScreen() {
               {shareLink}
             </p>
           </div>
-          <div className="mt-3">
+          <div className="mt-3 flex gap-3">
             <button
               type="button"
               className="btn-primary"
@@ -99,6 +100,13 @@ export function CreatorResultScreen() {
             >
               复制链接
             </button>
+            <SharePosterModal
+              kind="challenge"
+              artist={artist}
+              songs={creatorSongs}
+              qrValue={shareLink}
+              downloadName={`tongdan-${artist.id}-challenge.png`}
+            />
           </div>
         </div>
 
