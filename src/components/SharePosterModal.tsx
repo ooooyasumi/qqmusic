@@ -17,7 +17,6 @@ const POSTER_HEIGHT_BY_KIND: Record<PosterKind, number> = {
   result: 1600,
 };
 const POSTER_EXPORT_QUALITY = 0.72;
-const POSTER_FONT_SETTLE_MS = 2000;
 
 interface SharePosterModalProps {
   kind: PosterKind;
@@ -68,20 +67,10 @@ function waitForRender(): Promise<void> {
   });
 }
 
-function wait(ms: number): Promise<void> {
-  return new Promise((resolve) => {
-    window.setTimeout(() => resolve(), ms);
-  });
-}
-
 async function waitForFonts(): Promise<void> {
-  if (!document.fonts) {
-    await wait(POSTER_FONT_SETTLE_MS);
-    return;
-  }
+  if (!document.fonts) return;
   await Promise.all(POSTER_REQUIRED_FONT_LOADS.map(({ font, text }) => document.fonts.load(font, text)));
   await document.fonts.ready;
-  await wait(POSTER_FONT_SETTLE_MS);
   await waitForRender();
 }
 
