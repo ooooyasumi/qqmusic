@@ -998,6 +998,46 @@ body::before {
 .friend-result-duel {
   margin-top: 18px;
 }
+.friend-result-duel-board {
+  padding: 12px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.friend-result-duel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.friend-result-duel-song {
+  display: grid;
+  grid-template-columns: 14px 30px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+.friend-result-duel-rank {
+  width: 14px;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+}
+.friend-result-duel-cover {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+.friend-result-duel-song-name {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink-mute);
+  font-size: 12px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* === 卡片玻璃 === */
 .glass-card {

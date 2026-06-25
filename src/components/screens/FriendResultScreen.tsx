@@ -125,17 +125,19 @@ function DuelBoard({ title, order, artistId }: { title: string; order: string[];
   const artist = findArtist(artistId);
   if (!artist) return null;
   return (
-    <div className="p-3" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 16 }}>
+    <div className="friend-result-duel-board">
       <p className="kicker mb-3" style={{ letterSpacing: '0.18em' }}>{title}</p>
-      <div className="flex flex-col gap-2">
+      <div className="friend-result-duel-list">
         {order.map((id, index) => {
           const song = findCatalogSong(artist.id, id) ?? artist.songs.find((item) => item.id === id);
           if (!song) return null;
           return (
-            <div key={id} className="flex items-center gap-2 min-w-0">
-              <span className="ink-mono" style={{ fontSize: 10, color: 'var(--ink-mute)', width: 14 }}>{index + 1}</span>
-              <SongCover song={song} size={30} />
-              <span className="ink-mute text-xs truncate">{song.name}</span>
+            <div key={id} className="friend-result-duel-song">
+              <span className="friend-result-duel-rank">{index + 1}</span>
+              <span className="friend-result-duel-cover">
+                <SongCover song={song} size={30} />
+              </span>
+              <span className="friend-result-duel-song-name">{song.name}</span>
             </div>
           );
         })}
