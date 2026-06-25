@@ -104,7 +104,7 @@ export function FriendResultScreen() {
             result={result}
           />
           <button type="button" className="btn-primary" onClick={() => go('home')}>
-            我也要创建挑战
+            创建挑战
           </button>
         </div>
       </div>
