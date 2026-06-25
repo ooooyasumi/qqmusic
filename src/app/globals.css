@@ -1815,75 +1815,79 @@ body::before {
   -webkit-line-clamp: 3;
 }
 .share-poster-duel {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   margin-top: 30px;
 }
-.share-poster-duel-row {
-  display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  gap: 16px;
-  align-items: stretch;
+.share-poster-duel-board {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(244, 236, 216, 0.15);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.026);
 }
 .share-poster-duel-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(244, 236, 216, 0.16);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--poster-accent) 14%, rgba(255, 255, 255, 0.026));
+  margin-bottom: 16px;
   color: var(--poster-accent);
   font-family: var(--font-mono);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.35;
-  text-align: center;
   text-transform: uppercase;
 }
-.share-poster-duel-songs {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.share-poster-duel-list {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .share-poster-duel-song {
+  display: grid;
+  grid-template-columns: 26px 48px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
   min-width: 0;
-  min-height: 112px;
-  padding: 14px 12px;
-  border: 1px solid rgba(244, 236, 216, 0.15);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
 }
-.share-poster-duel-song span {
+.share-poster-duel-rank {
   display: block;
   color: var(--poster-accent);
   font-family: var(--font-mono);
   font-size: 19px;
   font-weight: 700;
+  line-height: 1;
 }
-.share-poster-duel-song b,
-.share-poster-duel-song small {
+.share-poster-duel-cover {
   display: block;
+  width: 48px;
+  height: 48px;
+}
+.share-poster-duel-cover .song-cover {
+  border-radius: 10px;
+}
+.share-poster-duel-copy {
+  display: block;
+  min-width: 0;
+}
+.share-poster-duel-copy b,
+.share-poster-duel-copy small {
+  display: block;
+  min-width: 0;
   overflow: hidden;
-}
-.share-poster-duel-song b {
-  display: -webkit-box;
-  margin-top: 10px;
-  color: var(--ink-primary);
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.22;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.share-poster-duel-song small {
-  margin-top: 7px;
-  color: rgba(244, 236, 216, 0.5);
-  font-size: 13px;
-  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.share-poster-duel-copy b {
+  color: var(--ink-primary);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.share-poster-duel-copy small {
+  margin-top: 6px;
+  color: rgba(244, 236, 216, 0.5);
+  font-size: 15px;
+  line-height: 1.2;
 }
 .share-poster-stats {
   display: grid;

@@ -8,6 +8,7 @@ import { toPng } from 'html-to-image';
 import { ArtistName } from '@/components/ArtistName';
 import { ArtistPageHero } from '@/components/ArtistPageHero';
 import { QQMusicLogo } from '@/components/QQMusicLogo';
+import { SongCover } from '@/components/SongSort';
 import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
 type PosterKind = 'challenge' | 'result';
@@ -208,7 +209,7 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
         <p className="share-poster-kicker">
           <ArtistName name={artist.name} /> / Top6
         </p>
-        <h2>{posterTitle(kind, artist)}</h2>
+        {!isResult && <h2>{posterTitle(kind, artist)}</h2>}
         <p>{isResult ? result?.shareSpark ?? result?.title : '选出你的 6 首本命歌，看看我们是不是同一副耳机里的同担。'}</p>
       </section>
 
@@ -265,14 +266,19 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
 
 function PosterDuelRow({ title, songs }: { title: string; songs: Song[] }) {
   return (
-    <div className="share-poster-duel-row">
+    <div className="share-poster-duel-board">
       <div className="share-poster-duel-title">{title}</div>
-      <div className="share-poster-duel-songs">
+      <div className="share-poster-duel-list">
         {songs.map((song, index) => (
           <div key={`${title}-${song.id}`} className="share-poster-duel-song">
-            <span>{index + 1}</span>
-            <b>{song.name}</b>
-            <small>{song.album}</small>
+            <span className="share-poster-duel-rank">{index + 1}</span>
+            <span className="share-poster-duel-cover">
+              <SongCover song={song} size={48} />
+            </span>
+            <span className="share-poster-duel-copy">
+              <b>{song.name}</b>
+              <small>{song.album}</small>
+            </span>
           </div>
         ))}
       </div>
