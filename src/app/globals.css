@@ -344,6 +344,22 @@ body::before {
   color: var(--ink-primary);
 }
 
+.top-menu-btn {
+  border: 1px solid rgba(244, 236, 216, 0.22);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(244, 236, 216, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(13, 10, 31, 0.34);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.top-menu-btn:hover {
+  border-color: rgba(212, 175, 122, 0.68);
+  background:
+    linear-gradient(180deg, rgba(212, 175, 122, 0.14), rgba(255, 255, 255, 0.025)),
+    rgba(13, 10, 31, 0.46);
+}
+
 /* === 首页 2x2 嘉宾网格（3D 错落感） === */
 .home-grid {
   display: grid !important;

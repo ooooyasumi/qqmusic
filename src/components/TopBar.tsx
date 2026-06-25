@@ -40,7 +40,7 @@ export function TopBar({
       {showMenu ? (
         <button
           type="button"
-          className="icon-btn"
+          className="icon-btn top-menu-btn"
           onClick={() => go('rooms')}
           aria-label="我的房间"
         >
