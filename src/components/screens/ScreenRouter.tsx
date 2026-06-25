@@ -10,6 +10,7 @@ import { CreatorResultScreen } from './CreatorResultScreen';
 import { FriendResultScreen } from './FriendResultScreen';
 import { ShareResultScreen } from './ShareResultScreen';
 import { RoomsScreen } from './RoomsScreen';
+import { RoomDeletedScreen } from './RoomDeletedScreen';
 import { RoomMissingScreen } from './RoomMissingScreen';
 import { ChallengeLoadingScreen } from './ChallengeLoadingScreen';
 import { Toast } from '@/components/Toast';
@@ -41,6 +42,8 @@ function ScreenContent() {
       return <ShareResultScreen />;
     case 'rooms':
       return <RoomsScreen />;
+    case 'roomDeleted':
+      return <RoomDeletedScreen />;
     case 'roomMissing':
       return <RoomMissingScreen />;
     default:

@@ -11,7 +11,9 @@ import {
   type ReactNode,
 } from 'react';
 import {
+  ApiError,
   createBackendRoom,
+  deleteBackendRoom,
   fetchMyRoomCollections,
   fetchRoomByToken,
   submitBackendAttempt,
@@ -65,6 +67,7 @@ interface AppContextValue extends AppState {
   createRoom: () => Promise<Room | null>;
   finishFriend: () => Promise<void>;
   openRoom: (room: Room) => void;
+  deleteRoom: (room: Room) => Promise<void>;
   notify: (msg: string) => void;
 }
 
@@ -150,6 +153,7 @@ function isScreen(value: unknown): value is Screen {
     value === 'friendResult' ||
     value === 'shareResult' ||
     value === 'rooms' ||
+    value === 'roomDeleted' ||
     value === 'roomMissing'
   );
 }
@@ -229,6 +233,10 @@ function isCompleteAttemptForRoom(room: Room, attempt: Attempt | null | undefine
       attempt.friendOrder.length === REQUIRED_COUNT &&
       attempt.friendSongIds.length === REQUIRED_COUNT,
   );
+}
+
+function sameStringList(a: string[], b: string[]): boolean {
+  return a.length === b.length && a.every((item, index) => item === b[index]);
 }
 
 function applyRoomState(state: AppState, room: Room, mode: 'owner' | 'friend' = 'owner'): AppState {
@@ -312,7 +320,10 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
   const openChallenge = useCallback(
     async (token: string, isCancelled: () => boolean = () => false) => {
       const syncedRooms = await syncLegacyRooms();
-      const challengeRoom = await fetchRoomByToken(token).catch(() => null);
+      const challengeRoom = await fetchRoomByToken(token).catch((error: unknown) => {
+        if (error instanceof ApiError && error.status === 410) return 'deleted' as const;
+        return null;
+      });
       const collections = await fetchMyRoomCollections().catch(() => ({
         owned: syncedRooms,
         participated: [],
@@ -325,6 +336,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
           rooms: mergeRooms(collections.owned, syncedRooms),
           participatedRooms: collections.participated,
         };
+        if (challengeRoom === 'deleted') return { ...next, screen: 'roomDeleted', history: [] };
         if (!challengeRoom) return { ...next, screen: 'roomMissing', history: [] };
         if (isCompleteAttemptForRoom(challengeRoom, challengeRoom.myAttempt)) {
           return {
@@ -594,6 +606,21 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
       setState((prev) => ({ ...prev, toast: '请先完成 6 首歌排序。' }));
       return null;
     }
+    if (
+      current.room?.relation === 'owned' &&
+      current.room.artistId === current.artistId &&
+      sameStringList(current.room.songIds, current.selectedSongIds) &&
+      sameStringList(current.room.creatorOrder, current.creatorOrder)
+    ) {
+      browserHistoryActionRef.current = 'push';
+      setState((prev) => ({
+        ...prev,
+        screen: 'creatorResult',
+        history: [...prev.history, prev.screen],
+        toast: '挑战已生成',
+      }));
+      return current.room;
+    }
     try {
       const room = await createBackendRoom({
         artistId: current.artistId,
@@ -666,6 +693,21 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     });
   }, []);
 
+  const deleteRoom = useCallback(async (room: Room): Promise<void> => {
+    const token = room.shareToken ?? room.id;
+    try {
+      await deleteBackendRoom(token);
+      setState((prev) => ({
+        ...prev,
+        rooms: prev.rooms.filter((item) => item.id !== room.id),
+        room: prev.room?.id === room.id ? null : prev.room,
+        toast: '挑战已删除',
+      }));
+    } catch {
+      setState((prev) => ({ ...prev, toast: '删除失败，请稍后再试。' }));
+    }
+  }, []);
+
   const notify = useCallback((msg: string) => {
     setState((prev) => ({ ...prev, toast: msg }));
   }, []);
@@ -729,6 +771,7 @@ export function AppProvider({ children, initialChallengeToken }: { children: Rea
     createRoom,
     finishFriend,
     openRoom,
+    deleteRoom,
     notify,
   };
 

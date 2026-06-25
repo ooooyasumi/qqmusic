@@ -9,7 +9,7 @@ import { copyText, shareLinkForRoom } from '@/lib/share';
 const REQUIRED_COUNT = 6;
 
 export function RoomsScreen() {
-  const { rooms, participatedRooms, openRoom, go, notify } = useApp();
+  const { rooms, participatedRooms, openRoom, deleteRoom, go, notify } = useApp();
   const createdList = rooms.slice(0, 20);
   const participatedList = participatedRooms.slice(0, 20);
   const hasRooms = createdList.length > 0 || participatedList.length > 0;
@@ -71,6 +71,8 @@ export function RoomsScreen() {
               emptyText="还没有创建过挑战"
               rooms={createdList}
               openRoom={openRoom}
+              deleteRoom={deleteRoom}
+              canDelete
               notify={notify}
             />
             <RoomSection
@@ -78,6 +80,7 @@ export function RoomsScreen() {
               emptyText="还没有参与过好友挑战"
               rooms={participatedList}
               openRoom={openRoom}
+              deleteRoom={deleteRoom}
               notify={notify}
             />
           </div>
@@ -103,12 +106,16 @@ function RoomSection({
   emptyText,
   rooms,
   openRoom,
+  deleteRoom,
+  canDelete = false,
   notify,
 }: {
   title: string;
   emptyText: string;
   rooms: ReturnType<typeof useApp>['rooms'];
   openRoom: ReturnType<typeof useApp>['openRoom'];
+  deleteRoom: ReturnType<typeof useApp>['deleteRoom'];
+  canDelete?: boolean;
   notify: ReturnType<typeof useApp>['notify'];
 }) {
   return (
@@ -121,7 +128,14 @@ function RoomSection({
       ) : (
         <div className="flex flex-col gap-4">
           {rooms.map((room) => (
-            <RoomCard key={room.id} room={room} openRoom={openRoom} notify={notify} />
+            <RoomCard
+              key={room.id}
+              room={room}
+              openRoom={openRoom}
+              deleteRoom={deleteRoom}
+              canDelete={canDelete}
+              notify={notify}
+            />
           ))}
         </div>
       )}
@@ -132,10 +146,14 @@ function RoomSection({
 function RoomCard({
   room,
   openRoom,
+  deleteRoom,
+  canDelete,
   notify,
 }: {
   room: ReturnType<typeof useApp>['rooms'][number];
   openRoom: ReturnType<typeof useApp>['openRoom'];
+  deleteRoom: ReturnType<typeof useApp>['deleteRoom'];
+  canDelete: boolean;
   notify: ReturnType<typeof useApp>['notify'];
 }) {
   const artist = findArtist(room.artistId);
@@ -265,6 +283,21 @@ function RoomCard({
           {enterLabel}
         </button>
       </div>
+      {canDelete && (
+        <button
+          type="button"
+          className="btn-secondary mt-2"
+          style={{ padding: '10px 18px', fontSize: 13 }}
+          onClick={() => {
+            const confirmed =
+              typeof window === 'undefined' ||
+              window.confirm('删除后，别人再次打开这个挑战会看到“挑战已被删除”。确定删除吗？');
+            if (confirmed) void deleteRoom(room);
+          }}
+        >
+          删除挑战
+        </button>
+      )}
     </div>
   );
 }

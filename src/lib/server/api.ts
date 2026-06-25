@@ -45,6 +45,13 @@ export interface RoomCollections {
   participated: StoredRoom[];
 }
 
+export class RoomDeletedError extends Error {
+  constructor() {
+    super('Room deleted');
+    this.name = 'RoomDeletedError';
+  }
+}
+
 interface RequestClientInfo {
   hostname: string;
   userAgent: string | null;
@@ -282,8 +289,9 @@ export async function createRoomFromPayload(payload: unknown): Promise<StoredRoo
       title,
       share_token: shareToken,
       song_ids_json: JSON.stringify(songIds),
-      creator_order_json: JSON.stringify(creatorOrder),
-      created_at: createdAt,
+    creator_order_json: JSON.stringify(creatorOrder),
+    created_at: createdAt,
+    deleted_at: null,
     },
     origin,
     [],
@@ -296,6 +304,7 @@ export async function findRoomByToken(token: string): Promise<StoredRoom | null>
     | RoomRow
     | undefined;
   if (!row) return null;
+  if (row.deleted_at) throw new RoomDeletedError();
   const visitorId = await getOrCreateVisitorId();
   const myAttemptRow = bestAttemptRowForVisitor(row.id, visitorId);
   const myAttempt = myAttemptRow ? attemptFromRow(myAttemptRow) : null;
@@ -309,7 +318,7 @@ export async function findRoomByToken(token: string): Promise<StoredRoom | null>
 export async function listMyRooms(): Promise<StoredRoom[]> {
   const visitorId = await getOrCreateVisitorId();
   const rows = getDb()
-    .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? ORDER BY created_at DESC LIMIT 50')
+    .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? AND deleted_at IS NULL ORDER BY created_at DESC LIMIT 50')
     .all(visitorId) as RoomRow[];
   const origin = await getOrigin();
   return roomsFromRows(rows, origin, visitorId, 'owned');
@@ -336,14 +345,14 @@ export async function listMyRoomCollections(): Promise<RoomCollections> {
   const visitorId = await getOrCreateVisitorId();
   const db = getDb();
   const ownedRows = db
-    .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? ORDER BY created_at DESC LIMIT 50')
+    .prepare('SELECT * FROM rooms WHERE owner_visitor_id = ? AND deleted_at IS NULL ORDER BY created_at DESC LIMIT 50')
     .all(visitorId) as RoomRow[];
   const participatedRows = db
     .prepare(
       `SELECT r.*
        FROM rooms r
        JOIN attempts a ON a.room_id = r.id
-       WHERE a.visitor_id = ? AND r.owner_visitor_id != ?
+       WHERE a.visitor_id = ? AND r.owner_visitor_id != ? AND r.deleted_at IS NULL
        GROUP BY r.id
        ORDER BY MAX(a.created_at) DESC
        LIMIT 50`,
@@ -413,6 +422,19 @@ export async function submitAttempt(token: string, payload: unknown): Promise<Su
 
   const updatedRoom = (await findRoomByToken(token)) ?? room;
   return { room: updatedRoom, attempt, result };
+}
+
+export async function deleteRoomByToken(token: string): Promise<void> {
+  const visitorId = await getOrCreateVisitorId();
+  const row = getDb()
+    .prepare('SELECT * FROM rooms WHERE share_token = ? OR id = ?')
+    .get(token, token) as RoomRow | undefined;
+  if (!row) throw new Error('Room not found');
+  if (row.owner_visitor_id !== visitorId) throw new Error('Forbidden');
+  if (row.deleted_at) return;
+  getDb()
+    .prepare('UPDATE rooms SET deleted_at = ? WHERE id = ?')
+    .run(Date.now(), row.id);
 }
 
 export function jsonError(message: string, status = 400): NextResponse<{ error: string }> {

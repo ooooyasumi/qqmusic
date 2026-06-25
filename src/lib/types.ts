@@ -65,6 +65,7 @@ export type Screen =
   | 'friendResult'
   | 'shareResult'
   | 'rooms'
+  | 'roomDeleted'
   | 'roomMissing';
 
 export interface Room {

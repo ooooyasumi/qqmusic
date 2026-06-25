@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { jsonError, submitAttempt } from '@/lib/server/api';
+import { jsonError, RoomDeletedError, submitAttempt } from '@/lib/server/api';
 
 export const runtime = 'nodejs';
 
@@ -9,6 +9,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const submitted = await submitAttempt(token, await request.json());
     return NextResponse.json(submitted, { status: 201 });
   } catch (error) {
+    if (error instanceof RoomDeletedError) return jsonError('Room deleted', 410);
     const message = error instanceof Error ? error.message : 'Unable to submit attempt';
     return jsonError(message, message === 'Room not found' ? 404 : 400);
   }

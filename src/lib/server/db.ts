@@ -16,6 +16,7 @@ export interface RoomRow {
   song_ids_json: string;
   creator_order_json: string;
   created_at: number;
+  deleted_at: number | null;
 }
 
 export interface AttemptRow {
@@ -39,7 +40,7 @@ interface TableColumnRow {
 }
 
 let db: Database.Database | null = null;
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 
 function databasePath(): string {
   const configured = process.env.QQMUSIC_DB_PATH;
@@ -86,6 +87,7 @@ function migrate(database: Database.Database): void {
   addColumnIfMissing(database, 'attempts', 'common_top_count', 'common_top_count INTEGER NOT NULL DEFAULT 0');
   addColumnIfMissing(database, 'attempts', 'exact_count', 'exact_count INTEGER NOT NULL DEFAULT 0');
   addColumnIfMissing(database, 'attempts', 'gap_sum', 'gap_sum INTEGER NOT NULL DEFAULT 0');
+  addColumnIfMissing(database, 'rooms', 'deleted_at', 'deleted_at INTEGER');
 
   database
     .prepare(
@@ -126,6 +128,7 @@ export function getDb(): Database.Database {
       song_ids_json TEXT NOT NULL,
       creator_order_json TEXT NOT NULL,
       created_at INTEGER NOT NULL,
+      deleted_at INTEGER,
       FOREIGN KEY(owner_visitor_id) REFERENCES visitors(id)
     );
 

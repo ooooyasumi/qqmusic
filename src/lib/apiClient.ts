@@ -11,11 +11,21 @@ export interface RoomCollections {
   participated: Room[];
 }
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
+
 async function readJson<T>(response: Response): Promise<T> {
   const data = (await response.json()) as T | { error?: string };
   if (!response.ok) {
     const message = typeof data === 'object' && data && 'error' in data && data.error ? data.error : '请求失败';
-    throw new Error(message);
+    throw new ApiError(message, response.status);
   }
   return data as T;
 }
@@ -72,6 +82,14 @@ export async function syncLegacyRoom(room: Room): Promise<Room> {
 export async function fetchRoomByToken(token: string): Promise<Room> {
   const data = await readJson<{ room: Room }>(await fetch(`/api/rooms/${encodeURIComponent(token)}`, { cache: 'no-store' }));
   return data.room;
+}
+
+export async function deleteBackendRoom(token: string): Promise<void> {
+  await readJson<{ ok: true }>(
+    await fetch(`/api/rooms/${encodeURIComponent(token)}`, {
+      method: 'DELETE',
+    }),
+  );
 }
 
 export async function submitBackendAttempt(args: {
