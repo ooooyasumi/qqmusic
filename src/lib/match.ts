@@ -298,33 +298,24 @@ export function calculateSongMatch({
     const friend = friendRank.get(song.id) ?? missingRank;
     return { song, creatorRank: creator, friendRank: friend, gap: Math.abs(creator - friend) };
   });
-  const exactIds = sharedRows
-    .filter(
-      (row) =>
-        row.creatorRank <= creatorOrder.length &&
-        row.friendRank <= friendOrder.length &&
-        row.creatorRank === row.friendRank,
-    )
-    .map((row) => row.song.id);
-  const commonSongCount = sharedRows.filter(
+  const commonRows = sharedRows.filter(
     (row) => row.creatorRank <= creatorOrder.length && row.friendRank <= friendOrder.length,
-  ).length;
-  const commonTopCount = songs.filter((song) => {
-    const creator = creatorRank.get(song.id) ?? 99;
-    const friend = friendRank.get(song.id) ?? 99;
-    return creator <= 3 && friend <= 3;
-  }).length;
-  const gapPenalty = sharedRows.reduce((sum, row) => sum + row.gap, 0);
-  const baseByCommonCount = [56, 68, 76, 82, 90, 95, 96][Math.min(commonSongCount, 6)] ?? 56;
-  const rawScore =
-    baseByCommonCount +
-    Math.min(6, commonTopCount * 2) +
-    Math.min(8, exactIds.length * 1.4) -
-    Math.min(10, gapPenalty * 0.35);
+  );
+  const exactIds = commonRows.filter((row) => row.creatorRank === row.friendRank).map((row) => row.song.id);
+  const commonSongCount = commonRows.length;
+  const commonTopCount = commonRows.filter((row) => row.creatorRank <= 3 && row.friendRank <= 3).length;
+  const gapPenalty = commonRows.reduce((sum, row) => sum + row.gap, 0);
+  const scoreFloor = [56, 66, 72, 78, 90, 95, 96][Math.min(commonSongCount, 6)] ?? 56;
+  const scoreCeiling = [59, 69, 80, 88, 94, 99, 99][Math.min(commonSongCount, 6)] ?? 59;
+  const scoreSpan = scoreCeiling - scoreFloor;
+  const exactRatio = commonSongCount === 0 ? 0 : exactIds.length / commonSongCount;
+  const topRatio = commonSongCount === 0 ? 0 : commonTopCount / Math.min(3, commonSongCount);
+  const rankSimilarity = commonSongCount === 0 ? 0 : 1 - Math.min(1, gapPenalty / (commonSongCount * 5));
+  const rawScore = scoreFloor + scoreSpan * (rankSimilarity * 0.55 + exactRatio * 0.3 + topRatio * 0.15);
   const score =
     commonSongCount === 6 && exactIds.length === 6
       ? 100
-      : Math.max(baseByCommonCount, Math.min(99, Math.round(rawScore)));
+      : Math.max(scoreFloor, Math.min(scoreCeiling, Math.round(rawScore)));
   const config = copyConfig(artistId, score);
   const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
   const biggestGap = biggest && biggest.gap > 0 ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '完全同频';
