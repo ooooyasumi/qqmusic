@@ -992,10 +992,10 @@ body::before {
 }
 
 .friend-result-copy {
-  margin: 8px auto 0;
-  max-width: 330px;
-  font-size: 13px;
-  line-height: 1.55;
+  margin: 10px auto 0;
+  max-width: 350px;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .friend-result-grid {
