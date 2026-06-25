@@ -2,9 +2,9 @@
 
 import { Download, Image as ImageIcon, X } from 'lucide-react';
 import QRCode from 'qrcode';
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
-import { toPng } from 'html-to-image';
+import { toCanvas } from 'html-to-image';
 import { ArtistName } from '@/components/ArtistName';
 import { ArtistPageHero } from '@/components/ArtistPageHero';
 import { QQMusicLogo } from '@/components/QQMusicLogo';
@@ -13,10 +13,12 @@ import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
 type PosterKind = 'challenge' | 'result';
 const POSTER_WIDTH = 1080;
+const POSTER_EXPORT_WIDTH = 900;
 const POSTER_HEIGHT_BY_KIND: Record<PosterKind, number> = {
   challenge: 1600,
   result: 1600,
 };
+const POSTER_EXPORT_QUALITY = 0.72;
 
 interface SharePosterModalProps {
   kind: PosterKind;
@@ -47,6 +49,16 @@ function waitForRender(): Promise<void> {
   });
 }
 
+async function waitForFonts(maxWaitMs = 600): Promise<void> {
+  if (!document.fonts?.ready) return;
+  await Promise.race([
+    document.fonts.ready,
+    new Promise<void>((resolve) => {
+      window.setTimeout(() => resolve(), maxWaitMs);
+    }),
+  ]);
+}
+
 function downloadDataUrl(dataUrl: string, filename: string): void {
   const link = document.createElement('a');
   link.href = dataUrl;
@@ -54,6 +66,28 @@ function downloadDataUrl(dataUrl: string, filename: string): void {
   document.body.appendChild(link);
   link.click();
   link.remove();
+}
+
+function filenameWithExtension(filename: string, extension: string): string {
+  return filename.replace(/\.[a-z0-9]+$/i, '') + extension;
+}
+
+function canvasToBlob(canvas: HTMLCanvasElement, type: string, quality: number): Promise<Blob | null> {
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => resolve(blob), type, quality);
+  });
+}
+
+async function canvasToCompressedPoster(canvas: HTMLCanvasElement): Promise<{ blob: Blob; extension: string }> {
+  const webp = await canvasToBlob(canvas, 'image/webp', POSTER_EXPORT_QUALITY);
+  if (webp && webp.type === 'image/webp') return { blob: webp, extension: '.webp' };
+
+  const jpeg = await canvasToBlob(canvas, 'image/jpeg', 0.82);
+  if (jpeg) return { blob: jpeg, extension: '.jpg' };
+
+  const png = await canvasToBlob(canvas, 'image/png', 1);
+  if (!png) throw new Error('Poster compression failed.');
+  return { blob: png, extension: '.png' };
 }
 
 export function SharePosterModal({
@@ -67,40 +101,67 @@ export function SharePosterModal({
   result,
 }: SharePosterModalProps) {
   const posterRef = useRef<HTMLDivElement | null>(null);
+  const posterObjectUrlRef = useRef<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<PosterStatus>('idle');
   const [qrDataUrl, setQrDataUrl] = useState('');
   const [posterUrl, setPosterUrl] = useState('');
+  const [posterExtension, setPosterExtension] = useState('.webp');
+
+  useEffect(() => {
+    return () => {
+      if (posterObjectUrlRef.current) URL.revokeObjectURL(posterObjectUrlRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    setQrDataUrl('');
+  }, [qrValue]);
 
   const generatePoster = async (): Promise<void> => {
     setIsOpen(true);
     setStatus('generating');
+    if (posterObjectUrlRef.current) {
+      URL.revokeObjectURL(posterObjectUrlRef.current);
+      posterObjectUrlRef.current = '';
+    }
     setPosterUrl('');
 
     try {
-      const nextQrDataUrl = await QRCode.toDataURL(qrValue, {
-        errorCorrectionLevel: 'M',
-        margin: 1,
-        width: 220,
-        color: {
-          dark: '#251b3d',
-          light: '#f4ecd8',
-        },
-      });
-      setQrDataUrl(nextQrDataUrl);
+      if (!qrDataUrl) {
+        const nextQrDataUrl = await QRCode.toDataURL(qrValue, {
+          errorCorrectionLevel: 'M',
+          margin: 1,
+          width: 220,
+          color: {
+            dark: '#251b3d',
+            light: '#f4ecd8',
+          },
+        });
+        setQrDataUrl(nextQrDataUrl);
+      }
       await waitForRender();
-      await document.fonts?.ready;
+      await waitForFonts();
 
       const node = posterRef.current;
       if (!node) throw new Error('Poster node missing.');
 
-      const nextPosterUrl = await toPng(node, {
+      const posterHeight = POSTER_HEIGHT_BY_KIND[kind];
+      const exportHeight = Math.round((posterHeight / POSTER_WIDTH) * POSTER_EXPORT_WIDTH);
+      const canvas = await toCanvas(node, {
         width: POSTER_WIDTH,
-        height: POSTER_HEIGHT_BY_KIND[kind],
+        height: posterHeight,
+        canvasWidth: POSTER_EXPORT_WIDTH,
+        canvasHeight: exportHeight,
         pixelRatio: 1,
-        cacheBust: true,
+        cacheBust: false,
+        skipFonts: true,
         backgroundColor: '#0d0a1f',
       });
+      const compressed = await canvasToCompressedPoster(canvas);
+      const nextPosterUrl = URL.createObjectURL(compressed.blob);
+      posterObjectUrlRef.current = nextPosterUrl;
+      setPosterExtension(compressed.extension);
       setPosterUrl(nextPosterUrl);
       setStatus('ready');
     } catch {
@@ -144,7 +205,7 @@ export function SharePosterModal({
                 className="btn-primary"
                 disabled={!posterUrl}
                 onClick={() => {
-                  if (posterUrl) downloadDataUrl(posterUrl, downloadName);
+                  if (posterUrl) downloadDataUrl(posterUrl, filenameWithExtension(downloadName, posterExtension));
                 }}
               >
                 <Download size={16} strokeWidth={2.1} />
