@@ -4,6 +4,7 @@ import { useApp } from '@/lib/state';
 import { findArtist } from '@/lib/data';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
+import { copyText, shareLinkForRoom } from '@/lib/share';
 
 const REQUIRED_COUNT = 6;
 
@@ -147,6 +148,7 @@ function RoomCard({
       room.myAttempt.friendSongIds.length === REQUIRED_COUNT,
   );
   const enterLabel = room.relation === 'owned' ? '查看挑战' : hasCompleteAttempt ? '查看结果' : '进入房间';
+  const shareLink = shareLinkForRoom(room);
 
   return (
     <div
@@ -247,8 +249,9 @@ function RoomCard({
           className="btn-secondary"
           style={{ padding: '10px 18px', fontSize: 13 }}
           onClick={() => {
-            navigator.clipboard?.writeText(room.link).catch(() => {});
-            notify('已复制链接');
+            void copyText(shareLink).then((copied) => {
+              notify(copied ? '已复制链接' : '复制失败，请长按链接手动复制');
+            });
           }}
         >
           复制链接

@@ -6,6 +6,7 @@ import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
 import { SongCover } from '@/components/SongSort';
 import { ArtistName } from '@/components/ArtistName';
+import { copyText, shareLinkForRoom } from '@/lib/share';
 
 function rankColor(index: number): string {
   if (index === 0) return '#d4af7a';
@@ -19,6 +20,7 @@ export function CreatorResultScreen() {
   if (!room) return null;
   const artist = findArtist(room.artistId);
   if (!artist) return null;
+  const shareLink = shareLinkForRoom(room);
 
   return (
     <div className="screen screen-fade">
@@ -82,7 +84,7 @@ export function CreatorResultScreen() {
           <div className="hairline mb-4"><span>Share Link</span></div>
           <div className="p-4" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--ink-faint)', borderRadius: 16 }}>
             <p className="ink-mono" style={{ fontSize: 11, color: 'var(--ink-secondary)', wordBreak: 'break-all' }}>
-              {room.link}
+              {shareLink}
             </p>
           </div>
           <div className="mt-3">
@@ -90,8 +92,9 @@ export function CreatorResultScreen() {
               type="button"
               className="btn-primary"
               onClick={() => {
-                navigator.clipboard?.writeText(room.link).catch(() => {});
-                notify('已复制链接');
+                void copyText(shareLink).then((copied) => {
+                  notify(copied ? '已复制链接' : '复制失败，请长按链接手动复制');
+                });
               }}
             >
               复制链接
