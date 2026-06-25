@@ -106,12 +106,23 @@ body {
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   background:
     radial-gradient(circle at 18% 8%, rgba(127, 176, 105, 0.1), transparent 55%),
     radial-gradient(circle at 82% 16%, rgba(91, 141, 239, 0.12), transparent 50%),
     radial-gradient(circle at 60% 80%, rgba(232, 165, 184, 0.1), transparent 60%),
     radial-gradient(circle at 28% 90%, rgba(245, 200, 66, 0.08), transparent 50%),
     linear-gradient(180deg, #0d0a1f 0%, #1a1530 50%, #251b3d 100%);
+}
+
+.app-shell input,
+.app-shell textarea,
+.app-shell [contenteditable='true'] {
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 /* 颗粒噪点覆盖 */
@@ -1282,7 +1293,17 @@ body::before {
     transform 0.24s cubic-bezier(0.2, 0.7, 0.2, 1),
     border-color 0.2s ease,
     background 0.2s ease;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: element;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
   will-change: transform;
+}
+.song-rank-card * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .song-rank-card:active {
   cursor: grabbing;
