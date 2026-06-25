@@ -1,37 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Cormorant_Garamond, JetBrains_Mono, Noto_Serif_SC } from 'next/font/google';
 import { Inspector } from 'react-dev-inspector';
 import './globals.css';
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-  display: 'swap',
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-});
-
-const notoSerif = Noto_Serif_SC({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-noto-serif',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -67,11 +36,7 @@ export default function RootLayout({
   const isDev = process.env.COZE_PROJECT_ENV === 'DEV';
 
   return (
-    <html
-      lang="zh-CN"
-      suppressHydrationWarning
-      className={`dark ${playfair.variable} ${cormorant.variable} ${jetbrains.variable} ${notoSerif.variable}`}
-    >
+    <html lang="zh-CN" suppressHydrationWarning className="dark">
       <body suppressHydrationWarning>
         {isDev && <Inspector />}
         {children}

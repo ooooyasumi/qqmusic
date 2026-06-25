@@ -1,3 +1,4 @@
+@import url('https://web-resource-1372876299.cos.ap-guangzhou.myqcloud.com/qqmusic/fonts/google/fonts.css');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -30,7 +31,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* 衬线字体优先（next/font 注入） */
+  /* 衬线字体优先（COS @font-face 注入） */
   --font-sans: var(--font-noto-serif, 'Noto Serif SC'), 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', ui-serif, Georgia, 'Times New Roman', Times, serif;
   --font-serif: var(--font-noto-serif, 'Noto Serif SC'), 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', ui-serif, Georgia, 'Times New Roman', Times, serif;
   --font-display: var(--font-playfair, 'Playfair Display'), var(--font-cormorant, 'Cormorant Garamond'), var(--font-noto-serif, 'Noto Serif SC'), 'Source Han Serif SC', 'Times New Roman', serif;
