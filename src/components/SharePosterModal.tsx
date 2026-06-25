@@ -14,7 +14,7 @@ import type { Artist, Song, SongMatchResult } from '@/lib/types';
 type PosterKind = 'challenge' | 'result';
 const POSTER_WIDTH = 1080;
 const POSTER_HEIGHT_BY_KIND: Record<PosterKind, number> = {
-  challenge: 1440,
+  challenge: 1600,
   result: 1600,
 };
 
