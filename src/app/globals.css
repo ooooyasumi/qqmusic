@@ -1652,7 +1652,7 @@ body::before {
 .share-poster-brand,
 .share-poster-hero,
 .share-poster-score,
-.share-poster-artist-card,
+.share-poster-artist-page,
 .share-poster-duel,
 .share-poster-stats,
 .share-poster-footer {
@@ -1748,60 +1748,40 @@ body::before {
   font-size: 28px;
   line-height: 1.45;
 }
-.share-poster-artist-card {
-  display: grid;
-  grid-template-columns: 390px minmax(0, 1fr);
-  gap: 34px;
-  align-items: stretch;
+.share-poster-artist-page {
   margin-top: 64px;
-  padding: 30px;
-  border: 1px solid rgba(244, 236, 216, 0.16);
-  border-radius: 28px;
-  background:
-    linear-gradient(120deg, color-mix(in srgb, var(--poster-accent) 18%, transparent), rgba(255, 255, 255, 0.03));
 }
-.share-poster-artist-photo {
-  position: relative;
-  min-height: 430px;
-  overflow: hidden;
-  border-radius: 22px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--poster-accent) 28%, transparent), rgba(212, 175, 122, 0.16));
+.share-poster-artist-page .artist-page-hero {
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 44px;
+  min-height: 460px;
+  padding: 44px;
+  border-color: rgba(244, 236, 216, 0.16);
+  border-radius: 30px;
 }
-.share-poster-artist-photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.share-poster-artist-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-}
-.share-poster-artist-copy span {
-  color: var(--poster-accent);
-  font-family: var(--font-mono);
-  font-size: 20px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.share-poster-artist-copy b {
-  display: block;
+.share-poster-artist-page .artist-page-title {
   margin-top: 24px;
-  color: var(--ink-primary);
-  font-family: var(--font-display);
-  font-size: 68px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.04;
+  font-size: 92px;
 }
-.share-poster-artist-copy p {
-  margin-top: 28px;
-  color: rgba(244, 236, 216, 0.66);
+.share-poster-artist-page .artist-page-title[data-long-name='true'] {
+  font-size: 68px;
+  line-height: 1.02;
+}
+.share-poster-artist-page .artist-page-intro {
+  margin-top: 22px;
   font-size: 28px;
-  line-height: 1.48;
+  line-height: 1.5;
+}
+.share-poster-artist-page .artist-page-photo {
+  width: 300px;
+  border-color: rgba(244, 236, 216, 0.28);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.48);
+}
+.share-poster-artist-page .artist-page-photo span {
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 12px 4px;
+  font-size: 18px;
 }
 .share-poster-score {
   display: grid;

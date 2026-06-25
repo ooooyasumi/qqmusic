@@ -6,6 +6,7 @@ import { forwardRef, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { toPng } from 'html-to-image';
 import { ArtistName } from '@/components/ArtistName';
+import { ArtistPageHero } from '@/components/ArtistPageHero';
 import { QQMusicLogo } from '@/components/QQMusicLogo';
 import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
@@ -227,15 +228,8 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
           </section>
         </>
       ) : (
-        <section className="share-poster-artist-card">
-          <div className="share-poster-artist-photo">
-            {artist.cover ? <img src={artist.cover} alt="" crossOrigin="anonymous" /> : null}
-          </div>
-          <div className="share-poster-artist-copy">
-            <span>Featured Artist</span>
-            <b><ArtistName name={artist.name} /></b>
-            <p>{artist.hook}</p>
-          </div>
+        <section className="share-poster-artist-page">
+          <ArtistPageHero artist={artist} eyebrow="Pick 6 Songs" copy="选择 6 首最喜欢的音乐" />
         </section>
       )}
 
