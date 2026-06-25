@@ -1180,6 +1180,80 @@ body::before {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
+.song-list-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+.song-list-search {
+  display: block;
+  min-width: 0;
+}
+.song-list-search input {
+  height: 46px;
+  padding: 0 14px;
+  color: var(--ink-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--ink-faint);
+  border-radius: 14px;
+  outline: none;
+}
+.song-list-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid rgba(244, 236, 216, 0.18);
+  border-radius: 14px;
+  background: rgba(244, 236, 216, 0.035);
+  color: var(--ink-primary);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+.song-list-mode-btn:hover {
+  border-color: rgba(212, 175, 122, 0.48);
+  background: rgba(212, 175, 122, 0.07);
+}
+.album-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.album-list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ink-primary);
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+.album-list-item:hover {
+  border-color: rgba(212, 175, 122, 0.54);
+  background: rgba(212, 175, 122, 0.06);
+}
+.album-list-item span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .song-grid-card {
   position: relative;
   display: flex;

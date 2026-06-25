@@ -6,10 +6,12 @@ import { QQMusicLogo } from '@/components/QQMusicLogo';
 export function TopBar({
   showBack = true,
   showMenu = true,
+  onBack,
 }: {
   title?: string;
   showBack?: boolean;
   showMenu?: boolean;
+  onBack?: () => void;
 }) {
   const { go, back, history } = useApp();
   const canBack = history.length > 0;
@@ -20,7 +22,17 @@ export function TopBar({
         <button
           type="button"
           className="icon-btn"
-          onClick={() => (canBack ? back() : go('home'))}
+          onClick={() => {
+            if (onBack) {
+              onBack();
+              return;
+            }
+            if (canBack) {
+              back();
+              return;
+            }
+            go('home');
+          }}
           aria-label="返回"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
