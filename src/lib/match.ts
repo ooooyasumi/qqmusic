@@ -311,12 +311,17 @@ export function calculateSongMatch({
   }).length;
   const gapPenalty = sharedRows.reduce((sum, row) => sum + row.gap, 0);
   const rawScore =
-    50 +
-    commonSongCount * 5 +
-    commonTopCount * 4 +
-    exactIds.length * 3 -
-    gapPenalty * 1.2;
-  const score = Math.max(35, Math.min(99, Math.round(rawScore)));
+    42 +
+    commonSongCount * 10 +
+    commonTopCount * 5 +
+    exactIds.length * 4 -
+    Math.min(12, gapPenalty * 0.45);
+  const overlapFloor = [35, 62, 68, 74, 80, 86, 90][Math.min(commonSongCount, 6)] ?? 35;
+  const roundedScore = Math.round(rawScore);
+  const score =
+    commonSongCount === 0
+      ? Math.max(35, Math.min(45, roundedScore))
+      : Math.max(overlapFloor, Math.min(99, roundedScore));
   const config = copyConfig(artistId, score);
   const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
   const biggestGap = biggest && biggest.gap > 0 ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '完全同频';
