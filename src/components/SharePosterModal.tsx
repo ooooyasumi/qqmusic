@@ -6,9 +6,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { toCanvas } from 'html-to-image';
 import { ArtistName } from '@/components/ArtistName';
-import { ArtistPageHero } from '@/components/ArtistPageHero';
 import { QQMusicLogo } from '@/components/QQMusicLogo';
-import { SongCover } from '@/components/SongSort';
 import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
 type PosterKind = 'challenge' | 'result';
@@ -41,6 +39,17 @@ function posterTitle(kind: PosterKind, artist: Artist): string {
   return `${artist.short} 同担默契结果`;
 }
 
+function posterAssetUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  try {
+    const nextUrl = new URL(url);
+    nextUrl.searchParams.set('poster', '1');
+    return nextUrl.toString();
+  } catch {
+    return url;
+  }
+}
+
 function waitForRender(): Promise<void> {
   return new Promise((resolve) => {
     window.requestAnimationFrame(() => {
@@ -49,14 +58,51 @@ function waitForRender(): Promise<void> {
   });
 }
 
-async function waitForFonts(maxWaitMs = 600): Promise<void> {
+async function waitForFonts(): Promise<void> {
   if (!document.fonts?.ready) return;
-  await Promise.race([
-    document.fonts.ready,
-    new Promise<void>((resolve) => {
-      window.setTimeout(() => resolve(), maxWaitMs);
-    }),
-  ]);
+  await document.fonts.ready;
+}
+
+function extractCssUrls(value: string): string[] {
+  const urls: string[] = [];
+  const matcher = /url\((['"]?)(.*?)\1\)/g;
+  let match = matcher.exec(value);
+  while (match) {
+    const url = match[2];
+    if (url && !url.startsWith('data:') && !url.startsWith('blob:')) urls.push(url);
+    match = matcher.exec(value);
+  }
+  return urls;
+}
+
+function waitForImageElement(image: HTMLImageElement): Promise<void> {
+  if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    image.onload = () => resolve();
+    image.onerror = () => reject(new Error('Poster image failed to load.'));
+  });
+}
+
+function waitForImageUrl(url: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve();
+    image.onerror = () => reject(new Error(`Poster background image failed to load: ${url}`));
+    image.src = url;
+  });
+}
+
+async function waitForPosterAssets(node: HTMLElement): Promise<void> {
+  await waitForFonts();
+
+  const inlineImages = Array.from(node.querySelectorAll('img'));
+  await Promise.all(inlineImages.map(waitForImageElement));
+
+  const backgroundUrls = new Set<string>();
+  [node, ...Array.from(node.querySelectorAll<HTMLElement>('*'))].forEach((element) => {
+    extractCssUrls(window.getComputedStyle(element).backgroundImage).forEach((url) => backgroundUrls.add(url));
+  });
+  await Promise.all(Array.from(backgroundUrls).map(waitForImageUrl));
 }
 
 function downloadDataUrl(dataUrl: string, filename: string): void {
@@ -141,10 +187,10 @@ export function SharePosterModal({
         setQrDataUrl(nextQrDataUrl);
       }
       await waitForRender();
-      await waitForFonts();
 
       const node = posterRef.current;
       if (!node) throw new Error('Poster node missing.');
+      await waitForPosterAssets(node);
 
       const posterHeight = POSTER_HEIGHT_BY_KIND[kind];
       const exportHeight = Math.round((posterHeight / POSTER_WIDTH) * POSTER_EXPORT_WIDTH);
@@ -301,7 +347,7 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
         </>
       ) : (
         <section className="share-poster-artist-page">
-          <ArtistPageHero artist={artist} eyebrow="Pick 6 Songs" copy="选择 6 首最喜欢的音乐" />
+          <PosterArtistPage artist={artist} eyebrow="Pick 6 Songs" copy="选择 6 首最喜欢的音乐" />
         </section>
       )}
 
@@ -335,6 +381,56 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
   );
 });
 
+function PosterArtistPage({ artist, eyebrow, copy }: { artist: Artist; eyebrow: string; copy: string }) {
+  const isLongName = artist.name.length >= 9;
+  const imageUrl = posterAssetUrl(artist.cover);
+
+  return (
+    <section
+      className="artist-page-hero"
+      style={{
+        ['--artist-accent' as string]: artist.accent,
+        ['--artist-accent-soft' as string]: `${artist.accent}36`,
+      }}
+    >
+      <div className="artist-page-copy">
+        <p className="kicker" style={{ color: artist.accent }}>
+          {eyebrow}
+        </p>
+        <h1 className="ink-display artist-page-title" data-long-name={isLongName}>
+          <ArtistName name={artist.name} />
+        </h1>
+        <p className="ink-body ink-secondary artist-page-intro">{copy}</p>
+      </div>
+      <div className="artist-page-photo" aria-hidden="true">
+        {imageUrl ? (
+          <img className="artist-page-img share-poster-asset-img" src={imageUrl} crossOrigin="anonymous" alt="" />
+        ) : null}
+        <span>{artist.short}</span>
+      </div>
+    </section>
+  );
+}
+
+function PosterImageCover({ song }: { song: Song }) {
+  const imageUrl = posterAssetUrl(song.coverUrl);
+
+  return (
+    <span
+      className="song-cover share-poster-image-cover"
+      style={{
+        width: 48,
+        height: 48,
+        ['--cover-a' as string]: song.coverA,
+        ['--cover-b' as string]: song.coverB,
+      }}
+      aria-hidden="true"
+    >
+      {imageUrl ? <img src={imageUrl} crossOrigin="anonymous" alt="" /> : song.name.slice(0, 2).toUpperCase()}
+    </span>
+  );
+}
+
 function PosterDuelRow({ title, songs }: { title: string; songs: Song[] }) {
   return (
     <div className="share-poster-duel-board">
@@ -344,7 +440,7 @@ function PosterDuelRow({ title, songs }: { title: string; songs: Song[] }) {
           <div key={`${title}-${song.id}`} className="share-poster-duel-song">
             <span className="share-poster-duel-rank">{index + 1}</span>
             <span className="share-poster-duel-cover">
-              <SongCover song={song} size={48} />
+              <PosterImageCover song={song} />
             </span>
             <span className="share-poster-duel-copy">
               <b>{song.name}</b>
