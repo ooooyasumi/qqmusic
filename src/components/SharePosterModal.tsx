@@ -33,6 +33,11 @@ interface SharePosterModalProps {
 }
 
 type PosterStatus = 'idle' | 'generating' | 'ready' | 'failed';
+const POSTER_REQUIRED_FONT_LOADS = [
+  { font: '500 106px "Noto Serif SC"', text: '同担默契局' },
+  { font: '500 92px "Noto Serif SC"', text: '周杰伦林俊杰同担默契局' },
+  { font: '500 66px "Noto Serif SC"', text: '来排你的同担默契结果' },
+];
 
 function posterTitle(kind: PosterKind, artist: Artist): string {
   if (kind === 'challenge') return `来排你的 ${artist.short} Top6`;
@@ -59,7 +64,8 @@ function waitForRender(): Promise<void> {
 }
 
 async function waitForFonts(): Promise<void> {
-  if (!document.fonts?.ready) return;
+  if (!document.fonts) return;
+  await Promise.all(POSTER_REQUIRED_FONT_LOADS.map(({ font, text }) => document.fonts.load(font, text)));
   await document.fonts.ready;
 }
 

@@ -1708,7 +1708,7 @@ body::before {
   display: inline-block;
   margin: 18px 0 0;
   color: var(--ink-primary);
-  font-family: var(--font-display);
+  font-family: var(--font-noto-serif, 'Noto Serif SC'), 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', ui-serif, serif;
   font-size: 106px;
   font-style: italic;
   font-weight: 500;
