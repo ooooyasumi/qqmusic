@@ -1604,7 +1604,7 @@ body::before {
   left: -20000px;
   top: 0;
   width: 1080px;
-  height: 1440px;
+  min-height: 1440px;
   pointer-events: none;
 }
 .share-poster-canvas {
@@ -1621,6 +1621,9 @@ body::before {
     linear-gradient(180deg, #0d0a1f 0%, #1a1530 54%, #251b3d 100%);
   font-family: var(--font-serif);
   box-sizing: border-box;
+}
+.share-poster-canvas[data-kind='result'] {
+  height: 1600px;
 }
 .share-poster-noise {
   position: absolute;
@@ -1796,6 +1799,7 @@ body::before {
   font-size: 156px;
   font-style: italic;
   line-height: 0.86;
+  transform: translateY(-18px);
 }
 .share-poster-score-copy h3 {
   margin: 0;
@@ -1948,7 +1952,7 @@ body::before {
   height: 100%;
 }
 .share-poster-canvas[data-kind='result'] .share-poster-footer {
-  bottom: 46px;
+  bottom: 72px;
   grid-template-columns: minmax(0, 1fr) 168px;
 }
 .share-poster-canvas[data-kind='result'] .share-poster-qr {

@@ -12,6 +12,11 @@ import { SongCover } from '@/components/SongSort';
 import type { Artist, Song, SongMatchResult } from '@/lib/types';
 
 type PosterKind = 'challenge' | 'result';
+const POSTER_WIDTH = 1080;
+const POSTER_HEIGHT_BY_KIND: Record<PosterKind, number> = {
+  challenge: 1440,
+  result: 1600,
+};
 
 interface SharePosterModalProps {
   kind: PosterKind;
@@ -90,8 +95,8 @@ export function SharePosterModal({
       if (!node) throw new Error('Poster node missing.');
 
       const nextPosterUrl = await toPng(node, {
-        width: 1080,
-        height: 1440,
+        width: POSTER_WIDTH,
+        height: POSTER_HEIGHT_BY_KIND[kind],
         pixelRatio: 1,
         cacheBust: true,
         backgroundColor: '#0d0a1f',
@@ -189,7 +194,12 @@ const PosterCanvas = forwardRef<HTMLDivElement, PosterCanvasProps>(function Post
       ref={ref}
       className="share-poster-canvas"
       data-kind={kind}
-      style={{ '--poster-accent': artist.accent } as CSSProperties}
+      style={
+        {
+          '--poster-accent': artist.accent,
+          height: POSTER_HEIGHT_BY_KIND[kind],
+        } as CSSProperties
+      }
     >
       <div className="share-poster-orb share-poster-orb-a" />
       <div className="share-poster-orb share-poster-orb-b" />
