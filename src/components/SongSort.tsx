@@ -167,13 +167,13 @@ export function SongChoiceButton({
       }}
       onKeyDown={(event) => handleCardKeyDown(event, disabled, onClick)}
     >
-      <span className="flex items-center gap-3 min-w-0">
+      <span className="song-choice-content">
         <SongCover song={song} />
-        <SongPreviewButton song={song} variant="list" />
         <span className="song-rank-info">
           <b>{song.name}</b>
           <small>{artistName} · {song.album}</small>
         </span>
+        <SongPreviewButton song={song} variant="list" />
       </span>
     </div>
   );
@@ -213,38 +213,42 @@ export function SongGridChoiceButton({
       onKeyDown={(event) => handleCardKeyDown(event, disabled, onClick)}
     >
       <SongCover song={song} fill />
-      <SongPreviewButton song={song} variant="grid" />
       <span
         className="song-grid-copy"
         style={{
-          display: 'block',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
           width: '100%',
           marginTop: 12,
-          textAlign: 'center',
+          textAlign: 'left',
           minWidth: 0,
         }}
       >
-        <b
-          style={{
-            display: 'block',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {song.name}
-        </b>
-        <small
-          style={{
-            display: 'block',
-            marginTop: 5,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {song.album}
-        </small>
+        <span className="song-grid-text">
+          <b
+            style={{
+              display: 'block',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {song.name}
+          </b>
+          <small
+            style={{
+              display: 'block',
+              marginTop: 5,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {song.album}
+          </small>
+        </span>
+        <SongPreviewButton song={song} variant="grid" />
       </span>
     </div>
   );

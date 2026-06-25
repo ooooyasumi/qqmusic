@@ -1069,6 +1069,16 @@ body::before {
   opacity: 0.48;
   cursor: not-allowed;
 }
+.song-choice-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+.song-choice-content .song-rank-info {
+  flex: 1 1 auto;
+}
 .song-preview-btn {
   position: relative;
   z-index: 3;
@@ -1084,7 +1094,9 @@ body::before {
     linear-gradient(180deg, rgba(244, 236, 216, 0.1), rgba(255, 255, 255, 0.025)),
     rgba(13, 10, 31, 0.62);
   color: var(--ink-primary);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    0 0 0 4px rgba(244, 236, 216, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.24);
   cursor: pointer;
   transition:
     border-color 0.22s ease,
@@ -1094,20 +1106,24 @@ body::before {
     transform 0.22s ease;
 }
 .song-preview-btn[data-variant='grid'] {
-  position: absolute;
-  top: 22px;
-  left: 22px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
 }
 .song-preview-btn:hover:not(:disabled) {
   border-color: rgba(212, 175, 122, 0.9);
+  box-shadow:
+    0 0 0 4px rgba(212, 175, 122, 0.14),
+    0 10px 22px rgba(0, 0, 0, 0.28);
   transform: translateY(-1px);
 }
 .song-preview-btn[data-playing='true'] {
   border-color: rgba(212, 175, 122, 0.98);
   background: var(--accent-gold);
   color: #1f1608;
+  box-shadow:
+    0 0 0 4px rgba(212, 175, 122, 0.22),
+    0 10px 22px rgba(0, 0, 0, 0.28);
 }
 .song-preview-btn:disabled {
   opacity: 0.34;
@@ -1215,10 +1231,17 @@ body::before {
   filter: saturate(1.08) brightness(1.04);
 }
 .song-grid-copy {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   min-width: 0;
   margin-top: 12px;
+}
+.song-grid-text {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 .song-grid-copy b,
 .song-grid-copy small {
