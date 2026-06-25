@@ -17,6 +17,7 @@ const POSTER_HEIGHT_BY_KIND: Record<PosterKind, number> = {
   result: 1600,
 };
 const POSTER_EXPORT_QUALITY = 0.72;
+const POSTER_FONT_SETTLE_MS = 2000;
 
 interface SharePosterModalProps {
   kind: PosterKind;
@@ -37,6 +38,10 @@ const POSTER_REQUIRED_FONT_LOADS = [
   { font: '500 106px "Noto Serif SC"', text: '同担默契局' },
   { font: '500 92px "Noto Serif SC"', text: '周杰伦林俊杰同担默契局' },
   { font: '500 66px "Noto Serif SC"', text: '来排你的同担默契结果' },
+  { font: 'italic 500 156px "Playfair Display"', text: '100' },
+  { font: 'italic 500 66px "Playfair Display"', text: 'JAY Top6' },
+  { font: 'italic 500 66px "Cormorant Garamond"', text: 'Tongdan Mojiju' },
+  { font: '400 24px "JetBrains Mono"', text: 'QQ MUSIC SOCIAL TEST TONGDAN MOJIJU TOP6 123456' },
 ];
 
 function posterTitle(kind: PosterKind, artist: Artist): string {
@@ -63,10 +68,21 @@ function waitForRender(): Promise<void> {
   });
 }
 
+function wait(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    window.setTimeout(() => resolve(), ms);
+  });
+}
+
 async function waitForFonts(): Promise<void> {
-  if (!document.fonts) return;
+  if (!document.fonts) {
+    await wait(POSTER_FONT_SETTLE_MS);
+    return;
+  }
   await Promise.all(POSTER_REQUIRED_FONT_LOADS.map(({ font, text }) => document.fonts.load(font, text)));
   await document.fonts.ready;
+  await wait(POSTER_FONT_SETTLE_MS);
+  await waitForRender();
 }
 
 function extractCssUrls(value: string): string[] {
