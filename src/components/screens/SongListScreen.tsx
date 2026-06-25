@@ -6,7 +6,7 @@ import { findArtist } from '@/lib/data';
 import { getCatalogSongsByArtist } from '@/lib/appleMusicCatalog';
 import { Orbs } from '@/components/Orbs';
 import { TopBar } from '@/components/TopBar';
-import { SongGridChoiceButton } from '@/components/SongSort';
+import { SongCover, SongGridChoiceButton } from '@/components/SongSort';
 import { SelectionReviewBottomBar } from '@/components/SelectionReviewBottomBar';
 import type { CatalogSong } from '@/lib/appleMusicCatalog';
 
@@ -16,6 +16,25 @@ interface AlbumGroup {
   name: string;
   songs: CatalogSong[];
   albumOrder: number;
+}
+
+function AlbumGridButton({
+  album,
+  onClick,
+}: {
+  album: AlbumGroup;
+  onClick: () => void;
+}) {
+  const coverSong = album.songs[0];
+
+  return (
+    <button type="button" className="song-grid-card album-grid-card" onClick={onClick}>
+      {coverSong ? <SongCover song={coverSong} fill /> : null}
+      <span className="album-grid-copy">
+        <b>{album.name}</b>
+      </span>
+    </button>
+  );
 }
 
 function buildAlbumGroups(songs: CatalogSong[]): AlbumGroup[] {
@@ -79,6 +98,7 @@ export function SongListScreen() {
   }, [albums, keyword]);
   const isAlbumMode = mode === 'albums';
   const isAlbumDetail = Boolean(activeAlbum);
+  const listViewKey = activeAlbum ? `album:${activeAlbum.name}` : mode;
 
   if (!artist) return null;
 
@@ -92,7 +112,7 @@ export function SongListScreen() {
       />
 
       <div className="screen-content-scrollable no-scrollbar">
-        <div className="song-list-toolbar mt-4">
+        <div className="song-list-toolbar mt-4" data-layout={isAlbumDetail ? 'search-only' : 'with-toggle'}>
           <label className="song-list-search">
             <input
               value={keyword}
@@ -101,58 +121,59 @@ export function SongListScreen() {
               className="w-full"
             />
           </label>
-          <button
-            type="button"
-            className="song-list-mode-btn"
-            onClick={() => {
-              setMode((current) => (current === 'songs' ? 'albums' : 'songs'));
-              setActiveAlbumName(null);
-              setKeyword('');
-            }}
-          >
-            {isAlbumMode ? '全部歌曲展开' : '按专辑筛选'}
-          </button>
+          {!isAlbumDetail && (
+            <button
+              type="button"
+              className="song-list-mode-btn"
+              onClick={() => {
+                setMode((current) => (current === 'songs' ? 'albums' : 'songs'));
+                setActiveAlbumName(null);
+                setKeyword('');
+              }}
+            >
+              {isAlbumMode ? '全部歌曲展开' : '按专辑筛选'}
+            </button>
+          )}
         </div>
 
-        {isAlbumMode && !activeAlbum ? (
-          <div className="album-list mt-5">
-            {filteredAlbums.map((album) => (
-              <button
-                key={album.name}
-                type="button"
-                className="album-list-item"
-                onClick={() => {
-                  setActiveAlbumName(album.name);
-                  setKeyword('');
-                }}
-              >
-                <span>{album.name}</span>
-              </button>
-            ))}
-            {filteredAlbums.length === 0 && (
-              <p className="ink-mute text-sm text-center py-6">没有搜到这张专辑，换个关键词试试。</p>
-            )}
-          </div>
-        ) : (
-          <div className="song-grid mt-5">
-            {songs.map((song) => {
-              const selected = selectedSongIds.includes(song.id);
-              const disabled = !selected && selectedSongIds.length >= 6;
-              return (
-                <SongGridChoiceButton
-                  key={song.id}
-                  song={song}
-                  selected={selected}
-                  disabled={disabled}
-                  onClick={() => toggleSong(song.id)}
+        <div key={listViewKey} className="song-list-view mt-5">
+          {isAlbumMode && !activeAlbum ? (
+            <div className="song-grid">
+              {filteredAlbums.map((album) => (
+                <AlbumGridButton
+                  key={album.name}
+                  album={album}
+                  onClick={() => {
+                    setActiveAlbumName(album.name);
+                    setKeyword('');
+                  }}
                 />
-              );
-            })}
-            {songs.length === 0 && (
-              <p className="ink-mute text-sm text-center py-6">没有搜到这首歌，换个关键词试试。</p>
-            )}
-          </div>
-        )}
+              ))}
+              {filteredAlbums.length === 0 && (
+                <p className="ink-mute text-sm text-center py-6">没有搜到这张专辑，换个关键词试试。</p>
+              )}
+            </div>
+          ) : (
+            <div className="song-grid">
+              {songs.map((song) => {
+                const selected = selectedSongIds.includes(song.id);
+                const disabled = !selected && selectedSongIds.length >= 6;
+                return (
+                  <SongGridChoiceButton
+                    key={song.id}
+                    song={song}
+                    selected={selected}
+                    disabled={disabled}
+                    onClick={() => toggleSong(song.id)}
+                  />
+                );
+              })}
+              {songs.length === 0 && (
+                <p className="ink-mute text-sm text-center py-6">没有搜到这首歌，换个关键词试试。</p>
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
       <SelectionReviewBottomBar artist={artist} songs={selectedSongs}>
