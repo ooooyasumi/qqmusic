@@ -299,7 +299,12 @@ export function calculateSongMatch({
     return { song, creatorRank: creator, friendRank: friend, gap: Math.abs(creator - friend) };
   });
   const exactIds = sharedRows
-    .filter((row) => row.creatorRank === row.friendRank)
+    .filter(
+      (row) =>
+        row.creatorRank <= creatorOrder.length &&
+        row.friendRank <= friendOrder.length &&
+        row.creatorRank === row.friendRank,
+    )
     .map((row) => row.song.id);
   const commonSongCount = sharedRows.filter(
     (row) => row.creatorRank <= creatorOrder.length && row.friendRank <= friendOrder.length,
@@ -310,18 +315,16 @@ export function calculateSongMatch({
     return creator <= 3 && friend <= 3;
   }).length;
   const gapPenalty = sharedRows.reduce((sum, row) => sum + row.gap, 0);
+  const baseByCommonCount = [56, 68, 76, 82, 90, 95, 96][Math.min(commonSongCount, 6)] ?? 56;
   const rawScore =
-    42 +
-    commonSongCount * 10 +
-    commonTopCount * 5 +
-    exactIds.length * 4 -
-    Math.min(12, gapPenalty * 0.45);
-  const overlapFloor = [35, 62, 68, 74, 80, 86, 90][Math.min(commonSongCount, 6)] ?? 35;
-  const roundedScore = Math.round(rawScore);
+    baseByCommonCount +
+    Math.min(6, commonTopCount * 2) +
+    Math.min(8, exactIds.length * 1.4) -
+    Math.min(10, gapPenalty * 0.35);
   const score =
-    commonSongCount === 0
-      ? Math.max(35, Math.min(45, roundedScore))
-      : Math.max(overlapFloor, Math.min(99, roundedScore));
+    commonSongCount === 6 && exactIds.length === 6
+      ? 100
+      : Math.max(baseByCommonCount, Math.min(99, Math.round(rawScore)));
   const config = copyConfig(artistId, score);
   const biggest = [...sharedRows].sort((a, b) => b.gap - a.gap)[0];
   const biggestGap = biggest && biggest.gap > 0 ? `${biggest.song.name} 相差 ${biggest.gap} 位` : '完全同频';
