@@ -17,7 +17,7 @@ export function RoomsScreen() {
   return (
     <div className="screen screen-fade">
       <Orbs accent="rgba(212,175,122,0.35)" secondary="rgba(91,141,239,0.25)" />
-      <TopBar title="My Rooms" />
+      <TopBar title="My Rooms" showMenu={false} />
 
       <div className="screen-content-scrollable no-scrollbar">
         <div className="relative">
